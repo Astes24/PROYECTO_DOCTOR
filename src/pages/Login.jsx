@@ -61,7 +61,7 @@ const Login = () => {
             <div
                 className="absolute inset-0 z-0 pointer-events-none"
                 style={{
-                    backgroundImage: "url('/login-pattern.png')",
+                    backgroundImage: "url('/login-pattern.jpg')",
                     backgroundRepeat: "repeat",
                     backgroundSize: "600px",
                     opacity: 0.9
@@ -110,7 +110,7 @@ const Login = () => {
 
                 <div className="w-full mb-3 shrink-0 flex flex-col items-center">
                     <svg viewBox="0 0 310 16" className="w-full h-auto text-slate-800">
-                        <text x="155" y="13" textAnchor="middle" fill="currentColor" className="font-bold tracking-tight" fontSize="13">PANEL ADMINISTRATIVO DEL CONSULTORIO</text>
+                        <text x="155" y="13" textAnchor="middle" fill="currentColor" className="font-bold tracking-tight" fontSize="13">PANEL ADMINISTRATIVO</text>
                     </svg>
                     <svg viewBox="0 0 310 26" className="w-full h-auto mt-1 text-slate-800">
                         <text x="155" y="22" textAnchor="middle" fill="currentColor" className="font-black tracking-tight" fontSize="23">GOLDEN CLINIC</text>
