@@ -97,7 +97,7 @@ const Login = () => {
                 <div className="flex justify-center mb-6 shrink-0">
                     <div className="w-[20vh] h-[20vh] min-w-[80px] min-h-[80px] rounded-full border-4 border-white overflow-hidden shadow-lg bg-white/40 flex items-center justify-center">
                         <img
-                            src="/logo-clinica.png"
+                            src="/logo-clinica.jpg"
                             alt="Logo Clínica"
                             className="w-full h-full object-cover"
                             onError={(e) => {

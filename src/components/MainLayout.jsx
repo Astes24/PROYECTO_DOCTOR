@@ -303,7 +303,7 @@ const MainLayout = () => {
                             if ('Notification' in window && Notification.permission === 'granted') {
                                 new Notification(isUrgency ? '⚠️ EMERGENCIA MÉDICA' : '🔔 Nueva Notificación', {
                                     body: newNotif.mensaje?.replace(/alerta bot:?\s*/i, '').trim() || 'Tienes una nueva notificación.',
-                                    icon: '/logo-clinica.png'
+                                    icon: '/logo-clinica.jpg'
                                 });
                             }
                         }
@@ -500,7 +500,7 @@ const MainLayout = () => {
                     display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
                 }}>
                     <img
-                        src="/logo-clinica.png"
+                        src="/logo-clinica.jpg"
                         alt="Logo Clínica"
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                         onError={(e) => {
