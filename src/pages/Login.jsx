@@ -61,7 +61,7 @@ const Login = () => {
             <div
                 className="absolute inset-0 z-0 pointer-events-none"
                 style={{
-                    backgroundImage: "url('/login-pattern.jpg')",
+                    backgroundImage: "url('/login-pattern.png')",
                     backgroundRepeat: "repeat",
                     backgroundSize: "600px",
                     opacity: 0.9
