@@ -3,14 +3,14 @@
 @theme {
   --font-sans: 'Roboto', sans-serif;
 
-  --color-primary: #ce82ff;
-  --color-primary-light: #e0aaff;
-  --color-primary-dark: #b36add;
-  --color-primary-50: #faefff;
-  --color-primary-900: #4a1d66;
+  --color-primary: #D4AF37;
+  --color-primary-light: #FFD700;
+  --color-primary-dark: #B8860B;
+  --color-primary-50: #FFFDF5;
+  --color-primary-900: #423200;
 
-  --color-secondary: #b6f0fe;
-  --color-secondary-dark: #8bd0de;
+  --color-secondary: #E5D5B0;
+  --color-secondary-dark: #D4C49F;
 
   --color-background: var(--bg-color);
   --color-surface: var(--surface-color);
@@ -18,25 +18,25 @@
   --color-text-secondary: var(--text-secondary);
   --color-on-brand: var(--text-on-brand);
 
-  --shadow-glow-primary: 0 0 15px rgba(206, 130, 255, 0.5);
+  --shadow-glow-primary: 0 0 15px rgba(212, 175, 55, 0.5);
 }
 
 @layer base {
   :root {
-    /* Light Mode Variables */
-    --bg-color: #f8fafc;
-    --surface-color: #ffffff;
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
+    /* Light Mode Variables - Golden Theme */
+    --bg-color: #FFFDF5;
+    --surface-color: #FCF9F2;
+    --text-primary: #1A1A1A;
+    --text-secondary: #5D546B;
     --text-on-brand: #121212;
   }
 
   .dark {
-    /* Dark Mode Variables */
-    --bg-color: #0b0f19;
-    --surface-color: #1e293b;
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
+    /* Dark Mode Variables - Deep Gold Theme */
+    --bg-color: #0F0E0A;
+    --surface-color: #1A1812;
+    --text-primary: #EDE6D8;
+    --text-secondary: #A39E8F;
     --text-on-brand: #121212;
   }
 

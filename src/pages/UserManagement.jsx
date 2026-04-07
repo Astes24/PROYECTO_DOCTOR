@@ -167,7 +167,7 @@ const UserManagement = () => {
                                     required
                                     fullWidth
                                     variant="outlined"
-                                    placeholder="Dra. Violeta Mendoza"
+                                    placeholder="Golden Clinic"
                                     value={fullName}
                                     onChange={(e) => setFullName(e.target.value)}
                                     InputLabelProps={{ shrink: true }}

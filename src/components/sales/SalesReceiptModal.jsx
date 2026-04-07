@@ -71,8 +71,8 @@ const PatientPickerDialog = ({ open, onClose, onSelect }) => {
                     width: 36, 
                     height: 36, 
                     borderRadius: 1.5, 
-                    bgcolor: '#FFF0F7', 
-                    color: '#FF80AB' 
+                    bgcolor: '#FCF9F2', 
+                    color: '#D4AF37' 
                 }}>
                     <PeopleAltIcon sx={{ fontSize: 20 }} />
                 </Box>
@@ -90,7 +90,7 @@ const PatientPickerDialog = ({ open, onClose, onSelect }) => {
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
-                                <SearchIcon fontSize="small" sx={{ color: '#FF80AB' }} />
+                                <SearchIcon fontSize="small" sx={{ color: '#D4AF37' }} />
                             </InputAdornment>
                         ),
                     }}
@@ -98,14 +98,14 @@ const PatientPickerDialog = ({ open, onClose, onSelect }) => {
                         mb: 2,
                         '& .MuiOutlinedInput-root': {
                             bgcolor: 'white',
-                            '&:hover fieldset': { borderColor: '#FFD1E8' },
-                            '&.Mui-focused fieldset': { borderColor: '#FF80AB' }
+                            '&:hover fieldset': { borderColor: '#F5F5DC' },
+                            '&.Mui-focused fieldset': { borderColor: '#D4AF37' }
                         }
                     }}
                 />
                 {loading ? (
                     <Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
-                        <CircularProgress size={32} sx={{ color: '#FF80AB' }} />
+                        <CircularProgress size={32} sx={{ color: '#D4AF37' }} />
                     </Box>
                 ) : (
                     <List dense sx={{ maxHeight: 340, overflowY: 'auto', px: 0.5 }}>
@@ -125,12 +125,12 @@ const PatientPickerDialog = ({ open, onClose, onSelect }) => {
                                     sx={{ 
                                         borderRadius: 2.5, 
                                         py: 1.2,
-                                        '&:hover': { bgcolor: '#FFF0F7' } 
+                                        '&:hover': { bgcolor: '#FCF9F2' } 
                                     }}
                                 >
                                     <ListItemAvatar>
                                         <Avatar sx={{ 
-                                            bgcolor: '#CE82FF', // Purple from theme
+                                            bgcolor: '#D4AF37', // Gold from theme
                                             width: 36, 
                                             height: 36, 
                                             fontSize: '0.85rem',
@@ -369,8 +369,8 @@ const SalesReceiptModal = ({ open, onClose, onSaved }) => {
                         width: 40, 
                         height: 40, 
                         borderRadius: 2, 
-                        bgcolor: '#FFF0F7', 
-                        color: '#FF80AB',
+                        bgcolor: '#FCF9F2', 
+                        color: '#D4AF37',
                         flexShrink: 0
                     }}>
                         <ReceiptIcon sx={{ fontSize: 24 }} />
@@ -380,8 +380,8 @@ const SalesReceiptModal = ({ open, onClose, onSaved }) => {
                         label="NUEVA"
                         size="small"
                         sx={{
-                            bgcolor: '#FFD1E8',
-                            color: '#FF80AB',
+                            bgcolor: '#F5F5DC',
+                            color: '#D4AF37',
                             fontWeight: 800,
                             fontSize: '0.75rem',
                             height: 24,
@@ -392,7 +392,7 @@ const SalesReceiptModal = ({ open, onClose, onSaved }) => {
 
                     <IconButton 
                         onClick={handleClose} 
-                        sx={{ ml: 'auto', color: 'text.secondary', '&:hover': { bgcolor: '#FFF0F7', color: '#FF80AB' } }} 
+                        sx={{ ml: 'auto', color: 'text.secondary', '&:hover': { bgcolor: '#FCF9F2', color: '#D4AF37' } }} 
                         size="small"
                     >
                         <CloseIcon />
@@ -404,8 +404,8 @@ const SalesReceiptModal = ({ open, onClose, onSaved }) => {
                     {/* 2. Datos del consultorio + Identificación a la derecha */}
                     <Box sx={{ mb: 3.5, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.8 }}>
-                            <Typography variant="h6" sx={{ fontWeight: 900, color: '#FF80AB', textTransform: 'uppercase', letterSpacing: '0.05em', lineHeight: 1.2 }}>
-                                {clinicInfo?.nombre_clinica || 'Consultorio Médico'}
+                            <Typography variant="h6" sx={{ fontWeight: 900, color: '#D4AF37', textTransform: 'uppercase', letterSpacing: '0.05em', lineHeight: 1.2 }}>
+                                {clinicInfo?.nombre_clinica || 'Golden Clinic'}
                             </Typography>
                             <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>
                                 {clinicInfo?.direccion || 'Cargando dirección...'}
@@ -467,9 +467,9 @@ const SalesReceiptModal = ({ open, onClose, onSaved }) => {
                                     sx={{
                                         minWidth: 48, width: 48, height: 40, p: 0,
                                         borderRadius: 2,
-                                        borderColor: '#FFD1E8',
-                                        color: '#FF80AB',
-                                        '&:hover': { bgcolor: '#FFF0F7', borderColor: '#FF80AB' }
+                                        borderColor: '#F5F5DC',
+                                        color: '#D4AF37',
+                                        '&:hover': { bgcolor: '#FCF9F2', borderColor: '#D4AF37' }
                                     }}
                                 >
                                     <PeopleAltIcon fontSize="small" />
@@ -510,10 +510,10 @@ const SalesReceiptModal = ({ open, onClose, onSaved }) => {
                             border: '1px solid',
                             borderColor: 'divider',
                             transition: 'all 0.2s',
-                            '&:focus-within': { borderColor: '#FFD1E8', boxShadow: '0 4px 12px rgba(255, 128, 171, 0.08)' }
+                            '&:focus-within': { borderColor: '#F5F5DC', boxShadow: '0 4px 12px rgba(212, 175, 55, 0.08)' }
                         }}>
                             <Typography variant="subtitle2" fontWeight={800} sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2.5, color: 'text.secondary', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                                <InventoryIcon sx={{ fontSize: 18, color: '#CE82FF' }} /> Insumos / Productos
+                                <InventoryIcon sx={{ fontSize: 18, color: '#D4AF37' }} /> Insumos / Productos
                             </Typography>
 
                             <Autocomplete
@@ -583,8 +583,8 @@ const SalesReceiptModal = ({ open, onClose, onSaved }) => {
                                     disabled={!selectedInventoryItem || (selectedInventoryItem?.stock_actual || 0) <= 0}
                                     sx={{ 
                                         borderRadius: 2, 
-                                        bgcolor: '#FF80AB', 
-                                        '&:hover': { bgcolor: '#F48FB1' },
+                                        bgcolor: '#D4AF37', 
+                                        '&:hover': { bgcolor: '#B8860B' },
                                         height: 40
                                     }}
                                 >
@@ -602,7 +602,7 @@ const SalesReceiptModal = ({ open, onClose, onSaved }) => {
                             border: '1px solid',
                             borderColor: 'divider',
                             transition: 'all 0.2s',
-                            '&:focus-within': { borderColor: '#FFD1E8', boxShadow: '0 4px 12px rgba(255, 128, 171, 0.08)' }
+                            '&:focus-within': { borderColor: '#F5F5DC', boxShadow: '0 4px 12px rgba(212, 175, 55, 0.08)' }
                         }}>
                             <Typography variant="subtitle2" fontWeight={800} sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2.5, color: 'text.secondary', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                                 <MiscellaneousServicesIcon sx={{ fontSize: 18, color: '#20C997' }} /> Servicios / Tratamientos
@@ -643,8 +643,8 @@ const SalesReceiptModal = ({ open, onClose, onSaved }) => {
                                     disabled={!serviceDesc.trim() || !servicePrice}
                                     sx={{ 
                                         borderRadius: 2, 
-                                        bgcolor: '#FF80AB', 
-                                        '&:hover': { bgcolor: '#F48FB1' },
+                                        bgcolor: '#D4AF37', 
+                                        '&:hover': { bgcolor: '#B8860B' },
                                         height: 40
                                     }}
                                 >
@@ -664,7 +664,7 @@ const SalesReceiptModal = ({ open, onClose, onSaved }) => {
                         mb: 2
                     }}>
                         <Typography variant="subtitle2" fontWeight={800} sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2.5, color: 'text.primary', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                            <ReceiptIcon sx={{ fontSize: 18, color: '#FF80AB' }} /> Detalle del Pedido
+                            <ReceiptIcon sx={{ fontSize: 18, color: '#D4AF37' }} /> Detalle del Pedido
                         </Typography>
 
                         {receiptItems.length === 0 ? (
@@ -736,7 +736,7 @@ const SalesReceiptModal = ({ open, onClose, onSaved }) => {
                                 pr: 2,
                                 pb: 3,
                                 borderTop: '1px solid',
-                                borderColor: 'rgba(255, 128, 171, 0.1)',
+                                borderColor: 'rgba(212, 175, 55, 0.1)',
                                 pt: 3
                             }}>
                                 <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500, pb: 1 }}>
@@ -756,7 +756,7 @@ const SalesReceiptModal = ({ open, onClose, onSaved }) => {
                                     }}>
                                         {formatCurrency(total)}
                                     </Typography>
-                                    <Box sx={{ width: 100, height: 4, bgcolor: '#FF80AB', borderRadius: 1, mt: 1 }} />
+                                    <Box sx={{ width: 100, height: 4, bgcolor: '#D4AF37', borderRadius: 1, mt: 1 }} />
                                 </Box>
                             </Box>
                         )}
@@ -781,11 +781,11 @@ const SalesReceiptModal = ({ open, onClose, onSaved }) => {
                             px: 5,
                             height: 48,
                             borderRadius: 2,
-                            bgcolor: '#FF80AB',
+                            bgcolor: '#D4AF37',
                             fontSize: '1rem',
                             fontWeight: 800,
-                            boxShadow: '0 10px 20px rgba(255, 128, 171, 0.25)',
-                            '&:hover': { bgcolor: '#F48FB1', boxShadow: '0 12px 24px rgba(255, 128, 171, 0.35)' },
+                            boxShadow: '0 10px 20px rgba(212, 175, 55, 0.25)',
+                            '&:hover': { bgcolor: '#B8860B', boxShadow: '0 12px 24px rgba(212, 175, 55, 0.35)' },
                             '&:disabled': { opacity: 0.5 }
                         }}
                     >

@@ -68,10 +68,11 @@ const Login = () => {
                 }}
             >
                 {/* Gotas de color suavizadas de fondo */}
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#CE82FF]/20 rounded-full mix-blend-multiply blur-3xl opacity-40"></div>
-                <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-[#B6F0FE]/30 rounded-full mix-blend-multiply blur-3xl opacity-40"></div>
+                {/* Gotas de color suavizadas de fondo - Golden Theme */}
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#D4AF37]/20 rounded-full mix-blend-multiply blur-3xl opacity-40"></div>
+                <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-[#E5D5B0]/30 rounded-full mix-blend-multiply blur-3xl opacity-40"></div>
                 {/* Acento cálido */}
-                <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-[#FFD1E8]/30 rounded-full mix-blend-multiply blur-3xl opacity-30 transform -translate-x-1/2 -translate-y-1/2"></div>
+                <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-[#F5F5DC]/30 rounded-full mix-blend-multiply blur-3xl opacity-30 transform -translate-x-1/2 -translate-y-1/2"></div>
             </div>
 
             {/* Capa de desenfoque blanco semi-transparente sobre el fondo */}
@@ -91,7 +92,8 @@ const Login = () => {
             </div>
 
             {/* Contenedor Principal (Glassmorphism Premium) */}
-            <div className="relative z-10 w-full sm:w-[80vw] md:w-[30vw] min-w-[340px] h-[80vh] flex flex-col justify-center overflow-y-auto p-8 sm:p-10 bg-white/70 backdrop-blur-xl border border-white/40 shadow-2xl shadow-[#CE82FF]/10 rounded-3xl text-center text-slate-800">
+            {/* Contenedor Principal (Glassmorphism Premium) */}
+            <div className="relative z-10 w-full sm:w-[80vw] md:w-[30vw] min-w-[340px] h-[80vh] flex flex-col justify-center overflow-y-auto p-8 sm:p-10 bg-white/70 backdrop-blur-xl border border-white/40 shadow-2xl shadow-[#D4AF37]/10 rounded-3xl text-center text-slate-800">
                 <div className="flex justify-center mb-6 shrink-0">
                     <div className="w-[20vh] h-[20vh] min-w-[80px] min-h-[80px] rounded-full border-4 border-white overflow-hidden shadow-lg bg-white/40 flex items-center justify-center">
                         <img
@@ -111,7 +113,7 @@ const Login = () => {
                         <text x="155" y="13" textAnchor="middle" fill="currentColor" className="font-bold tracking-tight" fontSize="13">PANEL ADMINISTRATIVO DEL CONSULTORIO</text>
                     </svg>
                     <svg viewBox="0 0 310 26" className="w-full h-auto mt-1 text-slate-800">
-                        <text x="155" y="22" textAnchor="middle" fill="currentColor" className="font-black tracking-tight" fontSize="23">DRA. VIOLETA MENDOZA</text>
+                        <text x="155" y="22" textAnchor="middle" fill="currentColor" className="font-black tracking-tight" fontSize="23">GOLDEN CLINIC</text>
                     </svg>
                 </div>
                 <p className="text-sm text-slate-500 mb-6 font-medium shrink-0">Bienvenido/a, ingresa tus credenciales para acceder al sistema</p>

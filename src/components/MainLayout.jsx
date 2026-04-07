@@ -514,7 +514,7 @@ const MainLayout = () => {
                         <text x="155" y="13" textAnchor="middle" fill="currentColor" style={{ fontWeight: 700, letterSpacing: '-0.025em', fontSize: '13px' }}>PANEL ADMINISTRATIVO</text>
                     </svg>
                     <svg viewBox="0 0 310 26" style={{ width: '100%', height: 'auto', maxWidth: '200px', marginTop: '4px' }}>
-                        <text x="155" y="22" textAnchor="middle" fill="currentColor" style={{ fontWeight: 900, letterSpacing: '-0.025em', fontSize: '23px' }}>DRA. VIOLETA MENDOZA</text>
+                        <text x="155" y="22" textAnchor="middle" fill="currentColor" style={{ fontWeight: 900, letterSpacing: '-0.025em', fontSize: '23px' }}>GOLDEN CLINIC</text>
                     </svg>
                 </Box>
             </Box>
@@ -916,7 +916,7 @@ const MainLayout = () => {
                 <Alert
                     onClose={() => setNotificationSnackbar({ ...notificationSnackbar, open: false })}
                     severity="info"
-                    sx={{ width: '100%', bgcolor: '#2A2135', color: '#FFFFFF', '& .MuiAlert-icon': { color: '#B6F0FE' }, borderRadius: 3 }}
+                    sx={{ width: '100%', bgcolor: '#1A1812', color: '#FFFFFF', '& .MuiAlert-icon': { color: '#D4AF37' }, borderRadius: 3 }}
                 >
                     {notificationSnackbar.message}
                 </Alert>
