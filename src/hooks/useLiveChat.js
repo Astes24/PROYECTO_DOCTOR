@@ -67,7 +67,9 @@ const useLiveChat = () => {
             // Group by id_sesion to get the latest message per phone
             const sessionMap = {};
             sessions?.forEach(msg => {
-                if (!sessionMap[msg.id_sesion]) {
+                const isTecnico = msg.metadatos && msg.metadatos.es_tecnico === true;
+                const isTool = msg.tipo_mensaje === 'tool';
+                if (!isTecnico && !isTool && !sessionMap[msg.id_sesion]) {
                     sessionMap[msg.id_sesion] = {
                         lastMessage: msg.contenido,
                         lastMessageTime: msg.created_at,
@@ -151,7 +153,8 @@ const useLiveChat = () => {
                 .from('historial_chat')
                 .select('*')
                 .eq('id_sesion', phone)
-                .order('created_at', { ascending: true });
+                .order('created_at', { ascending: true })
+                .order('id', { ascending: true });
 
             if (!loadAll) {
                 const now = new Date();
@@ -162,7 +165,14 @@ const useLiveChat = () => {
             const { data, error: msgError } = await query;
 
             if (msgError) throw msgError;
-            setMessages(data || []);
+            
+            const filteredMessages = (data || []).filter(msg => {
+                const isTecnico = msg.metadatos && msg.metadatos.es_tecnico === true;
+                const isTool = msg.tipo_mensaje === 'tool';
+                return !isTecnico && !isTool;
+            });
+            
+            setMessages(filteredMessages);
             setHasMoreMessages(!loadAll); // If we just loaded 24h, there might be more
         } catch (err) {
             console.error('Error fetching messages:', err);
@@ -334,6 +344,12 @@ const useLiveChat = () => {
                     console.log('🟢 [LiveChat] ¡Nuevo mensaje insertado en la BD! Payload:', payload.new);
                     const newMsg = payload.new;
 
+                    const isTecnico = newMsg.metadatos && newMsg.metadatos.es_tecnico === true;
+                    const isTool = newMsg.tipo_mensaje === 'tool';
+                    if (isTecnico || isTool) {
+                        return;
+                    }
+
                     // If this message belongs to the currently selected chat, add it
                     if (newMsg.id_sesion === selectedPhoneRef.current) {
                         setMessages(prev => {
@@ -343,7 +359,16 @@ const useLiveChat = () => {
                                 return prev;
                             }
                             console.log('✅ [LiveChat] Agregando mensaje al chat activo:', newMsg.contenido);
-                            return [...prev, newMsg];
+                            const updatedMessages = [...prev, newMsg];
+                            updatedMessages.sort((a, b) => {
+                                const dateA = new Date(a.created_at);
+                                const dateB = new Date(b.created_at);
+                                if (dateA.getTime() !== dateB.getTime()) {
+                                    return dateA - dateB;
+                                }
+                                return a.id - b.id;
+                            });
+                            return updatedMessages;
                         });
                     } else {
                         console.log('ℹ️ [LiveChat] Mensaje es para otro chat. Seleccionado:', selectedPhoneRef.current, 'Recibido:', newMsg.id_sesion);
