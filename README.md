@@ -1,12 +1,36 @@
-# MedSchedulerBOT-ADMIN
+# Golden Clinic Admin - Panel de Control
 
 ![React](https://img.shields.io/badge/React-19-blue.svg)
 ![Vite](https://img.shields.io/badge/Vite-Latest-646CFF.svg)
-![MUI](https://img.shields.io/badge/MUI-v6-007FFF.svg)
+![MUI](https://img.shields.io/badge/MUI-v6-D4AF37.svg)
 ![Supabase](https://img.shields.io/badge/Supabase-DB%20%26%20Auth-3ECF8E.svg)
-![Tailwind](https://img.shields.io/badge/Tailwind-v4-06B6D4.svg)
+![Tailwind](https://img.shields.io/badge/Tailwind-v4-38B2AC.svg)
 
-**MedSchedulerBOT-ADMIN** es el centro de control operativo para el ecosistema **MedScheduler**. Este panel administrativo permite al personal médico y administrativo supervisar, gestionar y configurar el bot de agendamiento inteligente integrado con WhatsApp e IA.
+**Golden Clinic Admin** es el centro de control operativo para la gestión clínica inteligente. Este panel permite al personal médico y administrativo supervisar pacientes, citas y configuraciones del bot de IA con una interfaz premium y moderna.
+
+---
+
+## 🎨 Sistema de Diseño (Color Palette)
+
+El proyecto utiliza una paleta de colores **Golden Premium** diseñada para transmitir elegancia y confianza:
+
+### Colores Principales (Gold Theme)
+-   **Primary (Dorado):** `#D4AF37` (Base Gold)
+-   **Primary Light:** `#FFD700`
+-   **Primary Dark:** `#B8860B`
+-   **Acents:** `#E5D5B0` (Beige/Cream)
+
+### Fondos y Superficies
+-   **Light Mode:** 
+    -   Background: `#FFFDF5`
+    -   Surface: `#FCF9F2`
+-   **Dark Mode:**
+    -   Background: `#0F0E0A`
+    -   Surface: `#1A1812`
+
+### Tipografía y Texto
+-   **Main Text (Light/Dark):** `#1A1A1A` / `#EDE6D8`
+-   **Secondary Text:** `#5D546B` / `#A39E8F`
 
 ---
 
@@ -115,4 +139,4 @@ src/
 -   **Business Logic:** No pongas llamadas directas a Supabase en los componentes de UI. Usa `services/` para encapsular la lógica y devolver promesas limpias.
 
 ---
-© 2026 MedScheduler Team - Advanced AI Medical Solutions.
+© 2026 Golden Clinic - Advanced AI Medical Solutions.
