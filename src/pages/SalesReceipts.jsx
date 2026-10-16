@@ -159,7 +159,7 @@ const SalesReceipts = () => {
         {
             field: 'numero_boleta',
             headerName: 'N° Boleta',
-            width: 140,
+            width: 120,
             align: 'center',
             headerAlign: 'center',
             renderCell: (params) => (
@@ -173,7 +173,7 @@ const SalesReceipts = () => {
         {
             field: 'fecha',
             headerName: 'Fecha',
-            width: 130,
+            width: 105,
             align: 'center',
             headerAlign: 'center',
             renderCell: (params) => (
@@ -203,7 +203,7 @@ const SalesReceipts = () => {
         {
             field: 'total',
             headerName: 'Total',
-            width: 130,
+            width: 110,
             align: 'center',
             headerAlign: 'center',
             renderCell: (params) => (
@@ -217,7 +217,7 @@ const SalesReceipts = () => {
         {
             field: 'estado',
             headerName: 'Estado',
-            width: 130,
+            width: 115,
             align: 'center',
             headerAlign: 'center',
             renderCell: (params) => (
@@ -229,7 +229,7 @@ const SalesReceipts = () => {
         {
             field: 'actions',
             headerName: 'Acciones',
-            width: 150,
+            width: 110,
             align: 'center',
             headerAlign: 'center',
             sortable: false,

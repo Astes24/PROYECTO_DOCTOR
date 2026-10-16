@@ -159,7 +159,7 @@ const MedicalPrescriptions = () => {
         {
             field: 'numero_receta',
             headerName: 'N° Receta',
-            width: 150,
+            width: 110,
             align: 'center',
             headerAlign: 'center',
             renderCell: (params) => (
@@ -173,7 +173,7 @@ const MedicalPrescriptions = () => {
         {
             field: 'fecha',
             headerName: 'Fecha',
-            width: 120,
+            width: 100,
             align: 'center',
             headerAlign: 'center',
             renderCell: (params) => (
@@ -186,7 +186,7 @@ const MedicalPrescriptions = () => {
             field: '_paciente_nombre',
             headerName: 'Paciente',
             flex: 1,
-            minWidth: 160,
+            minWidth: 140,
             align: 'center',
             headerAlign: 'center',
             renderCell: (params) => (
@@ -204,7 +204,7 @@ const MedicalPrescriptions = () => {
             field: 'diagnostico',
             headerName: 'Diagnóstico',
             flex: 1.5,
-            minWidth: 180,
+            minWidth: 150,
             align: 'center',
             headerAlign: 'center',
             renderCell: (params) => (
@@ -227,7 +227,8 @@ const MedicalPrescriptions = () => {
         {
             field: 'medico_nombre',
             headerName: 'Médico',
-            width: 180,
+            flex: 1,
+            minWidth: 130,
             align: 'center',
             headerAlign: 'center',
             renderCell: (params) => (
@@ -244,7 +245,7 @@ const MedicalPrescriptions = () => {
         {
             field: 'estado',
             headerName: 'Estado',
-            width: 130,
+            width: 110,
             align: 'center',
             headerAlign: 'center',
             renderCell: (params) => (
@@ -256,7 +257,7 @@ const MedicalPrescriptions = () => {
         {
             field: 'actions',
             headerName: 'Acciones',
-            width: 150,
+            width: 100,
             align: 'center',
             headerAlign: 'center',
             sortable: false,

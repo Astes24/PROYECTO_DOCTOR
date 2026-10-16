@@ -65,6 +65,11 @@ const renderAge = (fechaNacimiento) => {
 const Patients = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    // En laptops (< 1536px) se oculta "Fecha Creación" para que la tabla entre sin scroll horizontal;
+    // el usuario puede volver a mostrarla desde el menú de columnas
+    const isCompactTable = useMediaQuery(theme.breakpoints.down('xl'));
+    const [userColumnVisibility, setUserColumnVisibility] = useState({});
+    const columnVisibilityModel = { created_at: !isCompactTable, ...userColumnVisibility };
 
     const [patients, setPatients] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -248,22 +253,22 @@ const Patients = () => {
     };
 
     const columns = [
-        { field: 'dni', headerName: 'DNI/CE', width: 130, align: 'center', headerAlign: 'center' },
+        { field: 'dni', headerName: 'DNI/CE', width: 110, align: 'center', headerAlign: 'center' },
         {
             field: 'nombre_completo',
             headerName: 'Nombre Completo',
-            minWidth: 250,
+            minWidth: 200,
             flex: 1,
             align: 'center',
             headerAlign: 'center',
             valueGetter: (value) => capitalizeWords(value)
         },
-        { field: 'edad', headerName: 'Edad', width: 100, align: 'center', headerAlign: 'center' },
-        { field: 'telefono_principal', headerName: 'Teléfono', width: 130, align: 'center', headerAlign: 'center' },
+        { field: 'edad', headerName: 'Edad', width: 70, align: 'center', headerAlign: 'center' },
+        { field: 'telefono_principal', headerName: 'Teléfono', width: 120, align: 'center', headerAlign: 'center' },
         {
             field: 'created_at',
             headerName: 'Fecha Creación',
-            width: 130,
+            width: 135,
             align: 'center',
             headerAlign: 'center',
             renderCell: (params) => (
@@ -277,7 +282,7 @@ const Patients = () => {
         {
             field: 'confirmadas',
             headerName: 'Confirmadas',
-            width: 140,
+            width: 110,
             align: 'center',
             headerAlign: 'center',
             renderCell: (params) => (
@@ -291,7 +296,7 @@ const Patients = () => {
         {
             field: 'pendientes',
             headerName: 'Pendientes',
-            width: 130,
+            width: 105,
             align: 'center',
             headerAlign: 'center',
             renderCell: (params) => (
@@ -305,7 +310,7 @@ const Patients = () => {
         {
             field: 'notifs_por_ver',
             headerName: 'Notifs. por ver',
-            width: 130,
+            width: 125,
             align: 'center',
             headerAlign: 'center',
             renderCell: (params) => (
@@ -454,6 +459,8 @@ const Patients = () => {
                         rows={filteredPatients}
                         columns={columns}
                         loading={loading}
+                        columnVisibilityModel={columnVisibilityModel}
+                        onColumnVisibilityModelChange={setUserColumnVisibility}
                         initialState={{
                             pagination: { paginationModel: { pageSize: 15 } },
                         }}
