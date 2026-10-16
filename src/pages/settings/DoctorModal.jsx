@@ -6,16 +6,17 @@ import PersonIcon from '@mui/icons-material/Person';
 import BadgeIcon from '@mui/icons-material/Badge';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 
-const GOLD = '#D4AF37';
-const GOLD_LIGHT = '#FCF9F2';
-const GOLD_BORDER = '#F5F5DC';
+const BRAND = 'var(--c-primary)';
+const BRAND_TEXT = 'var(--c-primary-text)';
+const BRAND_SURFACE = 'var(--c-primary-soft)';
+const BRAND_BORDER = 'var(--c-primary-border)';
 
 const fieldSx = {
     '& .MuiOutlinedInput-root': {
         borderRadius: 3,
-        '&.Mui-focused fieldset': { borderColor: GOLD }
+        '&.Mui-focused fieldset': { borderColor: BRAND }
     },
-    '& label.Mui-focused': { color: GOLD }
+    '& label.Mui-focused': { color: BRAND_TEXT }
 };
 
 const DoctorModal = ({ open, onClose, doctor, onSuccess }) => {
@@ -109,7 +110,7 @@ const DoctorModal = ({ open, onClose, doctor, onSuccess }) => {
     const SectionLabel = ({ icon, text }) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
             {icon}
-            <Typography variant="caption" color={GOLD} fontWeight={800} sx={{ textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+            <Typography variant="caption" color={BRAND_TEXT} fontWeight={800} sx={{ textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                 {text}
             </Typography>
         </Box>
@@ -125,14 +126,14 @@ const DoctorModal = ({ open, onClose, doctor, onSuccess }) => {
                 sx: {
                     maxHeight: '95vh',
                     borderRadius: '16px',
-                    boxShadow: '0 25px 50px -12px rgba(212, 175, 55, 0.25)',
+                    boxShadow: '0 25px 50px -12px rgba(var(--c-primary-rgb), 0.25)',
                     border: '1px solid',
-                    borderColor: GOLD_BORDER
+                    borderColor: BRAND_BORDER
                 }
             }}
         >
-            <DialogTitle sx={{ m: 0, p: 2, display: 'flex', alignItems: 'center', bgcolor: GOLD_LIGHT, borderBottom: '1px solid', borderColor: GOLD_BORDER }}>
-                <PersonIcon sx={{ color: GOLD, mr: 1 }} />
+            <DialogTitle sx={{ m: 0, p: 2, display: 'flex', alignItems: 'center', bgcolor: BRAND_SURFACE, borderBottom: '1px solid', borderColor: BRAND_BORDER }}>
+                <PersonIcon sx={{ color: BRAND_TEXT, mr: 1 }} />
                 <Typography variant="h6" fontWeight={900} sx={{ color: 'text.primary', textTransform: 'uppercase', fontSize: '1rem' }}>
                     {isEditMode ? 'Editar Médico' : 'Agregar Médico'}
                 </Typography>
@@ -140,7 +141,7 @@ const DoctorModal = ({ open, onClose, doctor, onSuccess }) => {
                     aria-label="close"
                     onClick={onClose}
                     disabled={loading}
-                    sx={{ position: 'absolute', right: 8, top: 8, color: GOLD, '&:hover': { bgcolor: 'rgba(212,175,55,0.05)' } }}
+                    sx={{ position: 'absolute', right: 8, top: 8, color: BRAND_TEXT, '&:hover': { bgcolor: 'rgba(var(--c-primary-rgb),0.05)' } }}
                 >
                     <CloseIcon />
                 </IconButton>
@@ -154,7 +155,7 @@ const DoctorModal = ({ open, onClose, doctor, onSuccess }) => {
                     )}
 
                     {/* ── IDENTIDAD PERSONAL ── */}
-                    <SectionLabel icon={<PersonIcon sx={{ fontSize: 16, color: GOLD }} />} text="Identidad Personal" />
+                    <SectionLabel icon={<PersonIcon sx={{ fontSize: 16, color: BRAND_TEXT }} />} text="Identidad Personal" />
 
                     <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                         <TextField
@@ -193,10 +194,10 @@ const DoctorModal = ({ open, onClose, doctor, onSuccess }) => {
                         fullWidth
                     />
 
-                    <Divider sx={{ borderColor: GOLD_BORDER }} />
+                    <Divider sx={{ borderColor: BRAND_BORDER }} />
 
                     {/* ── COLEGIATURA MÉDICA PERUANA ── */}
-                    <SectionLabel icon={<BadgeIcon sx={{ fontSize: 16, color: GOLD }} />} text="Colegiatura Médica (Perú)" />
+                    <SectionLabel icon={<BadgeIcon sx={{ fontSize: 16, color: BRAND_TEXT }} />} text="Colegiatura Médica (Perú)" />
 
                     <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                         <Box sx={{ flex: '1 1 160px' }}>
@@ -213,13 +214,13 @@ const DoctorModal = ({ open, onClose, doctor, onSuccess }) => {
                                     width: '100%',
                                     '& .MuiOutlinedInput-root': {
                                         borderRadius: 3,
-                                        '&.Mui-focused fieldset': { borderColor: GOLD, borderWidth: 2 },
-                                        '& fieldset': { borderColor: '#D4AF37', borderWidth: 1.5 }
+                                        '&.Mui-focused fieldset': { borderColor: BRAND, borderWidth: 2 },
+                                        '& fieldset': { borderColor: 'var(--c-primary)', borderWidth: 1.5 }
                                     },
-                                    '& label.Mui-focused': { color: GOLD }
+                                    '& label.Mui-focused': { color: BRAND_TEXT }
                                 }}
                                 helperText="Número de habilitación para prescribir recetas"
-                                FormHelperTextProps={{ sx: { color: GOLD, fontWeight: 600, fontSize: '0.72rem' } }}
+                                FormHelperTextProps={{ sx: { color: BRAND_TEXT, fontWeight: 600, fontSize: '0.72rem' } }}
                             />
                         </Box>
                         <TextField
@@ -236,11 +237,11 @@ const DoctorModal = ({ open, onClose, doctor, onSuccess }) => {
                         />
                     </Box>
 
-                    <Divider sx={{ borderColor: GOLD_BORDER }} />
+                    <Divider sx={{ borderColor: BRAND_BORDER }} />
 
                     {/* ── CONFIGURACIONES ── */}
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                        <Typography variant="caption" color={GOLD} fontWeight={800} sx={{ textTransform: 'uppercase' }}>
+                        <Typography variant="caption" color={BRAND_TEXT} fontWeight={800} sx={{ textTransform: 'uppercase' }}>
                             Configuraciones Adicionales
                         </Typography>
                         <FormControlLabel
@@ -249,7 +250,7 @@ const DoctorModal = ({ open, onClose, doctor, onSuccess }) => {
                                     checked={formData.es_principal}
                                     onChange={handleSwitchChange('es_principal')}
                                     name="es_principal"
-                                    sx={{ '& .MuiSwitch-switchBase.Mui-checked': { color: GOLD }, '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': { backgroundColor: GOLD } }}
+                                    sx={{ '& .MuiSwitch-switchBase.Mui-checked': { color: BRAND_TEXT }, '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': { backgroundColor: BRAND } }}
                                 />
                             }
                             label="Médico Principal de la Clínica"
@@ -273,7 +274,7 @@ const DoctorModal = ({ open, onClose, doctor, onSuccess }) => {
 
                 </DialogContent>
 
-                <DialogActions sx={{ p: 3, bgcolor: GOLD_LIGHT, borderTop: '1px solid', borderColor: GOLD_BORDER }}>
+                <DialogActions sx={{ p: 3, bgcolor: BRAND_SURFACE, borderTop: '1px solid', borderColor: BRAND_BORDER }}>
                     <Button onClick={onClose} disabled={loading} color="inherit" sx={{ fontWeight: 700, textTransform: 'none', px: 2 }}>
                         Cancelar
                     </Button>
@@ -282,15 +283,15 @@ const DoctorModal = ({ open, onClose, doctor, onSuccess }) => {
                         variant="contained"
                         disabled={loading}
                         sx={{
-                            bgcolor: GOLD,
-                            color: 'white',
-                            '&:hover': { bgcolor: '#B8860B' },
+                            bgcolor: BRAND,
+                            color: 'var(--c-on-primary)',
+                            '&:hover': { bgcolor: 'var(--c-primary-hover)' },
                             fontWeight: 800,
                             px: 4,
                             py: 1,
                             borderRadius: 3,
                             textTransform: 'none',
-                            boxShadow: '0 4px 12px rgba(212, 175, 55, 0.3)'
+                            boxShadow: '0 4px 12px rgba(var(--c-primary-rgb), 0.3)'
                         }}
                     >
                         {loading ? <CircularProgress size={24} color="inherit" /> : 'Guardar Datos'}

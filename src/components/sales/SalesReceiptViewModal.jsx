@@ -16,6 +16,7 @@ import PortraitIcon from '@mui/icons-material/Portrait';
 import LandscapeIcon from '@mui/icons-material/Landscape';
 import { supabase } from '../../supabaseClient';
 
+import { paletteStyleBlock } from '../../theme/palettes';
 const formatCurrency = (value) =>
     `S/. ${Number(value || 0).toFixed(2)}`;
 
@@ -59,10 +60,11 @@ const SalesReceiptViewModal = ({ open, onClose, receipt, onVoid, onDelete }) => 
                 <meta charset="UTF-8" />
                 <title>Boleta ${receipt.numero_boleta}</title>
                 <style>
+                    ${paletteStyleBlock()}
                     * { margin: 0; padding: 0; box-sizing: border-box; }
                     body { font-family: 'Arial', sans-serif; font-size: 12px; color: #111; padding: 24px; }
-                    .header-container { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #FF80AB; padding-bottom: 16px; margin-bottom: 24px; }
-                    .clinic-info h1 { font-size: 18px; font-weight: 900; color: #FF80AB; text-transform: uppercase; margin-bottom: 4px; }
+                    .header-container { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid var(--c-primary); padding-bottom: 16px; margin-bottom: 24px; }
+                    .clinic-info h1 { font-size: 18px; font-weight: 900; color: var(--c-primary-text); text-transform: uppercase; margin-bottom: 4px; }
                     .clinic-info p { font-size: 11px; color: #444; margin-bottom: 2px; }
                     .receipt-id { text-align: right; }
                     .receipt-id h2 { font-size: 22px; font-weight: 900; color: #111; text-transform: uppercase; margin-bottom: 4px; }
@@ -71,7 +73,7 @@ const SalesReceiptViewModal = ({ open, onClose, receipt, onVoid, onDelete }) => 
                     .info-item label { display: block; font-size: 10px; font-weight: 800; color: #888; text-transform: uppercase; margin-bottom: 4px; }
                     .info-item span { font-size: 12px; font-weight: 600; color: #111; }
                     table { width: 100%; border-collapse: collapse; margin-top: 12px; }
-                    th { background: #FDFBFF; padding: 10px 8px; text-align: left; font-weight: 800; border-bottom: 2px solid #eee; text-transform: uppercase; font-size: 10px; color: #666; }
+                    th { background: var(--c-surface); padding: 10px 8px; text-align: left; font-weight: 800; border-bottom: 2px solid #eee; text-transform: uppercase; font-size: 10px; color: #666; }
                     td { padding: 10px 8px; border-bottom: 1px solid #eee; font-size: 11px; }
                     .total-section { margin-top: 24px; display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid #eee; pt: 16px; }
                     .total-amount { text-align: right; }
@@ -175,7 +177,7 @@ const SalesReceiptViewModal = ({ open, onClose, receipt, onVoid, onDelete }) => 
                 onClose={() => setShowPdfInstructions(false)}
                 PaperProps={{ sx: { borderRadius: 3, maxWidth: 400 } }}
             >
-                <DialogTitle sx={{ fontWeight: 800, color: '#FF80AB', textAlign: 'center' }}>
+                <DialogTitle sx={{ fontWeight: 800, color: 'var(--c-primary-text)', textAlign: 'center' }}>
                     Instrucciones de Descarga
                 </DialogTitle>
                 <DialogContent>
@@ -195,10 +197,10 @@ const SalesReceiptViewModal = ({ open, onClose, receipt, onVoid, onDelete }) => 
                         variant="contained"
                         autoFocus
                         sx={{ 
-                            bgcolor: '#FF80AB', 
+                            bgcolor: 'var(--c-primary)', 
                             fontWeight: 800,
                             borderRadius: 2,
-                            '&:hover': { bgcolor: '#F48FB1' }
+                            '&:hover': { bgcolor: 'var(--c-primary-hover)' }
                         }}
                     >
                         Continuar
@@ -264,8 +266,8 @@ const SalesReceiptViewModal = ({ open, onClose, receipt, onVoid, onDelete }) => 
                     width: 40,
                     height: 40,
                     borderRadius: 2,
-                    bgcolor: isVoided ? '#FEE2E2' : '#FFF0F7',
-                    color: isVoided ? 'error.main' : '#FF80AB',
+                    bgcolor: isVoided ? '#FEE2E2' : 'var(--c-primary-soft)',
+                    color: isVoided ? 'error.main' : 'var(--c-primary-text)',
                     flexShrink: 0
                 }}>
                     <ReceiptIcon sx={{ fontSize: 24 }} />
@@ -275,8 +277,8 @@ const SalesReceiptViewModal = ({ open, onClose, receipt, onVoid, onDelete }) => 
                     label={receipt.estado}
                     size="small"
                     sx={{
-                        bgcolor: isVoided ? 'error.main' : '#FFD1E8',
-                        color: isVoided ? 'white' : '#FF80AB',
+                        bgcolor: isVoided ? 'error.main' : 'var(--c-primary-border)',
+                        color: isVoided ? 'white' : 'var(--c-primary-text)',
                         fontWeight: 800,
                         fontSize: '0.75rem',
                         height: 24,
@@ -290,7 +292,7 @@ const SalesReceiptViewModal = ({ open, onClose, receipt, onVoid, onDelete }) => 
                     sx={{
                         ml: 'auto',
                         color: 'text.secondary',
-                        '&:hover': { bgcolor: '#FFF0F7', color: '#FF80AB' }
+                        '&:hover': { bgcolor: 'var(--c-primary-soft)', color: 'var(--c-primary-text)' }
                     }}
                     size="small"
                 >
@@ -298,12 +300,12 @@ const SalesReceiptViewModal = ({ open, onClose, receipt, onVoid, onDelete }) => 
                 </IconButton>
             </DialogTitle>
 
-            <DialogContent id="boleta-print-area" sx={{ pt: 10, px: 4, pb: 4, bgcolor: '#FDFBFF' }}>
+            <DialogContent id="boleta-print-area" sx={{ pt: 10, px: 4, pb: 4, bgcolor: 'var(--c-surface)' }}>
 
                 {/* 2. Datos del consultorio + Numero y Fecha a la derecha */}
                 <Box sx={{ mb: 3.5, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.8 }}>
-                        <Typography variant="h6" sx={{ fontWeight: 900, color: '#FF80AB', textTransform: 'uppercase', letterSpacing: '0.05em', lineHeight: 1.2 }}>
+                        <Typography variant="h6" sx={{ fontWeight: 900, color: 'var(--c-primary-text)', textTransform: 'uppercase', letterSpacing: '0.05em', lineHeight: 1.2 }}>
                             {clinicInfo?.nombre_clinica || 'Consultorio Médico'}
                         </Typography>
                         <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>
@@ -361,7 +363,7 @@ const SalesReceiptViewModal = ({ open, onClose, receipt, onVoid, onDelete }) => 
                 }}>
                     <Table size="small">
                         <TableHead>
-                            <TableRow sx={{ bgcolor: '#FDFBFF' }}>
+                            <TableRow sx={{ bgcolor: 'var(--c-surface)' }}>
                                 <TableCell align="center" sx={{ fontWeight: 800, fontSize: '0.75rem', color: 'text.secondary', py: 2 }}>TIPO</TableCell>
                                 <TableCell sx={{ fontWeight: 800, fontSize: '0.75rem', color: 'text.secondary', py: 2 }}>DESCRIPCIÓN</TableCell>
                                 <TableCell align="center" sx={{ fontWeight: 800, fontSize: '0.75rem', color: 'text.secondary', py: 2 }}>CANT.</TableCell>
@@ -382,7 +384,7 @@ const SalesReceiptViewModal = ({ open, onClose, receipt, onVoid, onDelete }) => 
                                 items.map((item) => (
                                     <TableRow
                                         key={item.id}
-                                        sx={{ '&:hover': { bgcolor: 'rgba(255, 128, 171, 0.02)' } }}
+                                        sx={{ '&:hover': { bgcolor: 'rgba(var(--c-primary-rgb), 0.02)' } }}
                                     >
                                         <TableCell align="center" sx={{ py: 1.5 }}>
                                             <Typography variant="caption" sx={{ fontWeight: 800, color: 'text.primary' }}>
@@ -417,7 +419,7 @@ const SalesReceiptViewModal = ({ open, onClose, receipt, onVoid, onDelete }) => 
                     pr: 2,
                     pb: 3,
                     borderTop: '1px solid',
-                    borderColor: 'rgba(255, 128, 171, 0.1)',
+                    borderColor: 'rgba(var(--c-primary-rgb), 0.1)',
                     pt: 3
                 }}>
                     <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500, pb: 1 }}>
@@ -437,12 +439,12 @@ const SalesReceiptViewModal = ({ open, onClose, receipt, onVoid, onDelete }) => 
                         }}>
                             {formatCurrency(receipt.total)}
                         </Typography>
-                        <Box sx={{ width: 100, height: 4, bgcolor: isVoided ? 'error.light' : '#FF80AB', borderRadius: 1, mt: 1 }} />
+                        <Box sx={{ width: 100, height: 4, bgcolor: isVoided ? 'error.light' : 'var(--c-primary)', borderRadius: 1, mt: 1 }} />
                     </Box>
                 </Box>
             </DialogContent>
 
-            <DialogActions sx={{ px: 4, py: 3, bgcolor: '#FDFBFF', borderTop: '1px solid', borderColor: 'divider', gap: 2 }}>
+            <DialogActions sx={{ px: 4, py: 3, bgcolor: 'var(--c-surface)', borderTop: '1px solid', borderColor: 'divider', gap: 2 }}>
                 {!isVoided && onVoid && (
                     <Button
                         variant="outlined"
@@ -473,11 +475,11 @@ const SalesReceiptViewModal = ({ open, onClose, receipt, onVoid, onDelete }) => 
                             size="small" 
                             onClick={() => setOrientation('portrait')}
                             sx={{ 
-                                bgcolor: orientation === 'portrait' ? '#FFF0F7' : 'transparent',
-                                color: orientation === 'portrait' ? '#FF80AB' : 'text.disabled',
+                                bgcolor: orientation === 'portrait' ? 'var(--c-primary-soft)' : 'transparent',
+                                color: orientation === 'portrait' ? 'var(--c-primary-text)' : 'text.disabled',
                                 border: '1px solid',
-                                borderColor: orientation === 'portrait' ? '#FF80AB' : 'divider',
-                                '&:hover': { bgcolor: '#FFF0F7' }
+                                borderColor: orientation === 'portrait' ? 'var(--c-primary)' : 'divider',
+                                '&:hover': { bgcolor: 'var(--c-primary-soft)' }
                             }}
                         >
                             <PortraitIcon fontSize="small" />
@@ -488,11 +490,11 @@ const SalesReceiptViewModal = ({ open, onClose, receipt, onVoid, onDelete }) => 
                             size="small" 
                             onClick={() => setOrientation('landscape')}
                             sx={{ 
-                                bgcolor: orientation === 'landscape' ? '#FFF0F7' : 'transparent',
-                                color: orientation === 'landscape' ? '#FF80AB' : 'text.disabled',
+                                bgcolor: orientation === 'landscape' ? 'var(--c-primary-soft)' : 'transparent',
+                                color: orientation === 'landscape' ? 'var(--c-primary-text)' : 'text.disabled',
                                 border: '1px solid',
-                                borderColor: orientation === 'landscape' ? '#FF80AB' : 'divider',
-                                '&:hover': { bgcolor: '#FFF0F7' }
+                                borderColor: orientation === 'landscape' ? 'var(--c-primary)' : 'divider',
+                                '&:hover': { bgcolor: 'var(--c-primary-soft)' }
                             }}
                         >
                             <LandscapeIcon fontSize="small" />
@@ -515,10 +517,10 @@ const SalesReceiptViewModal = ({ open, onClose, receipt, onVoid, onDelete }) => 
                         px: 3,
                         height: 44,
                         borderRadius: 2,
-                        borderColor: '#FF80AB',
-                        color: '#FF80AB',
+                        borderColor: 'var(--c-primary)',
+                        color: 'var(--c-primary-text)',
                         fontWeight: 800,
-                        '&:hover': { borderColor: '#F48FB1', bgcolor: '#FFF0F7' },
+                        '&:hover': { borderColor: 'var(--c-primary-border)', bgcolor: 'var(--c-primary-soft)' },
                     }}
                 >
                     Guardar como PDF
@@ -531,10 +533,10 @@ const SalesReceiptViewModal = ({ open, onClose, receipt, onVoid, onDelete }) => 
                         px: 4,
                         height: 44,
                         borderRadius: 2,
-                        bgcolor: '#FF80AB',
+                        bgcolor: 'var(--c-primary)',
                         fontWeight: 800,
-                        boxShadow: '0 8px 16px rgba(255, 128, 171, 0.2)',
-                        '&:hover': { bgcolor: '#F48FB1', boxShadow: '0 10px 20px rgba(255, 128, 171, 0.3)' },
+                        boxShadow: '0 8px 16px rgba(var(--c-primary-rgb), 0.2)',
+                        '&:hover': { bgcolor: 'var(--c-primary-hover)', boxShadow: '0 10px 20px rgba(var(--c-primary-rgb), 0.3)' },
                     }}
                 >
                     Imprimir

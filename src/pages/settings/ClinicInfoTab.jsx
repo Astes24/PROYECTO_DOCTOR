@@ -6,9 +6,10 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import MapIcon from '@mui/icons-material/Map';
 import { getClinicInfo, updateClinicInfo } from '../../services/clinicService';
 
-const PINK = '#db2777';
-const PINK_LIGHT = '#fdf2f8';
-const PINK_BORDER = '#fbcfe8';
+const BRAND = 'var(--c-primary)';
+const BRAND_TEXT = 'var(--c-primary-text)';
+const BRAND_SOFT = 'var(--c-primary-soft)';
+const BRAND_BORDER = 'var(--c-primary-border)';
 
 const ClinicInfoTab = () => {
     const [loading, setLoading] = useState(true);
@@ -67,7 +68,7 @@ const ClinicInfoTab = () => {
     if (loading) {
         return (
             <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
-                <CircularProgress sx={{ color: PINK }} />
+                <CircularProgress sx={{ color: BRAND_TEXT }} />
             </Box>
         );
     }
@@ -75,7 +76,7 @@ const ClinicInfoTab = () => {
     return (
         <Box sx={{ maxWidth: 800, mx: 'auto', p: 1 }}>
             <Box sx={{ mb: 3, display: 'flex', alignItems: 'center', gap: 2 }}>
-                <BusinessIcon sx={{ fontSize: 40, color: PINK }} />
+                <BusinessIcon sx={{ fontSize: 40, color: BRAND_TEXT }} />
                 <Box>
                     <Typography variant="h5" fontWeight={800} color="text.primary">
                         Información del Consultorio
@@ -98,11 +99,11 @@ const ClinicInfoTab = () => {
                 </Alert>
             )}
 
-            <Paper variant="outlined" sx={{ p: 4, borderRadius: 4, borderColor: PINK_BORDER, bgcolor: 'background.paper', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+            <Paper variant="outlined" sx={{ p: 4, borderRadius: 4, borderColor: BRAND_BORDER, bgcolor: 'background.paper', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
                 <form onSubmit={handleSubmit}>
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
-                            <Typography variant="subtitle2" color={PINK} fontWeight={700} sx={{ mb: 1, textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                            <Typography variant="subtitle2" color={BRAND_TEXT} fontWeight={700} sx={{ mb: 1, textTransform: 'uppercase', letterSpacing: 0.5 }}>
                                 Datos del Establecimiento
                             </Typography>
                             <TextField
@@ -121,7 +122,7 @@ const ClinicInfoTab = () => {
                         </Grid>
 
                         <Grid item xs={12}>
-                            <Divider sx={{ mb: 1, borderColor: PINK_LIGHT }} />
+                            <Divider sx={{ mb: 1, borderColor: BRAND_SOFT }} />
                         </Grid>
 
                         <Grid item xs={12} md={8}>
@@ -195,8 +196,8 @@ const ClinicInfoTab = () => {
                                 disabled={saving}
                                 startIcon={saving ? <CircularProgress size={20} color="inherit" /> : <SaveIcon />}
                                 sx={{
-                                    bgcolor: PINK,
-                                    '&:hover': { bgcolor: '#be185d' },
+                                    bgcolor: BRAND_TEXT,
+                                    '&:hover': { bgcolor: 'var(--c-primary-hover)' },
                                     borderRadius: 3,
                                     px: 4,
                                     py: 1.5,

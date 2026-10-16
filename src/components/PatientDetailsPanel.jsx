@@ -694,7 +694,7 @@ export default function PatientDetailsPanel({ patientId, baseInfo, onClose, init
                                     <div className="flex justify-between items-center mb-6 border-b border-slate-100 dark:border-slate-800 pb-2">
                                         <h3 className="text-lg font-bold text-text-primary ml-auto mr-auto pl-8">Información de Contacto</h3>
                                         {!isEditing ? (
-                                            <IconButton onClick={handleEditClick} size="small" sx={{ color: 'text.secondary', border: '1px solid', borderColor: 'divider', '&:hover': { color: 'primary.main', bgcolor: 'primary.light', opacity: 0.1 } }} title="Editar Información">
+                                            <IconButton onClick={handleEditClick} size="small" sx={{ color: 'text.secondary', border: '1px solid', borderColor: 'divider', '&:hover': { color: 'var(--c-primary-text)', bgcolor: 'primary.light', opacity: 0.1 } }} title="Editar Información">
                                                 <EditIcon fontSize="small" />
                                             </IconButton>
                                         ) : (
@@ -785,7 +785,7 @@ export default function PatientDetailsPanel({ patientId, baseInfo, onClose, init
                                     <div className="flex justify-between items-center mb-2 border-b border-slate-100 dark:border-slate-800 pb-2">
                                         <h3 className="text-lg font-bold text-text-primary ml-auto mr-auto pl-8">Descripción del Paciente</h3>
                                         {!isEditingDescripcion && (
-                                            <IconButton onClick={() => setIsEditingDescripcion(true)} size="small" sx={{ color: 'text.secondary', border: '1px solid', borderColor: 'divider', '&:hover': { color: 'primary.main', bgcolor: 'primary.light', opacity: 0.1 } }} title="Editar Descripción">
+                                            <IconButton onClick={() => setIsEditingDescripcion(true)} size="small" sx={{ color: 'text.secondary', border: '1px solid', borderColor: 'divider', '&:hover': { color: 'var(--c-primary-text)', bgcolor: 'primary.light', opacity: 0.1 } }} title="Editar Descripción">
                                                 <EditIcon fontSize="small" />
                                             </IconButton>
                                         )}
@@ -886,7 +886,7 @@ export default function PatientDetailsPanel({ patientId, baseInfo, onClose, init
                                                         )}
                                                         {appt.estado !== 'CANCELADA' && appt.estado !== 'POSPUESTA' && (
                                                             <Tooltip title="Reprogramar">
-                                                                <IconButton onClick={(e) => { e.stopPropagation(); handleReprogramAppointment(appt.id); }} size="small" sx={{ color: 'primary.main', '&:hover': { bgcolor: 'primary.light', opacity: 0.1 } }}>
+                                                                <IconButton onClick={(e) => { e.stopPropagation(); handleReprogramAppointment(appt.id); }} size="small" sx={{ color: 'var(--c-primary-text)', '&:hover': { bgcolor: 'primary.light', opacity: 0.1 } }}>
                                                                     <AccessTimeIcon fontSize="small" />
                                                                 </IconButton>
                                                             </Tooltip>
@@ -1037,7 +1037,7 @@ export default function PatientDetailsPanel({ patientId, baseInfo, onClose, init
                 fullWidth
                 PaperProps={{ sx: { borderRadius: 3, zIndex: 1600 } }}
             >
-                <DialogTitle sx={{ bgcolor: 'secondary.main', color: 'primary.main', display: 'flex', justifyContent: 'center', alignItems: 'center', p: 2, position: 'relative' }}>
+                <DialogTitle sx={{ bgcolor: 'secondary.main', color: 'var(--c-primary-text)', display: 'flex', justifyContent: 'center', alignItems: 'center', p: 2, position: 'relative' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <AccessTimeIcon />
                         <Typography variant="h6" fontWeight="bold" sx={{ textTransform: 'uppercase' }}>Reprogramar Cita</Typography>

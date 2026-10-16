@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import { TextField, Button, Box } from '@mui/material';
 
+import ClinicLogo from '../components/ClinicLogo';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -69,10 +70,10 @@ const Login = () => {
             >
                 {/* Gotas de color suavizadas de fondo */}
                 {/* Gotas de color suavizadas de fondo - Tema dorado */}
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#D4AF37]/20 rounded-full mix-blend-multiply blur-3xl opacity-40"></div>
-                <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-[#E5D5B0]/30 rounded-full mix-blend-multiply blur-3xl opacity-40"></div>
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--c-primary)]/20 rounded-full mix-blend-multiply blur-3xl opacity-40"></div>
+                <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-[var(--c-primary-border)]/30 rounded-full mix-blend-multiply blur-3xl opacity-40"></div>
                 {/* Acento cálido */}
-                <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-[#F5F5DC]/30 rounded-full mix-blend-multiply blur-3xl opacity-30 transform -translate-x-1/2 -translate-y-1/2"></div>
+                <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-[var(--c-primary-soft)]/30 rounded-full mix-blend-multiply blur-3xl opacity-30 transform -translate-x-1/2 -translate-y-1/2"></div>
             </div>
 
             {/* Capa de desenfoque blanco semi-transparente sobre el fondo */}
@@ -93,18 +94,10 @@ const Login = () => {
 
             {/* Contenedor Principal (Glassmorphism Premium) */}
             {/* Contenedor Principal (Glassmorphism Premium) */}
-            <div className="relative z-10 w-full sm:w-[80vw] md:w-[30vw] min-w-[340px] h-[80vh] flex flex-col justify-center overflow-y-auto p-8 sm:p-10 bg-white/70 backdrop-blur-xl border border-white/40 shadow-2xl shadow-[#D4AF37]/10 rounded-3xl text-center text-slate-800">
+            <div className="relative z-10 w-full sm:w-[80vw] md:w-[30vw] min-w-[340px] h-[80vh] flex flex-col justify-center overflow-y-auto p-8 sm:p-10 bg-white/70 backdrop-blur-xl border border-white/40 shadow-2xl shadow-[var(--c-primary)]/10 rounded-3xl text-center text-slate-800">
                 <div className="flex justify-center mb-6 shrink-0">
                     <div className="w-[20vh] h-[20vh] min-w-[80px] min-h-[80px] rounded-full border-4 border-white overflow-hidden shadow-lg bg-white/40 flex items-center justify-center">
-                        <img
-                            src="/logo-clinica.svg"
-                            alt="Logo Clínica"
-                            className="w-full h-full object-cover"
-                            onError={(e) => {
-                                e.target.style.display = 'none';
-                                e.target.parentElement.innerHTML = '<span class="text-sm text-slate-400 font-medium px-2">Colocar Logo Aquí</span>';
-                            }}
-                        />
+                        <ClinicLogo className="w-full h-full object-cover" />
                     </div>
                 </div>
 

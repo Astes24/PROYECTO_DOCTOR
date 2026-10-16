@@ -95,7 +95,7 @@ export const ToolbarButton = ({ icon, tooltip, onClick, active = false }) => {
                     borderRadius: 1.5, width: 36, height: 36,
                     color: active ? 'primary.main' : 'text.secondary',
                     bgcolor: active ? (theme.palette.mode === 'dark' ? 'rgba(2, 136, 209, 0.15)' : 'primary.light') : 'transparent',
-                    '&:hover': { bgcolor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)', color: 'primary.main' },
+                    '&:hover': { bgcolor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)', color: 'var(--c-primary-text)' },
                     transition: 'all 0.15s ease',
                 }}
             >
@@ -121,11 +121,11 @@ export const getContentStyles = (theme) => ({
     },
     '& ul': {
         pl: 4, mb: 2, listStyleType: 'disc', listStylePosition: 'outside',
-        '& li': { fontSize: '0.95rem', lineHeight: 1.8, color: 'text.primary', mb: 0.5, display: 'list-item', '&::marker': { color: 'primary.main', fontSize: '1.2em' } },
+        '& li': { fontSize: '0.95rem', lineHeight: 1.8, color: 'text.primary', mb: 0.5, display: 'list-item', '&::marker': { color: 'var(--c-primary-text)', fontSize: '1.2em' } },
     },
     '& ol': {
         pl: 4, mb: 2, listStyleType: 'decimal', listStylePosition: 'outside',
-        '& li': { fontSize: '0.95rem', lineHeight: 1.8, color: 'text.primary', mb: 0.5, display: 'list-item', '&::marker': { color: 'primary.main', fontWeight: 700 } },
+        '& li': { fontSize: '0.95rem', lineHeight: 1.8, color: 'text.primary', mb: 0.5, display: 'list-item', '&::marker': { color: 'var(--c-primary-text)', fontWeight: 700 } },
     },
 });
 
@@ -507,12 +507,12 @@ const HistoriaClinicaEditor = ({ dniPaciente, nombreCompleto, fechaNacimiento, e
                                         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                                     >
-                                        <MenuItem onClick={() => handleCreateNuevo('')} sx={{ fontWeight: 'bold', color: 'primary.main', py: 1.5, display: 'flex', justifyContent: 'center' }}>
+                                        <MenuItem onClick={() => handleCreateNuevo('')} sx={{ fontWeight: 'bold', color: 'var(--c-primary-text)', py: 1.5, display: 'flex', justifyContent: 'center' }}>
                                             <AddIcon sx={{ mr: 1, fontSize: 20 }} /> Historia Clínica en Blanco
                                         </MenuItem>
                                         {plantillas.length > 0 && <Divider />}
                                         {plantillas.map(p => (
-                                            <MenuItem key={p.id} onClick={() => handleCreateNuevo(p.contenido)} sx={{ fontWeight: 'bold', color: 'primary.main', py: 1.5, display: 'flex', justifyContent: 'center' }}>
+                                            <MenuItem key={p.id} onClick={() => handleCreateNuevo(p.contenido)} sx={{ fontWeight: 'bold', color: 'var(--c-primary-text)', py: 1.5, display: 'flex', justifyContent: 'center' }}>
                                                 {p.nombre}
                                             </MenuItem>
                                         ))}
@@ -524,7 +524,7 @@ const HistoriaClinicaEditor = ({ dniPaciente, nombreCompleto, fechaNacimiento, e
                         {/* New Entry Editor */}
                         {editingEntryId === 'NEW' && (
                             <Box sx={{ animation: 'fadeIn 0.3s ease-in-out' }}>
-                                <Typography variant="subtitle2" color="primary" sx={{ mb: 1, ml: 1, fontWeight: 'bold' }}>CREANDO NUEVA ENTRADA</Typography>
+                                <Typography variant="subtitle2" color="var(--c-primary-text)" sx={{ mb: 1, ml: 1, fontWeight: 'bold' }}>CREANDO NUEVA ENTRADA</Typography>
                                 <EntryEditor initialText={selectedTemplateText} onSave={(text, estado_cerrado, atts) => handleSaveEntry(text, estado_cerrado, atts)} onCancel={() => setEditingEntryId(null)} />
                             </Box>
                         )}
@@ -539,7 +539,7 @@ const HistoriaClinicaEditor = ({ dniPaciente, nombreCompleto, fechaNacimiento, e
                                 <Box key={entry.id} id={`entry-${entry.id}`}>
                                     {editingEntryId === entry.id ? (
                                         <Box sx={{ animation: 'fadeIn 0.3s ease-in-out' }}>
-                                            <Typography variant="subtitle2" color="primary" sx={{ mb: 1, ml: 1, fontWeight: 'bold' }}>EDITANDO ENTRADA</Typography>
+                                            <Typography variant="subtitle2" color="var(--c-primary-text)" sx={{ mb: 1, ml: 1, fontWeight: 'bold' }}>EDITANDO ENTRADA</Typography>
                                             <EntryEditor initialText={entry.historia} initialAttachments={entry.archivos || []} onSave={(text, estado_cerrado, atts) => handleSaveEntry(text, estado_cerrado, atts)} onCancel={() => setEditingEntryId(null)} />
                                         </Box>
                                     ) : (
@@ -647,7 +647,7 @@ const HistoriaClinicaEditor = ({ dniPaciente, nombreCompleto, fechaNacimiento, e
                                             </IconButton>
                                         </Tooltip>
                                         <Tooltip title="Visualizar Documento">
-                                            <IconButton size="small" color="primary" onClick={() => handleViewFile(archivo)} sx={{ bgcolor: 'primary.light', color: 'primary.main', '&:hover': { bgcolor: 'primary.main', color: '#fff' } }}>
+                                            <IconButton size="small" color="primary" onClick={() => handleViewFile(archivo)} sx={{ bgcolor: 'primary.light', color: 'var(--c-primary-text)', '&:hover': { bgcolor: 'primary.main', color: 'var(--c-on-primary)' } }}>
                                                 <VisibilityIcon />
                                             </IconButton>
                                         </Tooltip>

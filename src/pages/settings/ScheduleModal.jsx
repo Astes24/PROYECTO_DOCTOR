@@ -12,7 +12,7 @@ dayjs.locale('es');
 const DOCTOR_COLORS = [
     { bg: '#0284c7', light: '#e0f2fe' },
     { bg: '#7c3aed', light: '#ede9fe' },
-    { bg: '#db2777', light: '#fce7f3' },
+    { bg: 'var(--c-primary)', light: 'var(--c-primary-soft)' },
     { bg: '#d97706', light: '#fef3c7' },
     { bg: '#059669', light: '#d1fae5' },
     { bg: '#dc2626', light: '#fee2e2' },
@@ -28,11 +28,12 @@ const CAL_TOTAL_WIDTH = (CELL_W * 7) + (6 * 2) + 16;
 
 const fmtTime = (t) => t ? t.substring(0, 5) : '';
 
-// Pink Palette for the UI
-const PINK_BABY = '#fdf2f8'; 
-const PINK_PASTEL = '#fbcfe8'; 
-const PINK_MAIN = '#db2777'; 
-const PINK_CONTRAST = '#be185d';
+// Colores de marca (paleta activa)
+const BRAND_SOFT = 'var(--c-primary-soft)'; 
+const BRAND_BORDER = 'var(--c-primary-border)'; 
+const BRAND = 'var(--c-primary)'; 
+const BRAND_TEXT = 'var(--c-primary-text)';
+const BRAND_HOVER = 'var(--c-primary-hover)';
 
 // Tooltip content - Added "Dr./Dra. " prefix
 const DayTooltipContent = ({ entries }) => (
@@ -90,25 +91,25 @@ const MultiDayCalendar = ({ selectedDates, onChange, occupiedMap, doctorColorMap
     return (
         <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
             {/* Header */}
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 2, py: 1.5, bgcolor: PINK_BABY }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 2, py: 1.5, bgcolor: BRAND_SOFT }}>
                 <IconButton size="small" onClick={() => onMonthChange(currentMonth.subtract(1, 'month'))}
-                    sx={{ color: PINK_MAIN, p: 0.5, '&:hover': { bgcolor: PINK_PASTEL } }}>
+                    sx={{ color: BRAND, p: 0.5, '&:hover': { bgcolor: BRAND_BORDER } }}>
                     <Typography sx={{ fontWeight: 900, fontSize: '1.2rem', lineHeight: 1 }}>‹</Typography>
                 </IconButton>
-                <Typography fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: '0.06em', fontSize: '0.85rem', color: PINK_MAIN }}>
+                <Typography fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: '0.06em', fontSize: '0.85rem', color: BRAND }}>
                     {currentMonth.format('MMMM YYYY')}
                 </Typography>
                 <IconButton size="small" onClick={() => onMonthChange(currentMonth.add(1, 'month'))}
-                    sx={{ color: PINK_MAIN, p: 0.5, '&:hover': { bgcolor: PINK_PASTEL } }}>
+                    sx={{ color: BRAND, p: 0.5, '&:hover': { bgcolor: BRAND_BORDER } }}>
                     <Typography sx={{ fontWeight: 900, fontSize: '1.2rem', lineHeight: 1 }}>›</Typography>
                 </IconButton>
             </Box>
 
             {/* Weekday headers */}
-            <Box sx={{ display: 'flex', gap: '2px', px: 1, bgcolor: PINK_BABY, opacity: 0.8, borderBottom: '1px solid', borderColor: PINK_PASTEL }}>
+            <Box sx={{ display: 'flex', gap: '2px', px: 1, bgcolor: BRAND_SOFT, opacity: 0.8, borderBottom: '1px solid', borderColor: BRAND_BORDER }}>
                 {weekDays.map(d => (
                     <Box key={d} sx={{ width: CELL_W, textAlign: 'center', py: 0.75, flexShrink: 0 }}>
-                        <Typography variant="caption" fontWeight={700} color={PINK_CONTRAST} sx={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                        <Typography variant="caption" fontWeight={700} color={BRAND_TEXT} sx={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                             {d}
                         </Typography>
                     </Box>
@@ -140,19 +141,19 @@ const MultiDayCalendar = ({ selectedDates, onChange, occupiedMap, doctorColorMap
                                     borderRadius: '6px',
                                     cursor: isPast ? 'not-allowed' : 'pointer',
                                     transition: 'all 0.15s',
-                                    bgcolor: isSelected ? PINK_PASTEL : isToday ? PINK_BABY : 'transparent',
+                                    bgcolor: isSelected ? BRAND_BORDER : isToday ? BRAND_SOFT : 'transparent',
                                     border: isToday && !isSelected ? '2px solid' : '2px solid transparent',
-                                    borderColor: isToday && !isSelected ? PINK_MAIN : 'transparent',
+                                    borderColor: isToday && !isSelected ? BRAND : 'transparent',
                                     opacity: isPast ? 0.3 : 1,
                                     '&:hover': !isPast ? {
-                                        bgcolor: isSelected ? '#fbcfe8' : '#fdf2f8',
+                                        bgcolor: isSelected ? 'var(--c-primary-border)' : 'var(--c-primary-soft)',
                                         transform: 'scale(1.04)'
                                     } : {}
                                 }}>
                                     <Typography variant="body2"
                                         fontWeight={isSelected || isToday ? 700 : isWeekend ? 500 : 400}
                                         sx={{
-                                            color: isSelected ? PINK_CONTRAST : isToday ? PINK_MAIN : isWeekend ? 'text.secondary' : 'text.primary',
+                                            color: isSelected ? BRAND_TEXT : isToday ? BRAND : isWeekend ? 'text.secondary' : 'text.primary',
                                             fontSize: '0.88rem', lineHeight: 1, userSelect: 'none'
                                         }}>
                                         {day}
@@ -162,7 +163,7 @@ const MultiDayCalendar = ({ selectedDates, onChange, occupiedMap, doctorColorMap
                                         <TimePill key={i} hora_inicio={e.hora_inicio} hora_fin={e.hora_fin} color={e.color} faded={isSelected} />
                                     ))}
                                     {dayEntries.length > 2 && (
-                                        <Typography sx={{ color: isSelected ? PINK_CONTRAST : 'text.disabled', fontSize: '0.55rem', mt: '1px', opacity: 0.7 }}>
+                                        <Typography sx={{ color: isSelected ? BRAND_TEXT : 'text.disabled', fontSize: '0.55rem', mt: '1px', opacity: 0.7 }}>
                                             +{dayEntries.length - 2}
                                         </Typography>
                                     )}
@@ -301,7 +302,7 @@ const ScheduleModal = ({ open, onClose, onSuccess }) => {
                 }
             }}
         >
-            <Box sx={{ bgcolor: PINK_MAIN, color: 'white', px: 3, py: 2.5, position: 'relative', flexShrink: 0 }}>
+            <Box sx={{ bgcolor: BRAND, color: 'var(--c-on-primary)', px: 3, py: 2.5, position: 'relative', flexShrink: 0 }}>
                 <IconButton onClick={onClose} disabled={loadingSubmit}
                     sx={{ position: 'absolute', top: 10, right: 12, color: 'inherit', bgcolor: 'rgba(0,0,0,0.08)', '&:hover': { bgcolor: 'rgba(0,0,0,0.18)' } }}>
                     <CloseIcon />
@@ -337,7 +338,7 @@ const ScheduleModal = ({ open, onClose, onSuccess }) => {
                             }}>
                                 <Box sx={{
                                     width: CAL_TOTAL_WIDTH,
-                                    border: '1px solid', borderColor: PINK_PASTEL,
+                                    border: '1px solid', borderColor: BRAND_BORDER,
                                     borderRadius: 3, overflow: 'hidden', flexShrink: 0
                                 }}>
                                     <MultiDayCalendar
@@ -352,7 +353,7 @@ const ScheduleModal = ({ open, onClose, onSuccess }) => {
                                     {/* Legend strip - Centered and with "Dr./Dra. " prefix */}
                                     {legendDoctors.length > 0 && (
                                         <Box sx={{
-                                            borderTop: '1px solid', borderColor: PINK_PASTEL,
+                                            borderTop: '1px solid', borderColor: BRAND_BORDER,
                                             bgcolor: sectionBg,
                                             px: 1.5, py: 1,
                                             display: 'flex', flexWrap: 'wrap', 
@@ -394,7 +395,7 @@ const ScheduleModal = ({ open, onClose, onSuccess }) => {
                                         sx={{ 
                                             '& .MuiOutlinedInput-root': { 
                                                 borderRadius: 2, 
-                                                '&.Mui-focused fieldset': { borderColor: PINK_MAIN, borderWidth: 2 } 
+                                                '&.Mui-focused fieldset': { borderColor: BRAND, borderWidth: 2 } 
                                             } 
                                         }}
                                     >
@@ -409,7 +410,7 @@ const ScheduleModal = ({ open, onClose, onSuccess }) => {
                                                             <Typography variant="body2" fontWeight={700}>
                                                                 Dr./Dra. {doc.nombre_completo}
                                                                 {doc.es_principal && (
-                                                                    <Typography component="span" variant="caption" sx={{ ml: 1, fontWeight: 600, color: PINK_MAIN }}>
+                                                                    <Typography component="span" variant="caption" sx={{ ml: 1, fontWeight: 600, color: BRAND }}>
                                                                         · Principal
                                                                     </Typography>
                                                                 )}
@@ -423,8 +424,8 @@ const ScheduleModal = ({ open, onClose, onSuccess }) => {
                                     </TextField>
                                 </Box>
 
-                                <Box sx={{ p: 2.5, bgcolor: PINK_BABY, borderRadius: 2, border: '1px solid', borderColor: PINK_PASTEL }}>
-                                    <Typography variant="subtitle2" fontWeight={700} color={PINK_CONTRAST}
+                                <Box sx={{ p: 2.5, bgcolor: BRAND_SOFT, borderRadius: 2, border: '1px solid', borderColor: BRAND_BORDER }}>
+                                    <Typography variant="subtitle2" fontWeight={700} color={BRAND_TEXT}
                                         sx={{ mb: 2, textTransform: 'uppercase', fontSize: '0.68rem', letterSpacing: '0.08em' }}>
                                         Configuración de Horario
                                     </Typography>
@@ -466,9 +467,9 @@ const ScheduleModal = ({ open, onClose, onSuccess }) => {
                                     <Button type="submit" variant="contained" 
                                         disabled={loadingSubmit || loadingData || selectedDates.length === 0}
                                         sx={{
-                                            bgcolor: PINK_MAIN, color: 'white',
-                                            '&:hover': { bgcolor: PINK_CONTRAST },
-                                            '&.Mui-disabled': { bgcolor: PINK_PASTEL, color: 'white' },
+                                            bgcolor: BRAND, color: 'var(--c-on-primary)',
+                                            '&:hover': { bgcolor: BRAND_HOVER },
+                                            '&.Mui-disabled': { bgcolor: BRAND_BORDER, color: BRAND_TEXT },
                                             fontWeight: 700, px: 3, textTransform: 'none', borderRadius: 2,
                                             boxShadow: 2
                                         }}

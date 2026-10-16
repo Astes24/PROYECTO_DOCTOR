@@ -1,4 +1,10 @@
 import { createTheme } from '@mui/material/styles';
+import { PALETTES, DEFAULT_PALETTE } from './palettes';
+
+const hexRgb = (hex) => {
+  const n = parseInt(hex.slice(1), 16);
+  return `${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}`;
+};
 
 const customShadows = [
   'none',
@@ -9,35 +15,38 @@ const customShadows = [
   ...Array(20).fill('0px 12px 50px rgba(32, 28, 20, 0.08)'),
 ];
 
-const getAppTheme = (mode) => createTheme({
+const getAppTheme = (mode, paletteKey = DEFAULT_PALETTE) => {
+  const brand = PALETTES[paletteKey] || PALETTES[DEFAULT_PALETTE];
+  return createTheme({
   palette: {
     mode,
     primary: {
-      main: '#D4AF37',
-      dark: '#B8860B',
-      contrastText: '#FFFFFF',
+      main: brand.primary,
+      dark: brand.hover,
+      light: brand.soft,
+      contrastText: brand.contrast,
     },
     secondary: {
-      main: '#E5D5B0',
-      contrastText: '#2A2135',
+      main: brand.border,
+      contrastText: '#1F2937',
     },
     tertiary: {
-      main: '#F5F5DC',
-      contrastText: '#2A2135',
+      main: brand.soft,
+      contrastText: '#1F2937',
     },
     background: {
-      default: '#FFFDF5',
-      paper: '#FCF9F2',
+      default: brand.bg,
+      paper: brand.surface,
     },
     text: {
       primary: '#1A1A1A',
-      secondary: '#5D546B',
+      secondary: '#5B6472',
     },
     error: {
-      main: '#FF6B6B',
+      main: '#DC2626',
     },
     success: {
-      main: '#20C997',
+      main: '#15803D',
     },
     divider: 'rgba(32, 28, 20, 0.08)',
   },
@@ -65,15 +74,15 @@ const getAppTheme = (mode) => createTheme({
         },
         containedPrimary: {
           '&:hover': {
-            backgroundColor: '#B8860B',
-            boxShadow: '0px 8px 24px rgba(212, 175, 55, 0.35)',
+            backgroundColor: brand.hover,
+            boxShadow: `0px 8px 24px rgba(${hexRgb(brand.primary)}, 0.35)`,
             transform: 'translateY(-1px)',
           }
         },
         containedSecondary: {
           '&:hover': {
-            backgroundColor: '#D4C49F', // slightly darker champagne for hover
-            boxShadow: '0px 8px 24px rgba(229, 213, 176, 0.4)',
+            backgroundColor: brand.soft,
+            boxShadow: `0px 8px 24px rgba(${hexRgb(brand.primary)}, 0.2)`,
             transform: 'translateY(-1px)',
           }
         }
@@ -83,7 +92,7 @@ const getAppTheme = (mode) => createTheme({
       styleOverrides: {
         root: {
           borderRadius: 16,
-          backgroundColor: '#FCF9F2',
+          backgroundColor: brand.surface,
           boxShadow: '0px 8px 30px rgba(32, 28, 20, 0.06)',
           backgroundImage: 'none',
         }
@@ -93,7 +102,7 @@ const getAppTheme = (mode) => createTheme({
       styleOverrides: {
         root: {
           backgroundImage: 'none',
-          backgroundColor: '#FCF9F2',
+          backgroundColor: brand.surface,
         }
       }
     },
@@ -104,14 +113,14 @@ const getAppTheme = (mode) => createTheme({
           backgroundColor: '#FFFFFF',
           transition: 'all 0.2s ease-in-out',
           '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#D4AF37',
+            borderColor: brand.primary,
           },
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#D4AF37',
+            borderColor: brand.primary,
             borderWidth: '2px',
           },
           '&.Mui-focused': {
-            boxShadow: '0px 0px 0px 4px rgba(212, 175, 55, 0.1)',
+            boxShadow: `0px 0px 0px 4px rgba(${hexRgb(brand.primary)}, 0.12)`,
           }
         },
         notchedOutline: {
@@ -122,9 +131,9 @@ const getAppTheme = (mode) => createTheme({
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          color: '#5D546B',
+          color: '#5B6472',
           '&.Mui-focused': {
-            color: '#D4AF37',
+            color: brand.text,
           }
         }
       }
@@ -132,7 +141,7 @@ const getAppTheme = (mode) => createTheme({
     MuiSnackbarContent: {
       styleOverrides: {
         root: {
-          backgroundColor: '#2A2135',
+          backgroundColor: '#1F2937',
           color: '#FFFFFF',
           borderRadius: 12,
           boxShadow: '0px 8px 30px rgba(32, 28, 20, 0.2)',
@@ -149,5 +158,6 @@ const getAppTheme = (mode) => createTheme({
     }
   },
 });
+};
 
 export default getAppTheme;

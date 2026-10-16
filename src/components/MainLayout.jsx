@@ -51,15 +51,21 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import MedicationIcon from '@mui/icons-material/Medication';
 import ScienceIcon from '@mui/icons-material/Science';
-import { ColorModeContext } from '../App';
+import PaletteIcon from '@mui/icons-material/Palette';
+import CheckIcon from '@mui/icons-material/Check';
+import { ColorModeContext, PaletteContext } from '../App';
+import { PALETTES } from '../theme/palettes';
 import { supabase } from '../supabaseClient';
 import { NotificationDetail } from './notifications/NotificationSplitView';
 
+import ClinicLogo from './ClinicLogo';
 const drawerWidth = 280;
 
 const MainLayout = () => {
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
+    const { palette, setPalette } = useContext(PaletteContext);
+    const [anchorElPalette, setAnchorElPalette] = useState(null);
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const [mobileOpen, setMobileOpen] = useState(false);
     const navigate = useNavigate();
@@ -499,15 +505,7 @@ const MainLayout = () => {
                     overflow: 'hidden',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
                 }}>
-                    <img
-                        src="/logo-clinica.svg"
-                        alt="Logo Clínica"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        onError={(e) => {
-                            e.target.style.display = 'none';
-                            e.target.parentElement.innerHTML = '<span style="font-size: 10px; color: #94a3b8; font-weight: 500; padding: 0 8px; text-align: center;">Colocar Logo Aquí</span>';
-                        }}
-                    />
+                    <ClinicLogo style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </Box>
                 <Box sx={{ width: '100%', flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'text.primary' }}>
                     <svg viewBox="0 0 310 16" style={{ width: '100%', height: 'auto', maxWidth: '200px' }}>
@@ -667,6 +665,41 @@ const MainLayout = () => {
                 <MenuIcon />
             </IconButton>
 
+            <Tooltip title="Paleta de colores">
+                <IconButton
+                    size="large"
+                    aria-label="Cambiar paleta de colores"
+                    sx={{ position: 'fixed', top: 16, right: 88, zIndex: 1200, bgcolor: 'background.paper', boxShadow: 2, '&:hover': { bgcolor: 'background.default' } }}
+                    onClick={(e) => setAnchorElPalette(e.currentTarget)}
+                >
+                    <PaletteIcon sx={{ color: 'var(--c-primary-text)' }} />
+                </IconButton>
+            </Tooltip>
+            <Menu
+                anchorEl={anchorElPalette}
+                open={Boolean(anchorElPalette)}
+                onClose={() => setAnchorElPalette(null)}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                slotProps={{ paper: { sx: { mt: 1, borderRadius: 3, minWidth: 200 } } }}
+            >
+                <Typography variant="caption" sx={{ px: 2, py: 1, display: 'block', fontWeight: 700, color: 'text.secondary', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                    Paleta de colores
+                </Typography>
+                {Object.entries(PALETTES).map(([key, p]) => (
+                    <MenuItem
+                        key={key}
+                        selected={palette === key}
+                        onClick={() => { setPalette(key); setAnchorElPalette(null); }}
+                        sx={{ gap: 1.5, py: 1.2 }}
+                    >
+                        <Box sx={{ width: 22, height: 22, borderRadius: '50%', bgcolor: p.primary, border: '3px solid', borderColor: p.soft, boxShadow: 1 }} />
+                        <Typography variant="body2" sx={{ fontWeight: 600, flex: 1 }}>{p.label}</Typography>
+                        {palette === key && <CheckIcon fontSize="small" sx={{ color: 'var(--c-primary-text)' }} />}
+                    </MenuItem>
+                ))}
+            </Menu>
+
             <Tooltip title="Notificaciones">
                 <IconButton
                     size="large"
@@ -700,7 +733,7 @@ const MainLayout = () => {
                     <Typography variant="subtitle1" fontWeight="bold">Notificaciones</Typography>
                     {notifications.some(n => !n.leido) && (
                         <Tooltip title="Marcar todas como leídas">
-                            <IconButton size="small" onClick={handleMarkAllAsRead} sx={{ color: 'primary.main' }}>
+                            <IconButton size="small" onClick={handleMarkAllAsRead} sx={{ color: 'var(--c-primary-text)' }}>
                                 <DoneAllIcon fontSize="small" />
                             </IconButton>
                         </Tooltip>
@@ -816,7 +849,7 @@ const MainLayout = () => {
                             handleNotificationClose();
                             navigate('/notifications');
                         }}
-                        sx={{ justifyContent: 'center', borderRadius: 1, color: 'primary.main', py: 1 }}
+                        sx={{ justifyContent: 'center', borderRadius: 1, color: 'var(--c-primary-text)', py: 1 }}
                     >
                         <Typography variant="button" sx={{ textTransform: 'capitalize', fontWeight: 600, fontSize: '0.875rem' }}>
                             Ver todas
@@ -916,7 +949,7 @@ const MainLayout = () => {
                 <Alert
                     onClose={() => setNotificationSnackbar({ ...notificationSnackbar, open: false })}
                     severity="info"
-                    sx={{ width: '100%', bgcolor: '#1A1812', color: '#FFFFFF', '& .MuiAlert-icon': { color: '#D4AF37' }, borderRadius: 3 }}
+                    sx={{ width: '100%', bgcolor: '#1A1812', color: '#FFFFFF', '& .MuiAlert-icon': { color: 'var(--c-primary-text)' }, borderRadius: 3 }}
                 >
                     {notificationSnackbar.message}
                 </Alert>
@@ -949,7 +982,7 @@ const MainLayout = () => {
                 maxWidth="xs"
                 fullWidth
             >
-                <DialogTitle sx={{ fontWeight: 'bold', color: 'primary.main' }}>Mi Seguridad</DialogTitle>
+                <DialogTitle sx={{ fontWeight: 'bold', color: 'var(--c-primary-text)' }}>Mi Seguridad</DialogTitle>
                 <DialogContent dividers sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                         Por seguridad, ingresa tu contraseña actual antes de establecer una nueva. (Mínimo 6 caracteres).

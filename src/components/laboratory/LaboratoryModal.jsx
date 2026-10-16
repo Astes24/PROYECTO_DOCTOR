@@ -79,15 +79,15 @@ const PatientPickerDialog = ({ open, onClose, onSelect }) => {
                     width: 36, 
                     height: 36, 
                     borderRadius: 1.5, 
-                    bgcolor: '#FCF9F2', 
-                    color: '#D4AF37' 
+                    bgcolor: 'var(--c-surface)', 
+                    color: 'var(--c-primary-text)' 
                 }}>
                     <PeopleAltIcon sx={{ fontSize: 20 }} />
                 </Box>
                 Seleccionar Paciente
                 <IconButton onClick={onClose} sx={{ ml: 'auto', color: 'text.secondary' }} size="small"><CloseIcon /></IconButton>
             </DialogTitle>
-            <DialogContent sx={{ pt: 2.5, px: 2, pb: 0, bgcolor: '#FDFBFF' }}>
+            <DialogContent sx={{ pt: 2.5, px: 2, pb: 0, bgcolor: 'var(--c-surface)' }}>
                 <TextField
                     fullWidth
                     size="small"
@@ -98,7 +98,7 @@ const PatientPickerDialog = ({ open, onClose, onSelect }) => {
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
-                                <SearchIcon fontSize="small" sx={{ color: '#D4AF37' }} />
+                                <SearchIcon fontSize="small" sx={{ color: 'var(--c-primary-text)' }} />
                             </InputAdornment>
                         ),
                     }}
@@ -106,14 +106,14 @@ const PatientPickerDialog = ({ open, onClose, onSelect }) => {
                         mb: 2,
                         '& .MuiOutlinedInput-root': {
                             bgcolor: 'white',
-                            '&:hover fieldset': { borderColor: '#F5F5DC' },
-                            '&.Mui-focused fieldset': { borderColor: '#D4AF37' }
+                            '&:hover fieldset': { borderColor: 'var(--c-primary-border)' },
+                            '&.Mui-focused fieldset': { borderColor: 'var(--c-primary)' }
                         }
                     }}
                 />
                 {loading ? (
                     <Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
-                        <CircularProgress size={32} sx={{ color: '#D4AF37' }} />
+                        <CircularProgress size={32} sx={{ color: 'var(--c-primary-text)' }} />
                     </Box>
                 ) : (
                     <List dense sx={{ maxHeight: 340, overflowY: 'auto', px: 0.5 }}>
@@ -126,12 +126,12 @@ const PatientPickerDialog = ({ open, onClose, onSelect }) => {
                                         sx={{ 
                                             borderRadius: 2.5, 
                                             py: 1.2,
-                                            '&:hover': { bgcolor: '#FCF9F2' } 
+                                            '&:hover': { bgcolor: 'var(--c-surface)' } 
                                         }}
                                     >
                                         <ListItemAvatar>
                                             <Avatar sx={{ 
-                                                bgcolor: '#D4AF37', 
+                                                bgcolor: 'var(--c-primary)', 
                                                 width: 36, 
                                                 height: 36, 
                                                 fontSize: '0.85rem',
@@ -153,7 +153,7 @@ const PatientPickerDialog = ({ open, onClose, onSelect }) => {
                     </List>
                 )}
             </DialogContent>
-            <DialogActions sx={{ pb: 3, px: 2.5, bgcolor: '#FDFBFF' }}>
+            <DialogActions sx={{ pb: 3, px: 2.5, bgcolor: 'var(--c-surface)' }}>
                 <Button onClick={onClose} variant="text" fullWidth sx={{ color: 'text.secondary', fontWeight: 600 }}>
                     Cancelar
                 </Button>
@@ -167,9 +167,9 @@ const PatientPickerDialog = ({ open, onClose, onSelect }) => {
 // ============================================
 const ExamRow = ({ item, index, onRemove }) => {
     return (
-        <TableRow sx={{ '&:hover': { bgcolor: 'rgba(255, 128, 171, 0.02)' } }}>
+        <TableRow sx={{ '&:hover': { bgcolor: 'rgba(var(--c-primary-rgb), 0.02)' } }}>
             <TableCell align="center">
-                <Typography variant="caption" sx={{ fontWeight: 700, color: '#D4AF37' }}>
+                <Typography variant="caption" sx={{ fontWeight: 700, color: 'var(--c-primary-text)' }}>
                     {index + 1}
                 </Typography>
             </TableCell>
@@ -180,7 +180,7 @@ const ExamRow = ({ item, index, onRemove }) => {
                     </Typography>
                     <Box sx={{ display: 'flex', gap: 1.5, flexWrap: 'wrap' }}>
                         {item.tipo_muestra && (
-                            <Typography variant="caption" sx={{ bgcolor: 'rgba(212, 175, 55, 0.1)', color: '#D4AF37', px: 1, borderRadius: 1 }}>
+                            <Typography variant="caption" sx={{ bgcolor: 'rgba(var(--c-primary-rgb), 0.1)', color: 'var(--c-primary-text)', px: 1, borderRadius: 1 }}>
                                 Muestra: {item.tipo_muestra}
                             </Typography>
                         )}
@@ -414,8 +414,8 @@ const LaboratoryModal = ({ open, onClose, onSaved }) => {
                         width: 40, 
                         height: 40, 
                         borderRadius: 2, 
-                        bgcolor: '#FCF9F2', 
-                        color: '#D4AF37',
+                        bgcolor: 'var(--c-surface)', 
+                        color: 'var(--c-primary-text)',
                         flexShrink: 0
                     }}>
                         <ScienceIcon sx={{ fontSize: 24 }} />
@@ -425,8 +425,8 @@ const LaboratoryModal = ({ open, onClose, onSaved }) => {
                         label="LABORATORIO"
                         size="small"
                         sx={{
-                            bgcolor: '#F5F5DC',
-                            color: '#D4AF37',
+                            bgcolor: 'var(--c-primary-soft)',
+                            color: 'var(--c-primary-text)',
                             fontWeight: 800,
                             fontSize: '0.75rem',
                             height: 24,
@@ -437,14 +437,14 @@ const LaboratoryModal = ({ open, onClose, onSaved }) => {
 
                     <IconButton 
                         onClick={handleClose} 
-                        sx={{ ml: 'auto', color: 'text.secondary', '&:hover': { bgcolor: '#FCF9F2', color: '#D4AF37' } }} 
+                        sx={{ ml: 'auto', color: 'text.secondary', '&:hover': { bgcolor: 'var(--c-surface)', color: 'var(--c-primary-text)' } }} 
                         size="small"
                     >
                         <CloseIcon />
                     </IconButton>
                 </DialogTitle>
 
-                <DialogContent sx={{ pt: 10, pb: 4, px: 4, overflowY: 'auto', bgcolor: '#FDFBFF' }}>
+                <DialogContent sx={{ pt: 10, pb: 4, px: 4, overflowY: 'auto', bgcolor: 'var(--c-surface)' }}>
                     
                     {errorMsg && (
                         <Alert severity="error" sx={{ mb: 3, borderRadius: 2 }}>{errorMsg}</Alert>
@@ -453,7 +453,7 @@ const LaboratoryModal = ({ open, onClose, onSaved }) => {
                     {/* Clinic Info + Header Header */}
                     <Box sx={{ mb: 3.5, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.8 }}>
-                            <Typography variant="h6" sx={{ fontWeight: 900, color: '#D4AF37', textTransform: 'uppercase', letterSpacing: '0.05em', lineHeight: 1.2 }}>
+                            <Typography variant="h6" sx={{ fontWeight: 900, color: 'var(--c-primary-text)', textTransform: 'uppercase', letterSpacing: '0.05em', lineHeight: 1.2 }}>
                                 {clinicInfo?.nombre_clinica || 'Clínica Salud'}
                             </Typography>
                             <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>
@@ -541,9 +541,9 @@ const LaboratoryModal = ({ open, onClose, onSaved }) => {
                                     sx={{
                                         minWidth: 48, width: 48, height: 40, p: 0,
                                         borderRadius: 2,
-                                        borderColor: '#F5F5DC',
-                                        color: '#D4AF37',
-                                        '&:hover': { bgcolor: '#FCF9F2', borderColor: '#D4AF37' }
+                                        borderColor: 'var(--c-primary-border)',
+                                        color: 'var(--c-primary-text)',
+                                        '&:hover': { bgcolor: 'var(--c-surface)', borderColor: 'var(--c-primary)' }
                                     }}
                                 >
                                     <PeopleAltIcon fontSize="small" />
@@ -588,10 +588,10 @@ const LaboratoryModal = ({ open, onClose, onSaved }) => {
                         borderColor: 'divider',
                         mb: 4,
                         transition: 'all 0.2s',
-                        '&:focus-within': { borderColor: '#F5F5DC', boxShadow: '0 4px 12px rgba(212, 175, 55, 0.08)' }
+                        '&:focus-within': { borderColor: 'var(--c-primary-border)', boxShadow: '0 4px 12px rgba(var(--c-primary-rgb), 0.08)' }
                     }}>
                         <Typography variant="subtitle2" fontWeight={800} sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2.5, color: 'text.secondary', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                            <ScienceIcon sx={{ fontSize: 18, color: '#D4AF37' }} /> Agregar Examen / Prueba
+                            <ScienceIcon sx={{ fontSize: 18, color: 'var(--c-primary-text)' }} /> Agregar Examen / Prueba
                         </Typography>
 
                         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1.5fr 1fr 2fr auto' }, gap: 2, alignItems: 'center' }}>
@@ -622,8 +622,8 @@ const LaboratoryModal = ({ open, onClose, onSaved }) => {
                                 disabled={!examNombre.trim()}
                                 sx={{ 
                                     borderRadius: 2, 
-                                    bgcolor: '#D4AF37', 
-                                    '&:hover': { bgcolor: '#B8860B' },
+                                    bgcolor: 'var(--c-primary)', 
+                                    '&:hover': { bgcolor: 'var(--c-primary-hover)' },
                                     height: 40
                                 }}
                             >
@@ -642,7 +642,7 @@ const LaboratoryModal = ({ open, onClose, onSaved }) => {
                         mb: 2
                     }}>
                         <Typography variant="subtitle2" fontWeight={800} sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2.5, color: 'text.primary', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                            <ScienceIcon sx={{ fontSize: 18, color: '#D4AF37' }} /> Exámenes Solicitados
+                            <ScienceIcon sx={{ fontSize: 18, color: 'var(--c-primary-text)' }} /> Exámenes Solicitados
                         </Typography>
 
                         {orderItems.length === 0 ? (
@@ -653,7 +653,7 @@ const LaboratoryModal = ({ open, onClose, onSaved }) => {
                             <TableContainer component={Box} sx={{ borderRadius: 2, border: '1px solid', borderColor: 'divider' }}>
                                 <Table size="small">
                                     <TableHead>
-                                        <TableRow sx={{ bgcolor: '#FDFBFF' }}>
+                                        <TableRow sx={{ bgcolor: 'var(--c-surface)' }}>
                                             <TableCell align="center" sx={{ fontWeight: 800, fontSize: '0.7rem', color: 'text.secondary', width: 40 }}>#</TableCell>
                                             <TableCell sx={{ fontWeight: 800, fontSize: '0.7rem', color: 'text.secondary' }}>EXAMEN / INDICACIONES</TableCell>
                                             <TableCell align="center" sx={{ width: 40 }}></TableCell>
@@ -688,7 +688,7 @@ const LaboratoryModal = ({ open, onClose, onSaved }) => {
                     </Box>
                 </DialogContent>
 
-                <DialogActions sx={{ px: 4, py: 3, bgcolor: '#FDFBFF', borderTop: '1px solid', borderColor: 'divider', gap: 2 }}>
+                <DialogActions sx={{ px: 4, py: 3, bgcolor: 'var(--c-surface)', borderTop: '1px solid', borderColor: 'divider', gap: 2 }}>
                     <Button 
                         onClick={handleClose} 
                         variant="text" 
@@ -706,11 +706,11 @@ const LaboratoryModal = ({ open, onClose, onSaved }) => {
                             px: 5,
                             height: 48,
                             borderRadius: 2,
-                            bgcolor: '#D4AF37',
+                            bgcolor: 'var(--c-primary)',
                             fontSize: '1rem',
                             fontWeight: 800,
-                            boxShadow: '0 10px 20px rgba(212, 175, 55, 0.25)',
-                            '&:hover': { bgcolor: '#B8860B', boxShadow: '0 12px 24px rgba(212, 175, 55, 0.35)' },
+                            boxShadow: '0 10px 20px rgba(var(--c-primary-rgb), 0.25)',
+                            '&:hover': { bgcolor: 'var(--c-primary-hover)', boxShadow: '0 12px 24px rgba(var(--c-primary-rgb), 0.35)' },
                             '&:disabled': { opacity: 0.5 }
                         }}
                     >

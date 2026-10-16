@@ -16,6 +16,7 @@ import PortraitIcon from '@mui/icons-material/Portrait';
 import LandscapeIcon from '@mui/icons-material/Landscape';
 import { getClinicInfo } from '../../services/clinicService';
 
+import { paletteStyleBlock } from '../../theme/palettes';
 // ---- Formato de fecha ----
 const formatDate = (dateStr) => {
     if (!dateStr) return '-';
@@ -95,21 +96,22 @@ const LaboratoryViewModal = ({ open, onClose, order, onVoid, onDelete }) => {
                 <meta charset="UTF-8" />
                 <title>Orden de Laboratorio ${ord.numero_orden}</title>
                 <style>
+                    ${paletteStyleBlock()}
                     * { margin: 0; padding: 0; box-sizing: border-box; }
                     body { 
                         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
                         padding: 10mm; 
-                        background: #FDFBFF;
+                        background: var(--c-surface);
                         color: #1e293b;
                     }
                     .modal-content-replica { 
-                        background: #FDFBFF;
+                        background: var(--c-surface);
                         width: 100%;
                     }
                     
                     /* Header Sincronizado */
                     .header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
-                    .clinic-info h6 { font-size: 1.25rem; font-weight: 900; color: #FF80AB; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.2; margin-bottom: 10px; }
+                    .clinic-info h6 { font-size: 1.25rem; font-weight: 900; color: var(--c-primary-text); text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.2; margin-bottom: 10px; }
                     .clinic-info p { font-size: 0.875rem; color: #64748b; font-weight: 600; margin-bottom: 2px; }
                     .receipt-id { text-align: right; }
                     .receipt-id h4 { font-size: 2.125rem; font-weight: 900; color: #1e293b; letter-spacing: -0.025em; line-height: 1.1; text-transform: uppercase; margin-bottom: 10px; }
@@ -135,12 +137,12 @@ const LaboratoryViewModal = ({ open, onClose, order, onVoid, onDelete }) => {
                         box-shadow: 0 4px 15px rgba(0,0,0,0.02);
                     }
                     .med-table { width: 100%; border-collapse: collapse; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; }
-                    .med-table th { background: #FDFBFF; padding: 12px; text-align: left; font-size: 0.7rem; font-weight: 800; color: #64748b; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; }
+                    .med-table th { background: var(--c-surface); padding: 12px; text-align: left; font-size: 0.7rem; font-weight: 800; color: #64748b; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; }
                     .med-table td { padding: 12px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
-                    .item-num { font-size: 0.85rem; font-weight: 700; color: #FF80AB; text-align: center; }
+                    .item-num { font-size: 0.85rem; font-weight: 700; color: var(--c-primary-text); text-align: center; }
                     .med-name { font-size: 0.875rem; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
                     .med-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; align-items: center; }
-                    .med-badge { background: rgba(255, 128, 171, 0.1); color: #FF80AB; font-size: 0.75rem; font-weight: 600; padding: 2px 8px; border-radius: 4px; }
+                    .med-badge { background: rgba(var(--c-primary-rgb), 0.1); color: var(--c-primary-text); font-size: 0.75rem; font-weight: 600; padding: 2px 8px; border-radius: 4px; }
                     .med-spec { font-size: 0.75rem; color: #64748b; font-weight: 500; }
                     .med-ind { font-size: 0.75rem; color: #64748b; font-weight: 500; font-style: italic; margin-top: 4px; display: block; }
 
@@ -254,7 +256,7 @@ const LaboratoryViewModal = ({ open, onClose, order, onVoid, onDelete }) => {
                 onClose={() => setShowPdfInstructions(false)}
                 PaperProps={{ sx: { borderRadius: 3, maxWidth: 400 } }}
             >
-                <DialogTitle sx={{ fontWeight: 800, color: '#FF80AB', textAlign: 'center' }}>
+                <DialogTitle sx={{ fontWeight: 800, color: 'var(--c-primary-text)', textAlign: 'center' }}>
                     Instrucciones de Descarga
                 </DialogTitle>
                 <DialogContent>
@@ -274,10 +276,10 @@ const LaboratoryViewModal = ({ open, onClose, order, onVoid, onDelete }) => {
                         variant="contained"
                         autoFocus
                         sx={{ 
-                            bgcolor: '#FF80AB', 
+                            bgcolor: 'var(--c-primary)', 
                             fontWeight: 800,
                             borderRadius: 2,
-                            '&:hover': { bgcolor: '#F48FB1' }
+                            '&:hover': { bgcolor: 'var(--c-primary-hover)' }
                         }}
                     >
                         Continuar
@@ -325,8 +327,8 @@ const LaboratoryViewModal = ({ open, onClose, order, onVoid, onDelete }) => {
                         width: 40, 
                         height: 40, 
                         borderRadius: 2, 
-                        bgcolor: '#FFF0F7', 
-                        color: '#FF80AB',
+                        bgcolor: 'var(--c-primary-soft)', 
+                        color: 'var(--c-primary-text)',
                         flexShrink: 0
                     }}>
                         <ScienceIcon sx={{ fontSize: 24 }} />
@@ -336,24 +338,24 @@ const LaboratoryViewModal = ({ open, onClose, order, onVoid, onDelete }) => {
 
                     <IconButton 
                         onClick={onClose} 
-                        sx={{ ml: 'auto', color: 'text.secondary', '&:hover': { bgcolor: '#FFF0F7', color: '#FF80AB' } }} 
+                        sx={{ ml: 'auto', color: 'text.secondary', '&:hover': { bgcolor: 'var(--c-primary-soft)', color: 'var(--c-primary-text)' } }} 
                         size="small"
                     >
                         <CloseIcon />
                     </IconButton>
                 </DialogTitle>
 
-                <DialogContent sx={{ pt: 10, pb: 4, px: 4, overflowY: 'auto', bgcolor: '#FDFBFF' }}>
+                <DialogContent sx={{ pt: 10, pb: 4, px: 4, overflowY: 'auto', bgcolor: 'var(--c-surface)' }}>
                     
                     {loading ? (
                         <Box sx={{ display: 'flex', justifyContent: 'center', py: 10 }}>
-                            <CircularProgress sx={{ color: '#FF80AB' }} />
+                            <CircularProgress sx={{ color: 'var(--c-primary-text)' }} />
                         </Box>
                     ) : ord ? (
                         <>
                             <Box sx={{ mb: 6, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.8 }}>
-                                    <Typography variant="h6" sx={{ fontWeight: 900, color: '#FF80AB', textTransform: 'uppercase', letterSpacing: '0.05em', lineHeight: 1.2 }}>
+                                    <Typography variant="h6" sx={{ fontWeight: 900, color: 'var(--c-primary-text)', textTransform: 'uppercase', letterSpacing: '0.05em', lineHeight: 1.2 }}>
                                         {clinicInfo?.nombre_clinica || 'Consultorio Médico'}
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>
@@ -413,16 +415,16 @@ const LaboratoryViewModal = ({ open, onClose, order, onVoid, onDelete }) => {
                                     <TableContainer component={Box} sx={{ borderRadius: 2, border: '1px solid', borderColor: 'divider' }}>
                                         <Table size="small">
                                             <TableHead>
-                                                <TableRow sx={{ bgcolor: '#FDFBFF' }}>
+                                                <TableRow sx={{ bgcolor: 'var(--c-surface)' }}>
                                                     <TableCell align="center" sx={{ fontWeight: 800, fontSize: '0.7rem', color: 'text.secondary', width: 40 }}>#</TableCell>
                                                     <TableCell sx={{ fontWeight: 800, fontSize: '0.7rem', color: 'text.secondary' }}>EXAMEN / INDICACIONES</TableCell>
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
                                                 {ord.items?.map((item, idx) => (
-                                                    <TableRow key={item.id} sx={{ '&:hover': { bgcolor: 'rgba(255, 128, 171, 0.02)' } }}>
+                                                    <TableRow key={item.id} sx={{ '&:hover': { bgcolor: 'rgba(var(--c-primary-rgb), 0.02)' } }}>
                                                         <TableCell align="center">
-                                                            <Typography variant="caption" sx={{ fontWeight: 700, color: '#FF80AB' }}>{idx + 1}</Typography>
+                                                            <Typography variant="caption" sx={{ fontWeight: 700, color: 'var(--c-primary-text)' }}>{idx + 1}</Typography>
                                                         </TableCell>
                                                         <TableCell>
                                                             <Box sx={{ py: 1 }}>
@@ -431,7 +433,7 @@ const LaboratoryViewModal = ({ open, onClose, order, onVoid, onDelete }) => {
                                                                 </Typography>
                                                                 <Box sx={{ display: 'flex', gap: 1.5, mt: 0.5, flexWrap: 'wrap' }}>
                                                                     {item.tipo_muestra && (
-                                                                        <Typography variant="caption" sx={{ bgcolor: 'rgba(255, 128, 171, 0.1)', color: '#FF80AB', px: 1, borderRadius: 1, fontWeight: 600 }}>
+                                                                        <Typography variant="caption" sx={{ bgcolor: 'rgba(var(--c-primary-rgb), 0.1)', color: 'var(--c-primary-text)', px: 1, borderRadius: 1, fontWeight: 600 }}>
                                                                             Muestra: {item.tipo_muestra}
                                                                         </Typography>
                                                                     )}
@@ -471,7 +473,7 @@ const LaboratoryViewModal = ({ open, onClose, order, onVoid, onDelete }) => {
                     ) : null}
                 </DialogContent>
 
-                <DialogActions sx={{ px: 4, py: 3, bgcolor: '#FDFBFF', borderTop: '1px solid', borderColor: 'divider', gap: 2 }}>
+                <DialogActions sx={{ px: 4, py: 3, bgcolor: 'var(--c-surface)', borderTop: '1px solid', borderColor: 'divider', gap: 2 }}>
                     <Box sx={{ display: 'flex', gap: 1, flex: 1 }}>
                         {ord && ord.estado !== 'ANULADA' && (
                             <Button
@@ -502,11 +504,11 @@ const LaboratoryViewModal = ({ open, onClose, order, onVoid, onDelete }) => {
                                 size="small" 
                                 onClick={() => setOrientation('portrait')}
                                 sx={{ 
-                                    bgcolor: orientation === 'portrait' ? '#FFF0F7' : 'transparent',
-                                    color: orientation === 'portrait' ? '#FF80AB' : 'text.disabled',
+                                    bgcolor: orientation === 'portrait' ? 'var(--c-primary-soft)' : 'transparent',
+                                    color: orientation === 'portrait' ? 'var(--c-primary-text)' : 'text.disabled',
                                     border: '1px solid',
-                                    borderColor: orientation === 'portrait' ? '#FF80AB' : 'divider',
-                                    '&:hover': { bgcolor: '#FFF0F7' }
+                                    borderColor: orientation === 'portrait' ? 'var(--c-primary)' : 'divider',
+                                    '&:hover': { bgcolor: 'var(--c-primary-soft)' }
                                 }}
                             >
                                 <PortraitIcon fontSize="small" />
@@ -517,11 +519,11 @@ const LaboratoryViewModal = ({ open, onClose, order, onVoid, onDelete }) => {
                                 size="small" 
                                 onClick={() => setOrientation('landscape')}
                                 sx={{ 
-                                    bgcolor: orientation === 'landscape' ? '#FFF0F7' : 'transparent',
-                                    color: orientation === 'landscape' ? '#FF80AB' : 'text.disabled',
+                                    bgcolor: orientation === 'landscape' ? 'var(--c-primary-soft)' : 'transparent',
+                                    color: orientation === 'landscape' ? 'var(--c-primary-text)' : 'text.disabled',
                                     border: '1px solid',
-                                    borderColor: orientation === 'landscape' ? '#FF80AB' : 'divider',
-                                    '&:hover': { bgcolor: '#FFF0F7' }
+                                    borderColor: orientation === 'landscape' ? 'var(--c-primary)' : 'divider',
+                                    '&:hover': { bgcolor: 'var(--c-primary-soft)' }
                                 }}
                             >
                                 <LandscapeIcon fontSize="small" />
@@ -547,10 +549,10 @@ const LaboratoryViewModal = ({ open, onClose, order, onVoid, onDelete }) => {
                                     px: 3,
                                     height: 48,
                                     borderRadius: 2,
-                                    borderColor: '#FF80AB',
-                                    color: '#FF80AB',
+                                    borderColor: 'var(--c-primary)',
+                                    color: 'var(--c-primary-text)',
                                     fontWeight: 800,
-                                    '&:hover': { borderColor: '#F48FB1', bgcolor: '#FFF0F7' },
+                                    '&:hover': { borderColor: 'var(--c-primary-border)', bgcolor: 'var(--c-primary-soft)' },
                                 }}
                             >
                                 Descargar como PDF
@@ -563,11 +565,11 @@ const LaboratoryViewModal = ({ open, onClose, order, onVoid, onDelete }) => {
                                     px: 5,
                                     height: 48,
                                     borderRadius: 2,
-                                    bgcolor: '#FF80AB',
+                                    bgcolor: 'var(--c-primary)',
                                     fontSize: '1rem',
                                     fontWeight: 800,
-                                    boxShadow: '0 10px 20px rgba(255, 128, 171, 0.25)',
-                                    '&:hover': { bgcolor: '#F48FB1', boxShadow: '0 12px 24px rgba(255, 128, 171, 0.35)' }
+                                    boxShadow: '0 10px 20px rgba(var(--c-primary-rgb), 0.25)',
+                                    '&:hover': { bgcolor: 'var(--c-primary-hover)', boxShadow: '0 12px 24px rgba(var(--c-primary-rgb), 0.35)' }
                                 }}
                             >
                                 Imprimir

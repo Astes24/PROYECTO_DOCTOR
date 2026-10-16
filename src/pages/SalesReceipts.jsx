@@ -28,8 +28,8 @@ const EstadoBadge = ({ estado }) => {
             label={estado}
             size="small"
             sx={{
-                bgcolor: isAnulada ? 'error.main' : '#FFD1E8',
-                color: isAnulada ? 'white' : '#FF80AB',
+                bgcolor: isAnulada ? 'error.main' : 'var(--c-primary-border)',
+                color: isAnulada ? 'white' : 'var(--c-primary-text)',
                 fontWeight: 800,
                 fontSize: '0.65rem',
                 height: 22,
@@ -346,10 +346,10 @@ const SalesReceipts = () => {
                             onClick={() => setIsCreateModalOpen(true)}
                             sx={{
                                 bgcolor: 'primary.main',
-                                color: 'white',
+                                color: 'var(--c-on-primary)',
                                 width: 56, height: 56,
                                 borderRadius: 3,
-                                boxShadow: '0px 8px 16px rgba(206, 130, 255, 0.4)',
+                                boxShadow: '0px 8px 16px rgba(var(--c-primary-rgb), 0.4)',
                                 '&:hover': { bgcolor: 'primary.dark' }
                             }}
                         >
@@ -362,7 +362,7 @@ const SalesReceipts = () => {
                             onClick={() => setIsCreateModalOpen(true)}
                             startIcon={<ReceiptIcon />}
                             sx={{
-                                boxShadow: '0px 8px 16px rgba(206, 130, 255, 0.25)',
+                                boxShadow: '0px 8px 16px rgba(var(--c-primary-rgb), 0.25)',
                                 fontWeight: 700,
                                 whiteSpace: 'nowrap',
                                 height: '56px',
@@ -419,7 +419,7 @@ const SalesReceipts = () => {
                                                 sx={{ textAlign: 'center' }}
                                                 primary={
                                                     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1, mb: 0.5 }}>
-                                                        <ReceiptIcon sx={{ fontSize: 18, color: 'primary.main' }} />
+                                                        <ReceiptIcon sx={{ fontSize: 18, color: 'var(--c-primary-text)' }} />
                                                         <Typography variant="subtitle1" fontWeight="800" color="primary.main">
                                                             {receipt.numero_boleta}
                                                         </Typography>

@@ -194,7 +194,7 @@ const PlantillasManager = () => {
                                     {p.nombre}
                                 </Typography>
                                 <Box sx={{ display: 'flex', gap: 0.5 }}>
-                                    <IconButton size="small" onClick={() => handleEdit(p)} sx={{ color: 'primary.main', bgcolor: 'primary.light', opacity: 0.8, '&:hover': { opacity: 1 } }}>
+                                    <IconButton size="small" onClick={() => handleEdit(p)} sx={{ color: 'var(--c-primary-text)', bgcolor: 'primary.light', opacity: 0.8, '&:hover': { opacity: 1 } }}>
                                         <EditIcon fontSize="small" />
                                     </IconButton>
                                     <IconButton size="small" onClick={() => confirmDelete(p.id)} sx={{ color: 'error.main', bgcolor: 'error.light', opacity: 0.8, '&:hover': { opacity: 1 } }}>

@@ -13,15 +13,16 @@ import 'dayjs/locale/es';
 
 dayjs.locale('es');
 
-const GOLD_BABY = '#FFFDF5'; 
-const GOLD_PASTEL = '#E5D5B0'; 
-const GOLD_MAIN = '#D4AF37'; 
-const GOLD_CONTRAST = '#B8860B';
+const BRAND_SOFT = 'var(--c-primary-soft)';
+const BRAND_BORDER = 'var(--c-primary-border)';
+const BRAND = 'var(--c-primary)';
+const BRAND_TEXT = 'var(--c-primary-text)';
+const BRAND_HOVER = 'var(--c-primary-hover)';
 
 const DOCTOR_COLORS = [
     { bg: '#0284c7', light: '#e0f2fe' },
     { bg: '#7c3aed', light: '#ede9fe' },
-    { bg: '#db2777', light: '#fce7f3' },
+    { bg: 'var(--c-primary)', light: 'var(--c-primary-soft)' },
     { bg: '#d97706', light: '#fef3c7' },
     { bg: '#059669', light: '#d1fae5' },
     { bg: '#dc2626', light: '#fee2e2' },
@@ -181,20 +182,20 @@ const SchedulesTab = () => {
                 borderRadius: 4, 
                 overflow: 'hidden', 
                 border: '1px solid', 
-                borderColor: GOLD_PASTEL, 
+                borderColor: BRAND_BORDER, 
                 boxShadow: '0 4px 20px rgba(0,0,0,0.05)' 
             }}>
                 {/* Month Navigator */}
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 3, py: 1.5, bgcolor: GOLD_BABY }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 3, py: 1.5, bgcolor: BRAND_SOFT }}>
                     <IconButton size="small" onClick={() => setCurrentMonth(currentMonth.subtract(1, 'month'))}
-                        sx={{ color: GOLD_MAIN, bgcolor: 'white', '&:hover': { bgcolor: GOLD_PASTEL } }}>
+                        sx={{ color: BRAND_TEXT, bgcolor: 'white', '&:hover': { bgcolor: BRAND_BORDER } }}>
                         <Typography sx={{ fontWeight: 900, fontSize: '1.2rem', lineHeight: 1 }}>‹</Typography>
                     </IconButton>
-                    <Typography variant="h6" fontWeight={900} sx={{ textTransform: 'uppercase', letterSpacing: '0.15em', color: GOLD_MAIN, fontSize: '1rem' }}>
+                    <Typography variant="h6" fontWeight={900} sx={{ textTransform: 'uppercase', letterSpacing: '0.15em', color: BRAND_TEXT, fontSize: '1rem' }}>
                         {currentMonth.format('MMMM YYYY')}
                     </Typography>
                     <IconButton size="small" onClick={() => setCurrentMonth(currentMonth.add(1, 'month'))}
-                        sx={{ color: GOLD_MAIN, bgcolor: 'white', '&:hover': { bgcolor: GOLD_PASTEL } }}>
+                        sx={{ color: BRAND_TEXT, bgcolor: 'white', '&:hover': { bgcolor: BRAND_BORDER } }}>
                         <Typography sx={{ fontWeight: 900, fontSize: '1.2rem', lineHeight: 1 }}>›</Typography>
                     </IconButton>
                 </Box>
@@ -203,7 +204,7 @@ const SchedulesTab = () => {
                 <Box sx={{ flex: 1, p: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
                     {loading ? (
                         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-                            <CircularProgress sx={{ color: GOLD_MAIN }} />
+                            <CircularProgress sx={{ color: BRAND_TEXT }} />
                         </Box>
                     ) : (
                         <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -211,7 +212,7 @@ const SchedulesTab = () => {
                             <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', mb: 0.5 }}>
                                 {weekDays.map(d => (
                                     <Box key={d} sx={{ py: 0.5, textAlign: 'center' }}>
-                                        <Typography variant="caption" fontWeight={900} sx={{ color: GOLD_CONTRAST, opacity: 0.6, textTransform: 'uppercase', fontSize: '0.65rem' }}>
+                                        <Typography variant="caption" fontWeight={900} sx={{ color: BRAND_TEXT, opacity: 0.6, textTransform: 'uppercase', fontSize: '0.65rem' }}>
                                             {d}
                                         </Typography>
                                     </Box>
@@ -244,20 +245,20 @@ const SchedulesTab = () => {
                                                         display: 'flex',
                                                         flexDirection: 'column',
                                                         alignItems: 'center',
-                                                        bgcolor: isToday ? GOLD_BABY : 'rgba(0,0,0,0.02)',
+                                                        bgcolor: isToday ? BRAND_SOFT : 'rgba(0,0,0,0.02)',
                                                         border: '1px solid',
-                                                        borderColor: isToday ? GOLD_MAIN : 'transparent',
+                                                        borderColor: isToday ? BRAND : 'transparent',
                                                         transition: 'all 0.15s',
                                                         cursor: dayEntries.length > 0 ? 'pointer' : 'default',
                                                         '&:hover': {
-                                                            bgcolor: GOLD_BABY,
+                                                            bgcolor: BRAND_SOFT,
                                                             transform: 'translateY(-2px)',
-                                                            boxShadow: '0 4px 12px rgba(212,175,55,0.1)',
+                                                            boxShadow: '0 4px 12px rgba(var(--c-primary-rgb),0.1)',
                                                             zIndex: 1
                                                         }
                                                     }}>
                                                         <Typography variant="body2" fontWeight={isToday ? 900 : 700} sx={{ 
-                                                            color: isToday ? GOLD_MAIN : 'text.primary',
+                                                            color: isToday ? BRAND_TEXT : 'text.primary',
                                                             mb: 0.25,
                                                             fontSize: '0.8rem',
                                                             lineHeight: 1
@@ -285,9 +286,9 @@ const SchedulesTab = () => {
                 {!loading && doctors.length > 0 && (
                     <Box sx={{ 
                         p: 1.5, 
-                        bgcolor: GOLD_BABY, 
+                        bgcolor: BRAND_SOFT, 
                         borderTop: '1px solid', 
-                        borderColor: GOLD_PASTEL, 
+                        borderColor: BRAND_BORDER, 
                         display: 'flex', 
                         justifyContent: 'center', 
                         gap: 2.5, 
@@ -313,14 +314,14 @@ const SchedulesTab = () => {
                     position: 'absolute', 
                     bottom: 24, 
                     right: 24, 
-                    bgcolor: GOLD_MAIN, 
-                    color: 'white',
+                    bgcolor: BRAND, 
+                    color: 'var(--c-on-primary)',
                     fontWeight: 800,
                     textTransform: 'none',
                     borderRadius: 3,
-                    '&:hover': { bgcolor: GOLD_CONTRAST, transform: 'scale(1.05)' },
+                    '&:hover': { bgcolor: BRAND_HOVER, transform: 'scale(1.05)' },
                     transition: 'all 0.2s',
-                    boxShadow: '0 10px 20px rgba(212, 175, 55, 0.4)',
+                    boxShadow: '0 10px 20px rgba(var(--c-primary-rgb), 0.4)',
                     px: 3,
                     py: 1.5,
                     zIndex: 10
@@ -345,7 +346,7 @@ const SchedulesTab = () => {
 
             {/* Confirm Delete Dialog */}
             <Dialog open={confirmDelete.open} onClose={() => setConfirmDelete({ open: false, id: null })} PaperProps={{ sx: { borderRadius: 3, p: 1 } }}>
-                <DialogTitle sx={{ fontWeight: 900, textAlign: 'center', color: GOLD_CONTRAST }}>¿Eliminar este turno?</DialogTitle>
+                <DialogTitle sx={{ fontWeight: 900, textAlign: 'center', color: BRAND_TEXT }}>¿Eliminar este turno?</DialogTitle>
                 <DialogContent>
                     <Typography variant="body2" color="text.secondary" textAlign="center">
                         Esta acción quitará la disponibilidad de este bloque horario para el bot.

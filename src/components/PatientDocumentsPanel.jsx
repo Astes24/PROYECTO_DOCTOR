@@ -329,9 +329,9 @@ const PatientDocumentsPanel = ({ patient, onClose, embedded = false }) => {
             };
         } else {
             return {
-                bgcolor: theme.palette.mode === 'dark' ? 'rgba(233, 30, 99, 0.15)' : '#fce4ec',
-                color: theme.palette.mode === 'dark' ? '#f48fb1' : '#c2185b',
-                borderColor: theme.palette.mode === 'dark' ? 'rgba(233, 30, 99, 0.3)' : '#f48fb1',
+                bgcolor: theme.palette.mode === 'dark' ? 'rgba(var(--c-primary-rgb), 0.15)' : 'var(--c-primary-soft)',
+                color: theme.palette.mode === 'dark' ? 'var(--c-primary-text)' : 'var(--c-primary-text)',
+                borderColor: theme.palette.mode === 'dark' ? 'rgba(var(--c-primary-rgb), 0.3)' : 'var(--c-primary-border)',
                 icon: <MedicalServicesIcon fontSize="small" />
             };
         }

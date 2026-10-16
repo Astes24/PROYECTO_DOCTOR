@@ -132,13 +132,13 @@ const ContactItem = ({ contact, isSelected, onClick, theme }) => {
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
                 bgcolor: isSelected
-                    ? (theme.palette.mode === 'dark' ? 'rgba(206, 130, 255, 0.12)' : 'rgba(206, 130, 255, 0.08)')
+                    ? (theme.palette.mode === 'dark' ? 'rgba(var(--c-primary-rgb), 0.12)' : 'rgba(var(--c-primary-rgb), 0.08)')
                     : 'transparent',
                 borderLeft: isSelected ? '3px solid' : '3px solid transparent',
                 borderLeftColor: isSelected ? 'primary.main' : 'transparent',
                 '&:hover': {
                     bgcolor: isSelected
-                        ? (theme.palette.mode === 'dark' ? 'rgba(206, 130, 255, 0.15)' : 'rgba(206, 130, 255, 0.1)')
+                        ? (theme.palette.mode === 'dark' ? 'rgba(var(--c-primary-rgb), 0.15)' : 'rgba(var(--c-primary-rgb), 0.1)')
                         : (theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.02)'),
                 },
             }}
@@ -167,7 +167,7 @@ const ContactItem = ({ contact, isSelected, onClick, theme }) => {
                     sx={{
                         width: 44,
                         height: 44,
-                        bgcolor: isSelected ? 'primary.main' : (theme.palette.mode === 'dark' ? '#374151' : '#E8DEF8'),
+                        bgcolor: isSelected ? 'primary.main' : (theme.palette.mode === 'dark' ? '#374151' : 'var(--c-primary-soft)'),
                         color: isSelected ? 'primary.contrastText' : 'primary.main',
                         fontSize: '1rem',
                         fontWeight: 700,
@@ -865,7 +865,7 @@ const LiveChat = () => {
                     alignItems: 'center',
                     gap: 1.5,
                     borderBottom: `1px solid ${theme.palette.divider}`,
-                    bgcolor: theme.palette.mode === 'dark' ? 'rgba(206, 130, 255, 0.05)' : 'rgba(206, 130, 255, 0.03)',
+                    bgcolor: theme.palette.mode === 'dark' ? 'rgba(var(--c-primary-rgb), 0.05)' : 'rgba(var(--c-primary-rgb), 0.03)',
                 }}
             >
                 <WhatsAppIcon sx={{ color: '#25D366', fontSize: 28 }} />
@@ -915,7 +915,7 @@ const LiveChat = () => {
             <Box sx={{ flex: 1, overflowY: 'auto', overflowX: 'hidden' }}>
                 {loadingContacts ? (
                     <Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
-                        <CircularProgress size={32} sx={{ color: 'primary.main' }} />
+                        <CircularProgress size={32} sx={{ color: 'var(--c-primary-text)' }} />
                     </Box>
                 ) : filteredContacts.length === 0 ? (
                     <Box sx={{ textAlign: 'center', py: 6, px: 2 }}>
@@ -1029,7 +1029,7 @@ const LiveChat = () => {
                             display: selectedPhone ? 'flex' : (isMobile ? 'none' : 'flex'),
                             flexDirection: 'column',
                             minWidth: 0,
-                            bgcolor: theme.palette.mode === 'dark' ? '#1a1a2e' : '#F0ECF5',
+                            bgcolor: theme.palette.mode === 'dark' ? '#1a1a2e' : 'var(--c-primary-soft)',
                             position: 'relative',
                         }}
                     >
@@ -1045,7 +1045,7 @@ const LiveChat = () => {
                                         gap: isMobile ? 1 : 2,
                                         borderBottom: `1px solid ${theme.palette.divider}`,
                                         bgcolor: theme.palette.mode === 'dark'
-                                            ? 'rgba(206, 130, 255, 0.04)'
+                                            ? 'rgba(var(--c-primary-rgb), 0.04)'
                                             : 'rgba(255, 255, 255, 0.8)',
                                         backdropFilter: 'blur(10px)',
                                         minHeight: 65,
@@ -1168,12 +1168,12 @@ const LiveChat = () => {
                                         // Subtle chat pattern background
                                         backgroundImage: theme.palette.mode === 'dark'
                                             ? 'none'
-                                            : 'radial-gradient(circle at 20% 50%, rgba(206,130,255,0.02) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(182,240,254,0.03) 0%, transparent 50%)',
+                                            : 'radial-gradient(circle at 20% 50%, rgba(var(--c-primary-rgb),0.02) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(182,240,254,0.03) 0%, transparent 50%)',
                                     }}
                                 >
                                     {loadingMessages ? (
                                         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-                                            <CircularProgress size={36} sx={{ color: 'primary.main' }} />
+                                            <CircularProgress size={36} sx={{ color: 'var(--c-primary-text)' }} />
                                         </Box>
                                     ) : (
                                         <Box ref={contentWrapperRef} sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
@@ -1211,7 +1211,7 @@ const LiveChat = () => {
                                             left: '50%',
                                             transform: 'translateX(-50%)',
                                             bgcolor: 'primary.main',
-                                            color: 'white',
+                                            color: 'var(--c-on-primary)',
                                             boxShadow: 4,
                                             '&:hover': {
                                                 bgcolor: 'primary.dark',
@@ -1382,7 +1382,7 @@ const LiveChat = () => {
                         width: '100%',
                         borderRadius: 3,
                         boxShadow: 3,
-                        bgcolor: snackbar.severity === 'error' ? undefined : '#2A2135',
+                        bgcolor: snackbar.severity === 'error' ? undefined : '#1F2937',
                         color: snackbar.severity === 'error' ? undefined : '#FFFFFF',
                         '& .MuiAlert-icon': {
                             color: snackbar.severity === 'error' ? undefined : '#B6F0FE'

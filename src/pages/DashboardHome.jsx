@@ -155,7 +155,7 @@ const DashboardHome = () => {
         {
             title: 'Origen de las Citas',
             isSplitCard: true,
-            icon: <CalendarMonthIcon sx={{ ...defaultIconSx, color: 'primary.main' }} />,
+            icon: <CalendarMonthIcon sx={{ ...defaultIconSx, color: 'var(--c-primary-text)' }} />,
             description: 'Total de citas programadas por IA vs manual.',
             path: '/appointments'
         },
@@ -189,7 +189,7 @@ const DashboardHome = () => {
         <Box sx={{ width: '95%', mx: 'auto', height: 'calc(100vh - 48px)', display: 'flex', flexDirection: 'column', p: 3, gap: 3, bgcolor: 'transparent', overflow: 'hidden' }}>
             <Box sx={{ textAlign: 'center', mb: { xs: 1, lg: 3 }, flexShrink: 0 }}>
                 <Typography variant="h3" sx={{ fontWeight: 800, mb: 1, color: 'text.primary', fontSize: { xs: '1.8rem', md: '2.5rem', lg: '3rem' } }}>
-                    Bienvenido al Panel de <span style={{ color: '#D4AF37' }}>Clínica Salud</span>
+                    Bienvenido al Panel de <span style={{ color: 'var(--c-primary-text)' }}>Clínica Salud</span>
                 </Typography>
             </Box>
 
@@ -244,7 +244,7 @@ const DashboardHome = () => {
                                     ) : item.isSplitCard ? (
                                         <Box sx={{ display: 'flex', gap: 3, mb: 1, alignItems: 'center', justifyContent: 'center', width: '100%' }}>
                                             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                                <Typography sx={{ fontSize: '2.5rem', fontWeight: 800, color: 'primary.main', lineHeight: 1 }}>{stats.botAppointments}</Typography>
+                                                <Typography sx={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--c-primary-text)', lineHeight: 1 }}>{stats.botAppointments}</Typography>
                                                 <Typography variant="overline" sx={{ fontWeight: 700, color: 'text.secondary', lineHeight: 1, mt: 0.5 }}>Por BOT</Typography>
                                             </Box>
                                             <Box sx={{ width: '2px', height: 40, bgcolor: 'divider' }} />

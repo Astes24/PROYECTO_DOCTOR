@@ -118,7 +118,7 @@ const InventoryItemModal = ({ open, onClose, itemData, onSaved }) => {
                 <DialogContent sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 3 }}>
                     {/* Seccion 1: Identificación Básica */}
                     <Box>
-                        <Typography variant="subtitle2" color="primary" fontWeight="bold" gutterBottom>1. IDENTIFICACIÓN BÁSICA</Typography>
+                        <Typography variant="subtitle2" color="var(--c-primary-text)" fontWeight="bold" gutterBottom>1. IDENTIFICACIÓN BÁSICA</Typography>
                         <Divider sx={{ mb: 2 }} />
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={8}>
@@ -157,7 +157,7 @@ const InventoryItemModal = ({ open, onClose, itemData, onSaved }) => {
 
                     {/* Seccion 2: Clasificación y Stock */}
                     <Box>
-                        <Typography variant="subtitle2" color="primary" fontWeight="bold" gutterBottom>2. CLASIFICACIÓN Y STOCK</Typography>
+                        <Typography variant="subtitle2" color="var(--c-primary-text)" fontWeight="bold" gutterBottom>2. CLASIFICACIÓN Y STOCK</Typography>
                         <Divider sx={{ mb: 2 }} />
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6} md={3}>
@@ -225,7 +225,7 @@ const InventoryItemModal = ({ open, onClose, itemData, onSaved }) => {
 
                     {/* Seccion 3: Datos Médicos */}
                     <Box>
-                        <Typography variant="subtitle2" color="primary" fontWeight="bold" gutterBottom>3. DATOS MÉDICOS (Opcional)</Typography>
+                        <Typography variant="subtitle2" color="var(--c-primary-text)" fontWeight="bold" gutterBottom>3. DATOS MÉDICOS (Opcional)</Typography>
                         <Divider sx={{ mb: 2 }} />
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
@@ -271,7 +271,7 @@ const InventoryItemModal = ({ open, onClose, itemData, onSaved }) => {
 
                     {/* Seccion 4: Datos Comerciales */}
                     <Box>
-                        <Typography variant="subtitle2" color="primary" fontWeight="bold" gutterBottom>4. DATOS COMERCIALES (Opcional)</Typography>
+                        <Typography variant="subtitle2" color="var(--c-primary-text)" fontWeight="bold" gutterBottom>4. DATOS COMERCIALES (Opcional)</Typography>
                         <Divider sx={{ mb: 2 }} />
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={12}>

@@ -2,6 +2,7 @@ import React, { useState, useMemo, createContext, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import getAppTheme from './theme/AppTheme';
+import { PALETTES, DEFAULT_PALETTE, applyPalette } from './theme/palettes';
 import MainLayout from './components/MainLayout';
 import DashboardHome from './pages/DashboardHome';
 import Appointments from './pages/Appointments';
@@ -19,6 +20,17 @@ import LaboratoryOrders from './pages/LaboratoryOrders';
 import { ToastProvider } from './components/ToastProvider';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => { } });
+// eslint-disable-next-line react-refresh/only-export-components
+export const PaletteContext = createContext({ palette: DEFAULT_PALETTE, setPalette: () => { } });
+
+const readSavedPalette = () => {
+  try {
+    const saved = localStorage.getItem('paleta');
+    return PALETTES[saved] ? saved : DEFAULT_PALETTE;
+  } catch {
+    return DEFAULT_PALETTE;
+  }
+};
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -60,7 +72,15 @@ function App() {
     [],
   );
 
-  const theme = useMemo(() => getAppTheme(mode), [mode]);
+  const [palette, setPalette] = useState(readSavedPalette);
+  const paletteValue = useMemo(() => ({ palette, setPalette }), [palette]);
+
+  const theme = useMemo(() => getAppTheme(mode, palette), [mode, palette]);
+
+  useEffect(() => {
+    applyPalette(palette);
+    try { localStorage.setItem('paleta', palette); } catch { /* sin almacenamiento */ }
+  }, [palette]);
 
   // Sync with Tailwind dark mode class
   useEffect(() => {
@@ -73,6 +93,7 @@ function App() {
 
   return (
     <ColorModeContext.Provider value={colorMode}>
+    <PaletteContext.Provider value={paletteValue}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <ErrorBoundary>
@@ -99,6 +120,7 @@ function App() {
           </ToastProvider>
         </ErrorBoundary>
       </ThemeProvider>
+    </PaletteContext.Provider>
     </ColorModeContext.Provider>
   );
 }

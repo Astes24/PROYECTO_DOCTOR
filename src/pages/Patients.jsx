@@ -371,11 +371,11 @@ const Patients = () => {
                             }}
                             sx={{
                                 bgcolor: 'primary.main',
-                                color: 'white',
+                                color: 'var(--c-on-primary)',
                                 width: 56,
                                 height: 56,
                                 borderRadius: 3,
-                                boxShadow: '0px 8px 16px rgba(206, 130, 255, 0.4)',
+                                boxShadow: '0px 8px 16px rgba(var(--c-primary-rgb), 0.4)',
                                 '&:hover': { bgcolor: 'primary.dark' }
                             }}
                         >
@@ -390,7 +390,7 @@ const Patients = () => {
                                 setIsNewPatientDialogOpen(true);
                             }}
                             startIcon={<AddIcon />}
-                            sx={{ boxShadow: '0px 8px 16px rgba(206, 130, 255, 0.25)', whiteSpace: 'nowrap', height: '56px' }}
+                            sx={{ boxShadow: '0px 8px 16px rgba(var(--c-primary-rgb), 0.25)', whiteSpace: 'nowrap', height: '56px' }}
                         >
                             Registrar paciente
                         </Button>

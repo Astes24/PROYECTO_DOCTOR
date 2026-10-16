@@ -165,7 +165,7 @@ const MobileCalendar = ({ appointments, onDateSelect, selectedDate, isMobile }) 
                                 transition: 'all 0.2s',
                                 border: isSelected ? '2px solid' : '1px solid',
                                 borderColor: isSelected ? 'primary.main' : (dayAppts.length > 0 ? 'primary.light' : 'transparent'),
-                                bgcolor: isSelected ? 'primary.light' : (dayAppts.length > 0 ? 'rgba(206, 130, 255, 0.05)' : 'transparent'),
+                                bgcolor: isSelected ? 'primary.light' : (dayAppts.length > 0 ? 'rgba(var(--c-primary-rgb), 0.05)' : 'transparent'),
                                 opacity: isCurrentMonth ? 1 : 0.3,
                                 position: 'relative',
                                 '&:hover': { bgcolor: 'action.hover' },
@@ -230,8 +230,8 @@ const Appointments = () => {
         { label: 'Pendientes', value: 'PENDIENTE', activeColor: '#D97706' },
         { label: 'Pospuestas', value: 'POSPUESTA', activeColor: '#EA580C' },
         { label: 'Canceladas', value: 'CANCELADA', activeColor: '#EF4444' },
-        { label: 'Hoy', value: 'HOY', activeColor: '#CE82FF' },
-        { label: 'Mañana', value: 'MANANA', activeColor: '#CE82FF' }
+        { label: 'Hoy', value: 'HOY', activeColor: 'var(--c-primary)' },
+        { label: 'Mañana', value: 'MANANA', activeColor: 'var(--c-primary)' }
     ];
 
     const handleFilterToggle = (filterName) => {
@@ -939,7 +939,7 @@ const Appointments = () => {
                                     setIsDialogOpen(true);
                                 }}
                                 startIcon={<AddIcon />}
-                                sx={{ boxShadow: '0px 8px 16px rgba(206, 130, 255, 0.25)' }}
+                                sx={{ boxShadow: '0px 8px 16px rgba(var(--c-primary-rgb), 0.25)' }}
                             >
                                 Nueva Cita
                             </Button>
@@ -1235,7 +1235,7 @@ const Appointments = () => {
                                                                 bgcolor: 'transparent',
                                                                 border: '1px dashed',
                                                                 borderColor: 'primary.main',
-                                                                color: 'primary.main',
+                                                                color: 'var(--c-primary-text)',
                                                                 opacity: 0.7,
                                                                 '&:hover': {
                                                                     bgcolor: 'primary.50',
@@ -1273,10 +1273,10 @@ const Appointments = () => {
                                                         sx={{
                                                             px: 2,
                                                             py: 1,
-                                                            bgcolor: 'rgba(206, 130, 255, 0.05)',
+                                                            bgcolor: 'rgba(var(--c-primary-rgb), 0.05)',
                                                             fontWeight: 'bold',
                                                             textAlign: 'center',
-                                                            color: 'primary.main',
+                                                            color: 'var(--c-primary-text)',
                                                             borderBottom: '1px solid',
                                                             borderColor: 'divider'
                                                         }}
@@ -1848,7 +1848,7 @@ const Appointments = () => {
                 fullWidth
                 PaperProps={{ sx: { borderRadius: 3 } }}
             >
-                <DialogTitle sx={{ bgcolor: 'secondary.main', color: 'primary.main', display: 'flex', justifyContent: 'center', alignItems: 'center', p: 2, position: 'relative' }}>
+                <DialogTitle sx={{ bgcolor: 'secondary.main', color: 'var(--c-primary-text)', display: 'flex', justifyContent: 'center', alignItems: 'center', p: 2, position: 'relative' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <AccessTimeIcon />
                         <Typography variant="h6" fontWeight="bold" sx={{ textTransform: 'uppercase' }}>Reprogramar Cita</Typography>
@@ -2011,7 +2011,7 @@ const Appointments = () => {
                             position: 'fixed',
                             bottom: 24,
                             right: 24,
-                            boxShadow: '0px 8px 16px rgba(206, 130, 255, 0.4)',
+                            boxShadow: '0px 8px 16px rgba(var(--c-primary-rgb), 0.4)',
                             bgcolor: 'primary.main',
                             '&:hover': { bgcolor: 'primary.dark' },
                             zIndex: 1000

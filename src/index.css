@@ -1,16 +1,20 @@
 @import "tailwindcss";
 
+/* dark: sigue a la clase .dark de la app (App.jsx), no al modo del sistema operativo */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: 'Roboto', sans-serif;
 
-  --color-primary: #D4AF37;
-  --color-primary-light: #FFD700;
-  --color-primary-dark: #B8860B;
-  --color-primary-50: #FFFDF5;
-  --color-primary-900: #423200;
+  /* Colores de marca: vienen de la paleta activa (src/theme/palettes.js) */
+  --color-primary: var(--c-primary);
+  --color-primary-light: var(--c-primary-border);
+  --color-primary-dark: var(--c-primary-hover);
+  --color-primary-50: var(--c-primary-soft);
+  --color-primary-900: var(--c-primary-text);
 
-  --color-secondary: #E5D5B0;
-  --color-secondary-dark: #D4C49F;
+  --color-secondary: var(--c-primary-border);
+  --color-secondary-dark: var(--c-primary-hover);
 
   --color-background: var(--bg-color);
   --color-surface: var(--surface-color);
@@ -18,17 +22,27 @@
   --color-text-secondary: var(--text-secondary);
   --color-on-brand: var(--text-on-brand);
 
-  --shadow-glow-primary: 0 0 15px rgba(212, 175, 55, 0.5);
+  --shadow-glow-primary: 0 0 15px rgba(var(--c-primary-rgb), 0.5);
 }
 
 @layer base {
   :root {
-    /* Light Mode Variables - Tema dorado */
-    --bg-color: #FFFDF5;
-    --surface-color: #FCF9F2;
+    /* Paleta por defecto (dorado); App.jsx la reemplaza con la paleta elegida */
+    --c-primary: #D4AF37;
+    --c-primary-rgb: 212, 175, 55;
+    --c-primary-hover: #B8962E;
+    --c-primary-text: #7D6314;
+    --c-primary-soft: #FBF5E3;
+    --c-primary-border: #EADBA8;
+    --c-on-primary: #1A1A1A;
+    --c-bg: #F6F3EC;
+    --c-surface: #FFFFFF;
+
+    --bg-color: var(--c-bg);
+    --surface-color: var(--c-surface);
     --text-primary: #1A1A1A;
-    --text-secondary: #5D546B;
-    --text-on-brand: #121212;
+    --text-secondary: #5B6472;
+    --text-on-brand: var(--c-on-primary);
   }
 
   .dark {

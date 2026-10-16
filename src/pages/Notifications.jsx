@@ -231,9 +231,9 @@ const Notifications = () => {
                             py: 1,
                             fontWeight: 'bold',
                             textTransform: 'none',
-                            boxShadow: '0px 8px 20px rgba(206, 130, 255, 0.25)',
+                            boxShadow: '0px 8px 20px rgba(var(--c-primary-rgb), 0.25)',
                             '&:hover': {
-                                boxShadow: '0px 10px 25px rgba(206, 130, 255, 0.4)',
+                                boxShadow: '0px 10px 25px rgba(var(--c-primary-rgb), 0.4)',
                                 transform: 'translateY(-1px)'
                             }
                         }}

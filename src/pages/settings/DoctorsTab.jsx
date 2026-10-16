@@ -93,9 +93,9 @@ const DoctorsTab = () => {
                     startIcon={<AddIcon />}
                     onClick={() => handleOpenModal()}
                     sx={{ 
-                        bgcolor: '#db2777', 
-                        color: 'white',
-                        '&:hover': { bgcolor: '#be185d' },
+                        bgcolor: 'var(--c-primary)', 
+                        color: 'var(--c-on-primary)',
+                        '&:hover': { bgcolor: 'var(--c-primary-hover)' },
                         borderRadius: 2,
                         textTransform: 'none',
                         px: 3,
@@ -107,23 +107,23 @@ const DoctorsTab = () => {
                 </Button>
             </Box>
 
-            <TableContainer sx={{ flex: 1, overflowY: 'auto', borderRadius: 4, border: '1px solid', borderColor: '#fbcfe8', bgcolor: 'white' }}>
+            <TableContainer sx={{ flex: 1, overflowY: 'auto', borderRadius: 4, border: '1px solid', borderColor: 'var(--c-primary-border)', bgcolor: 'white' }}>
                 <Table stickyHeader>
                     <TableHead>
                         <TableRow>
-                            <TableCell align="center" sx={{ fontWeight: 800, bgcolor: '#fdf2f8', color: '#db2777', borderBottom: '2px solid', borderColor: '#fbcfe8', textTransform: 'uppercase', fontSize: '0.75rem' }}>Nombre</TableCell>
-                            <TableCell align="center" sx={{ fontWeight: 800, bgcolor: '#fdf2f8', color: '#db2777', borderBottom: '2px solid', borderColor: '#fbcfe8', textTransform: 'uppercase', fontSize: '0.75rem' }}>Especialidad</TableCell>
-                            <TableCell align="center" sx={{ fontWeight: 800, bgcolor: '#fdf2f8', color: '#db2777', borderBottom: '2px solid', borderColor: '#fbcfe8', textTransform: 'uppercase', fontSize: '0.75rem' }}>CMP / RNE</TableCell>
-                            <TableCell align="center" sx={{ fontWeight: 800, bgcolor: '#fdf2f8', color: '#db2777', borderBottom: '2px solid', borderColor: '#fbcfe8', textTransform: 'uppercase', fontSize: '0.75rem' }}>Tipo</TableCell>
-                            <TableCell align="center" sx={{ fontWeight: 800, bgcolor: '#fdf2f8', color: '#db2777', borderBottom: '2px solid', borderColor: '#fbcfe8', textTransform: 'uppercase', fontSize: '0.75rem' }}>Estado</TableCell>
-                            <TableCell align="center" sx={{ fontWeight: 800, bgcolor: '#fdf2f8', color: '#db2777', borderBottom: '2px solid', borderColor: '#fbcfe8', textTransform: 'uppercase', fontSize: '0.75rem' }}>Acciones</TableCell>
+                            <TableCell align="center" sx={{ fontWeight: 800, bgcolor: 'var(--c-primary-soft)', color: 'var(--c-primary-text)', borderBottom: '2px solid', borderColor: 'var(--c-primary-border)', textTransform: 'uppercase', fontSize: '0.75rem' }}>Nombre</TableCell>
+                            <TableCell align="center" sx={{ fontWeight: 800, bgcolor: 'var(--c-primary-soft)', color: 'var(--c-primary-text)', borderBottom: '2px solid', borderColor: 'var(--c-primary-border)', textTransform: 'uppercase', fontSize: '0.75rem' }}>Especialidad</TableCell>
+                            <TableCell align="center" sx={{ fontWeight: 800, bgcolor: 'var(--c-primary-soft)', color: 'var(--c-primary-text)', borderBottom: '2px solid', borderColor: 'var(--c-primary-border)', textTransform: 'uppercase', fontSize: '0.75rem' }}>CMP / RNE</TableCell>
+                            <TableCell align="center" sx={{ fontWeight: 800, bgcolor: 'var(--c-primary-soft)', color: 'var(--c-primary-text)', borderBottom: '2px solid', borderColor: 'var(--c-primary-border)', textTransform: 'uppercase', fontSize: '0.75rem' }}>Tipo</TableCell>
+                            <TableCell align="center" sx={{ fontWeight: 800, bgcolor: 'var(--c-primary-soft)', color: 'var(--c-primary-text)', borderBottom: '2px solid', borderColor: 'var(--c-primary-border)', textTransform: 'uppercase', fontSize: '0.75rem' }}>Estado</TableCell>
+                            <TableCell align="center" sx={{ fontWeight: 800, bgcolor: 'var(--c-primary-soft)', color: 'var(--c-primary-text)', borderBottom: '2px solid', borderColor: 'var(--c-primary-border)', textTransform: 'uppercase', fontSize: '0.75rem' }}>Acciones</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {loading && doctors.length === 0 ? (
                             <TableRow>
                                 <TableCell colSpan={6} align="center" sx={{ py: 4 }}>
-                                    <CircularProgress size={30} sx={{ color: '#db2777' }} />
+                                    <CircularProgress size={30} sx={{ color: 'var(--c-primary-text)' }} />
                                 </TableCell>
                             </TableRow>
                         ) : doctors.length === 0 ? (
@@ -140,9 +140,9 @@ const DoctorsTab = () => {
                                     <TableCell align="center">
                                         {doctor.cmp ? (
                                             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.3 }}>
-                                                <Chip label={`CMP ${doctor.cmp}`} size="small" sx={{ bgcolor: '#fce7f3', color: '#9d174d', fontWeight: 700, fontSize: '0.7rem', height: 20 }} />
+                                                <Chip label={`CMP ${doctor.cmp}`} size="small" sx={{ bgcolor: 'var(--c-primary-soft)', color: 'var(--c-primary-text)', fontWeight: 700, fontSize: '0.7rem', height: 20 }} />
                                                 {doctor.rne && (
-                                                    <Chip label={`RNE ${doctor.rne}`} size="small" variant="outlined" sx={{ color: '#db2777', borderColor: '#fbcfe8', fontSize: '0.65rem', height: 18 }} />
+                                                    <Chip label={`RNE ${doctor.rne}`} size="small" variant="outlined" sx={{ color: 'var(--c-primary-text)', borderColor: 'var(--c-primary-border)', fontSize: '0.65rem', height: 18 }} />
                                                 )}
                                             </Box>
                                         ) : (
@@ -151,7 +151,7 @@ const DoctorsTab = () => {
                                     </TableCell>
                                     <TableCell align="center">
                                         {doctor.es_principal && (
-                                            <Chip label="Principal" size="small" variant="outlined" sx={{ color: '#db2777', borderColor: '#db2777', fontWeight: 'bold', borderWidth: 1.5 }} />
+                                            <Chip label="Principal" size="small" variant="outlined" sx={{ color: 'var(--c-primary-text)', borderColor: 'var(--c-primary)', fontWeight: 'bold', borderWidth: 1.5 }} />
                                         )}
                                     </TableCell>
                                     <TableCell align="center">
