@@ -27,15 +27,15 @@
 
 @layer base {
   :root {
-    /* Paleta por defecto (dorado); App.jsx la reemplaza con la paleta elegida */
-    --c-primary: #D4AF37;
-    --c-primary-rgb: 212, 175, 55;
-    --c-primary-hover: #B8962E;
-    --c-primary-text: #7D6314;
-    --c-primary-soft: #FBF5E3;
-    --c-primary-border: #EADBA8;
-    --c-on-primary: #1A1A1A;
-    --c-bg: #F6F3EC;
+    /* Paleta por defecto (turquesa); App.jsx la reemplaza con la paleta elegida */
+    --c-primary: #0E7C7B;
+    --c-primary-rgb: 14, 124, 123;
+    --c-primary-hover: #0A6362;
+    --c-primary-text: #0A6362;
+    --c-primary-soft: #E5F4F3;
+    --c-primary-border: #B5DEDC;
+    --c-on-primary: #FFFFFF;
+    --c-bg: #F1F6F6;
     --c-surface: #FFFFFF;
 
     --bg-color: var(--c-bg);

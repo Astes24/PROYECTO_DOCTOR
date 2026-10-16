@@ -14,7 +14,7 @@ export const PALETTES = {
         surface: '#FFFFFF',   // tarjetas y paneles
     },
     azul: {
-        label: 'Azul clínico',
+        label: 'Azul',
         primary: '#1F6FD1',
         hover: '#185AAB',
         text: '#185AAB',
@@ -37,7 +37,7 @@ export const PALETTES = {
     },
 };
 
-export const DEFAULT_PALETTE = 'dorado';
+export const DEFAULT_PALETTE = 'turquesa';
 
 const hexToRgb = (hex) => {
     const n = parseInt(hex.slice(1), 16);

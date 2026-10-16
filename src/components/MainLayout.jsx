@@ -669,7 +669,7 @@ const MainLayout = () => {
                 <IconButton
                     size="large"
                     aria-label="Cambiar paleta de colores"
-                    sx={{ position: 'fixed', top: 16, right: 88, zIndex: 1200, bgcolor: 'background.paper', boxShadow: 2, '&:hover': { bgcolor: 'background.default' } }}
+                    sx={{ position: 'fixed', top: 16, right: 88, zIndex: 1200, display: { xs: 'none', md: 'inline-flex' }, bgcolor: 'background.paper', boxShadow: 2, '&:hover': { bgcolor: 'background.default' } }}
                     onClick={(e) => setAnchorElPalette(e.currentTarget)}
                 >
                     <PaletteIcon sx={{ color: 'var(--c-primary-text)' }} />
