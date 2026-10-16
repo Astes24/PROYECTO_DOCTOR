@@ -189,7 +189,7 @@ const DashboardHome = () => {
         <Box sx={{ width: '95%', mx: 'auto', height: 'calc(100vh - 48px)', display: 'flex', flexDirection: 'column', p: 3, gap: 3, bgcolor: 'transparent', overflow: 'hidden' }}>
             <Box sx={{ textAlign: 'center', mb: { xs: 1, lg: 3 }, flexShrink: 0 }}>
                 <Typography variant="h3" sx={{ fontWeight: 800, mb: 1, color: 'text.primary', fontSize: { xs: '1.8rem', md: '2.5rem', lg: '3rem' } }}>
-                    Bienvenido al Panel de <span style={{ color: '#D4AF37' }}>Golden Clinic</span>
+                    Bienvenido al Panel de <span style={{ color: '#D4AF37' }}>Clínica Salud</span>
                 </Typography>
             </Box>
 

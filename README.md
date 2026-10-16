@@ -1,4 +1,4 @@
-# Golden Clinic Admin - Panel de Control
+# Clínica Salud Admin - Panel de Control
 
 ![React](https://img.shields.io/badge/React-19-blue.svg)
 ![Vite](https://img.shields.io/badge/Vite-Latest-646CFF.svg)
@@ -6,13 +6,13 @@
 ![Supabase](https://img.shields.io/badge/Supabase-DB%20%26%20Auth-3ECF8E.svg)
 ![Tailwind](https://img.shields.io/badge/Tailwind-v4-38B2AC.svg)
 
-**Golden Clinic Admin** es el centro de control operativo para la gestión clínica inteligente. Este panel permite al personal médico y administrativo supervisar pacientes, citas y configuraciones del bot de IA con una interfaz premium y moderna.
+**Clínica Salud Admin** es el centro de control operativo para la gestión clínica inteligente. Este panel permite al personal médico y administrativo supervisar pacientes, citas y configuraciones del bot de IA con una interfaz premium y moderna.
 
 ---
 
 ## 🎨 Sistema de Diseño (Color Palette)
 
-El proyecto utiliza una paleta de colores **Golden Premium** diseñada para transmitir elegancia y confianza:
+El proyecto utiliza una paleta de colores **Dorado Premium** diseñada para transmitir elegancia y confianza:
 
 ### Colores Principales (Gold Theme)
 -   **Primary (Dorado):** `#D4AF37` (Base Gold)
@@ -139,4 +139,4 @@ src/
 -   **Business Logic:** No pongas llamadas directas a Supabase en los componentes de UI. Usa `services/` para encapsular la lógica y devolver promesas limpias.
 
 ---
-© 2026 Golden Clinic - Advanced AI Medical Solutions.
+© 2026 Clínica Salud - Advanced AI Medical Solutions.

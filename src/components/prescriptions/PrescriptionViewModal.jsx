@@ -87,7 +87,7 @@ const PrescriptionViewModal = ({ open, onClose, prescription, onVoid, onDelete }
 
         const win = window.open('', '_blank');
         const formattedDoctor = formatDoctorName(prx.medico_nombre);
-        const clinicName = clinicInfo?.nombre_clinica || 'Golden Clinic';
+        const clinicName = clinicInfo?.nombre_clinica || 'Clínica Salud';
         
         const content = `
             <!DOCTYPE html>
@@ -369,7 +369,7 @@ const PrescriptionViewModal = ({ open, onClose, prescription, onVoid, onDelete }
                             <Box sx={{ mb: 6, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.8 }}>
                                     <Typography variant="h6" sx={{ fontWeight: 900, color: '#D4AF37', textTransform: 'uppercase', letterSpacing: '0.05em', lineHeight: 1.2 }}>
-                                        {clinicInfo?.nombre_clinica || 'Golden Clinic'}
+                                        {clinicInfo?.nombre_clinica || 'Clínica Salud'}
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>
                                         {prx.medico_direccion || clinicInfo?.direccion || 'Dirección de consulta'}

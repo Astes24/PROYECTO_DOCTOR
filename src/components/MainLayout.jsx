@@ -303,7 +303,7 @@ const MainLayout = () => {
                             if ('Notification' in window && Notification.permission === 'granted') {
                                 new Notification(isUrgency ? '⚠️ EMERGENCIA MÉDICA' : '🔔 Nueva Notificación', {
                                     body: newNotif.mensaje?.replace(/alerta bot:?\s*/i, '').trim() || 'Tienes una nueva notificación.',
-                                    icon: '/logo-clinica.jpg'
+                                    icon: '/logo-clinica.svg'
                                 });
                             }
                         }
@@ -500,7 +500,7 @@ const MainLayout = () => {
                     display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
                 }}>
                     <img
-                        src="/logo-clinica.jpg"
+                        src="/logo-clinica.svg"
                         alt="Logo Clínica"
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                         onError={(e) => {
@@ -514,7 +514,7 @@ const MainLayout = () => {
                         <text x="155" y="13" textAnchor="middle" fill="currentColor" style={{ fontWeight: 700, letterSpacing: '-0.025em', fontSize: '13px' }}>PANEL ADMINISTRATIVO</text>
                     </svg>
                     <svg viewBox="0 0 310 26" style={{ width: '100%', height: 'auto', maxWidth: '200px', marginTop: '4px' }}>
-                        <text x="155" y="22" textAnchor="middle" fill="currentColor" style={{ fontWeight: 900, letterSpacing: '-0.025em', fontSize: '23px' }}>GOLDEN CLINIC</text>
+                        <text x="155" y="22" textAnchor="middle" fill="currentColor" style={{ fontWeight: 900, letterSpacing: '-0.025em', fontSize: '23px' }}>CLÍNICA SALUD</text>
                     </svg>
                 </Box>
             </Box>

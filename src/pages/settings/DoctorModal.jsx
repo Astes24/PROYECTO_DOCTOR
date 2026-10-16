@@ -164,7 +164,7 @@ const DoctorModal = ({ open, onClose, doctor, onSuccess }) => {
                             value={formData.nombre_completo}
                             onChange={handleChange}
                             disabled={loading}
-                            placeholder="Ej. Golden Clinic"
+                            placeholder="Ej. Clínica Salud"
                             InputLabelProps={{ shrink: true }}
                             sx={{ ...fieldSx, flex: '2 1 220px' }}
                         />

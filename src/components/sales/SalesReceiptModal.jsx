@@ -405,7 +405,7 @@ const SalesReceiptModal = ({ open, onClose, onSaved }) => {
                     <Box sx={{ mb: 3.5, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.8 }}>
                             <Typography variant="h6" sx={{ fontWeight: 900, color: '#D4AF37', textTransform: 'uppercase', letterSpacing: '0.05em', lineHeight: 1.2 }}>
-                                {clinicInfo?.nombre_clinica || 'Golden Clinic'}
+                                {clinicInfo?.nombre_clinica || 'Clínica Salud'}
                             </Typography>
                             <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>
                                 {clinicInfo?.direccion || 'Cargando dirección...'}
