@@ -8,6 +8,7 @@ import {
     Avatar,
     Switch,
     CircularProgress,
+    Skeleton,
     Snackbar,
     Alert,
     Tooltip,
@@ -45,6 +46,7 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import useLiveChat from '../hooks/useLiveChat';
 import { supabase } from '../supabaseClient';
 
+import ListSkeleton from '../components/ListSkeleton';
 // ─── Helpers ─────────────────────────────────────────────
 const capitalizeWords = (str) => {
     if (!str) return '';
@@ -914,9 +916,7 @@ const LiveChat = () => {
             {/* Contact List */}
             <Box sx={{ flex: 1, overflowY: 'auto', overflowX: 'hidden' }}>
                 {loadingContacts ? (
-                    <Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
-                        <CircularProgress size={32} sx={{ color: 'var(--c-primary-text)' }} />
-                    </Box>
+                    <ListSkeleton rows={6} />
                 ) : filteredContacts.length === 0 ? (
                     <Box sx={{ textAlign: 'center', py: 6, px: 2 }}>
                         <Typography variant="body2" color="text.secondary">
@@ -1172,8 +1172,10 @@ const LiveChat = () => {
                                     }}
                                 >
                                     {loadingMessages ? (
-                                        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-                                            <CircularProgress size={36} sx={{ color: 'var(--c-primary-text)' }} />
+                                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, flex: 1, justifyContent: 'flex-end', p: 1 }}>
+                                            {[60, 40, 70, 35, 55].map((w, i) => (
+                                                <Skeleton key={i} variant="rounded" height={38} sx={{ width: `${w}%`, alignSelf: i % 2 ? 'flex-end' : 'flex-start', borderRadius: 3 }} />
+                                            ))}
                                         </Box>
                                     ) : (
                                         <Box ref={contentWrapperRef} sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>

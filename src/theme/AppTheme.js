@@ -51,7 +51,7 @@ const getAppTheme = (mode, paletteKey = DEFAULT_PALETTE) => {
     divider: 'rgba(32, 28, 20, 0.08)',
   },
   typography: {
-    fontFamily: '"Roboto", sans-serif',
+    fontFamily: '"Inter", "Roboto", sans-serif',
     button: {
       textTransform: 'none',
       fontWeight: 600,

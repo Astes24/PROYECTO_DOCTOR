@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { esES } from '@mui/x-data-grid/locales';
 import {
     Box, Typography, TextField, InputAdornment, Button,
     IconButton, Snackbar, Alert, CircularProgress, Tooltip,
@@ -25,6 +24,8 @@ import PrescriptionModal from '../components/prescriptions/PrescriptionModal';
 import PrescriptionViewModal from '../components/prescriptions/PrescriptionViewModal';
 import ConfirmDialog from '../components/ConfirmDialog';
 
+import { gridLocaleText, gridSlotProps } from '../components/dataGridDefaults';
+import ListSkeleton from '../components/ListSkeleton';
 // ---- Estado Badge ----
 const EstadoBadge = ({ estado }) => {
     const isAnulada = estado === 'ANULADA';
@@ -482,11 +483,7 @@ const MedicalPrescriptions = () => {
                                     <Typography color="text.secondary">No se encontraron recetas</Typography>
                                 </Box>
                             )}
-                            {loading && (
-                                <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
-                                    <CircularProgress />
-                                </Box>
-                            )}
+                            {loading && <ListSkeleton />}
                         </List>
                     </Box>
                 ) : (
@@ -501,7 +498,8 @@ const MedicalPrescriptions = () => {
                         pageSizeOptions={[20, 50, 100]}
                         disableSelectionOnClick
                         onRowClick={handleRowClick}
-                        localeText={esES.components.MuiDataGrid.defaultProps.localeText}
+                        localeText={gridLocaleText}
+                        slotProps={gridSlotProps}
                         getRowClassName={(params) =>
                             params.row.estado === 'ANULADA' ? 'row-anulada' : ''
                         }

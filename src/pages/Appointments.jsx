@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
-import { esES } from '@mui/x-data-grid/locales';
 import {
     IconButton, Tooltip, Box, Typography, Button, Dialog, DialogTitle,
     DialogContent, DialogActions, TextField, Snackbar, Alert, MenuItem, Menu,
@@ -55,6 +54,7 @@ import ConfirmDialog from '../components/ConfirmDialog';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import HistoriaClinicaEditor from '../components/HistoriaClinicaEditor';
 
+import { gridLocaleText, gridSlotProps } from '../components/dataGridDefaults';
 const StatusBadge = ({ status }) => {
     const styles = {
         'CONFIRMADA': { bgcolor: '#0D948820', color: '#0D9488', border: '1px solid #0D948840' },
@@ -1430,7 +1430,8 @@ const Appointments = () => {
                                 filterModel={filterModel}
                                 onFilterModelChange={(newModel) => setFilterModel(newModel)}
                                 disableSelectionOnClick
-                                localeText={esES.components.MuiDataGrid.defaultProps.localeText}
+                                localeText={gridLocaleText}
+                                slotProps={gridSlotProps}
                                 onRowClick={(params) => {
                                     setSelectedAppt(params.row);
                                     setIsPatientInfoOpen(false);

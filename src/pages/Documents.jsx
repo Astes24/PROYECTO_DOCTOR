@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { esES } from '@mui/x-data-grid/locales';
 import { supabase } from '../supabaseClient';
 import { Box, Typography, TextField, InputAdornment, useTheme, useMediaQuery, List, ListItem, ListItemButton, ListItemText, Divider, Dialog, CircularProgress } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
@@ -8,6 +7,8 @@ import PatientDocumentsPanel from '../components/PatientDocumentsPanel';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 
+import { gridLocaleText, gridSlotProps } from '../components/dataGridDefaults';
+import ListSkeleton from '../components/ListSkeleton';
 const capitalizeWords = (str) => {
     if (!str) return '';
     return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
@@ -272,11 +273,7 @@ const Documents = () => {
                                 <Typography color="text.secondary">No se encontraron pacientes.</Typography>
                             </Box>
                         )}
-                        {loading && (
-                            <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
-                                <CircularProgress />
-                            </Box>
-                        )}
+                        {loading && <ListSkeleton />}
                     </Box>
                 ) : (
                     <DataGrid
@@ -287,7 +284,8 @@ const Documents = () => {
                         pageSizeOptions={[15, 30, 50]}
                         disableSelectionOnClick
                         onRowClick={handleRowClick}
-                        localeText={esES.components.MuiDataGrid.defaultProps.localeText}
+                        localeText={gridLocaleText}
+                        slotProps={gridSlotProps}
                         sx={{
                             border: 'none',
                             '& .MuiDataGrid-cell': { color: (theme) => theme.palette.mode === 'dark' ? '#cbd5e1' : undefined },

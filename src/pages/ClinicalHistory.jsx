@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
-import { esES } from '@mui/x-data-grid/locales';
 import { supabase } from '../supabaseClient';
 import { Box, Typography, TextField, InputAdornment, Dialog, Snackbar, Alert } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useTheme, useMediaQuery, List, ListItem, ListItemButton, ListItemText, Divider, CircularProgress } from '@mui/material';
 import HistoriaClinicaEditor from '../components/HistoriaClinicaEditor';
 
+import { gridLocaleText, gridSlotProps } from '../components/dataGridDefaults';
+import ListSkeleton from '../components/ListSkeleton';
 const capitalizeWords = (str) => {
     if (!str) return '';
     return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
@@ -315,11 +316,7 @@ const ClinicalHistory = () => {
                                 <Typography color="text.secondary">No se encontraron historiales</Typography>
                             </Box>
                         )}
-                        {loading && (
-                            <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
-                                <CircularProgress />
-                            </Box>
-                        )}
+                        {loading && <ListSkeleton />}
                     </Box>
                 ) : (
                     <DataGrid
@@ -332,7 +329,8 @@ const ClinicalHistory = () => {
                         pageSizeOptions={[15, 30, 50]}
                         disableSelectionOnClick
                         onRowClick={handleRowClick}
-                        localeText={esES.components.MuiDataGrid.defaultProps.localeText}
+                        localeText={gridLocaleText}
+                        slotProps={gridSlotProps}
                         sx={{
                             border: 'none',
                             '& .MuiDataGrid-cell': {

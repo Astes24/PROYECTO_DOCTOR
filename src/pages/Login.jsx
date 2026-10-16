@@ -1,17 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import { TextField, Button, Box } from '@mui/material';
-
+import { TextField, Button, Box, Alert, IconButton, InputAdornment, CircularProgress } from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import DescriptionIcon from '@mui/icons-material/Description';
 import ClinicLogo from '../components/ClinicLogo';
+
+const FEATURES = [
+    { icon: <CalendarMonthIcon />, title: 'Agenda inteligente', text: 'Citas, horarios y confirmaciones en un solo lugar.' },
+    { icon: <WhatsAppIcon />, title: 'Bot de WhatsApp', text: 'Tus pacientes agendan solos, las 24 horas.' },
+    { icon: <DescriptionIcon />, title: 'Historia clínica digital', text: 'Recetas, órdenes y boletas listas en PDF.' },
+];
+
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
-    const [showError, setShowError] = useState(false);
     const [isExiting, setIsExiting] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        document.title = 'Iniciar sesión · Clínica Salud';
+    }, []);
 
     // Verificación inicial: Comprobar si hay sesión para evitar doble login
     useEffect(() => {
@@ -27,17 +42,12 @@ const Login = () => {
         return () => { isMounted = false; };
     }, [navigate]);
 
-    const displayError = (text) => {
-        setErrorMsg(text);
-        setShowError(true);
-        setTimeout(() => setShowError(false), 3500);
-    };
-
     const handleLogin = async (e) => {
         e.preventDefault();
+        setErrorMsg('');
         setLoading(true);
 
-        const { data, error } = await supabase.auth.signInWithPassword({
+        const { error } = await supabase.auth.signInWithPassword({
             email: email.trim(),
             password: password
         });
@@ -45,7 +55,7 @@ const Login = () => {
         setLoading(false);
 
         if (error) {
-            displayError('Error: Correo o contraseña incorrectos.');
+            setErrorMsg('Correo o contraseña incorrectos. Verifica tus datos e inténtalo de nuevo.');
             return;
         }
 
@@ -57,83 +67,98 @@ const Login = () => {
     };
 
     return (
-        <div className={`min-h-screen relative flex items-center justify-center p-4 bg-white overflow-hidden transition-opacity duration-300 ease-in-out ${isExiting ? 'opacity-0' : 'opacity-100'}`}>
-            {/* Fondo decorativo con patrón continuo */}
-            <div
-                className="absolute inset-0 z-0 pointer-events-none"
-                style={{
-                    backgroundImage: "url('/login-pattern.png')",
-                    backgroundRepeat: "repeat",
-                    backgroundSize: "600px",
-                    opacity: 0.9
-                }}
-            >
-                {/* Gotas de color suavizadas de fondo */}
-                {/* Gotas de color suavizadas de fondo - Tema dorado */}
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--c-primary)]/20 rounded-full mix-blend-multiply blur-3xl opacity-40"></div>
-                <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-[var(--c-primary-border)]/30 rounded-full mix-blend-multiply blur-3xl opacity-40"></div>
-                {/* Acento cálido */}
-                <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-[var(--c-primary-soft)]/30 rounded-full mix-blend-multiply blur-3xl opacity-30 transform -translate-x-1/2 -translate-y-1/2"></div>
-            </div>
+        <div className={`min-h-screen flex bg-[var(--c-bg)] transition-opacity duration-300 ease-in-out ${isExiting ? 'opacity-0' : 'opacity-100'}`}>
+            {/* Panel de marca (solo escritorio) */}
+            <aside className="hidden lg:flex relative w-[46%] flex-col justify-between overflow-hidden p-12 text-white bg-[var(--c-primary-text)]">
+                {/* Formas decorativas */}
+                <div className="absolute -top-32 -right-32 w-[28rem] h-[28rem] rounded-full bg-white/10" />
+                <div className="absolute -bottom-40 -left-24 w-[32rem] h-[32rem] rounded-full bg-white/5" />
+                <div className="absolute top-1/2 right-10 w-40 h-40 rounded-full border-[24px] border-white/10" />
 
-            {/* Capa de desenfoque blanco semi-transparente sobre el fondo */}
-            <div className="absolute inset-0 z-0 pointer-events-none bg-white/30 backdrop-blur-[3px]"></div>
-
-            {/* Notificación Flotante (Toast Error) */}
-            <div
-                className={`fixed top-6 left-1/2 -translate-x-1/2 z-[1000] flex items-center px-4 py-3 bg-red-50 border-l-4 border-red-500 rounded-lg shadow-xl shadow-red-500/10 transition-all duration-400 ease-out ${showError ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
-                    }`}
-            >
-                <svg className="w-5 h-5 text-red-500 mr-3 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
-                </svg>
-                <span className="text-sm font-medium text-red-600">
-                    {errorMsg || 'Credenciales incorrectas'}
-                </span>
-            </div>
-
-            {/* Contenedor Principal (Glassmorphism Premium) */}
-            {/* Contenedor Principal (Glassmorphism Premium) */}
-            <div className="relative z-10 w-full sm:w-[80vw] md:w-[30vw] min-w-[340px] h-[80vh] flex flex-col justify-center overflow-y-auto p-8 sm:p-10 bg-white/70 backdrop-blur-xl border border-white/40 shadow-2xl shadow-[var(--c-primary)]/10 rounded-3xl text-center text-slate-800">
-                <div className="flex justify-center mb-6 shrink-0">
-                    <div className="w-[20vh] h-[20vh] min-w-[80px] min-h-[80px] rounded-full border-4 border-white overflow-hidden shadow-lg bg-white/40 flex items-center justify-center">
-                        <ClinicLogo className="w-full h-full object-cover" />
+                <div className="relative flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-2xl overflow-hidden ring-2 ring-white/40 shadow-lg">
+                        <ClinicLogo className="w-full h-full" />
                     </div>
+                    <span className="text-lg font-bold tracking-wide">Clínica Salud</span>
                 </div>
 
-                <div className="w-full mb-3 shrink-0 flex flex-col items-center">
-                    <svg viewBox="0 0 310 16" className="w-full h-auto text-slate-800">
-                        <text x="155" y="13" textAnchor="middle" fill="currentColor" className="font-bold tracking-tight" fontSize="13">PANEL ADMINISTRATIVO</text>
-                    </svg>
-                    <svg viewBox="0 0 310 26" className="w-full h-auto mt-1 text-slate-800">
-                        <text x="155" y="22" textAnchor="middle" fill="currentColor" className="font-black tracking-tight" fontSize="23">CLÍNICA SALUD</text>
-                    </svg>
+                <div className="relative max-w-md">
+                    <h1 className="text-4xl font-extrabold leading-tight mb-4">
+                        La gestión de tu clínica, simple y en un solo lugar.
+                    </h1>
+                    <p className="text-white/80 text-base mb-10">
+                        Pacientes, citas, historia clínica y atención por WhatsApp desde un mismo panel.
+                    </p>
+                    <ul className="space-y-5">
+                        {FEATURES.map((f) => (
+                            <li key={f.title} className="flex items-start gap-4">
+                                <span className="shrink-0 w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center">{f.icon}</span>
+                                <span>
+                                    <span className="block font-bold">{f.title}</span>
+                                    <span className="block text-sm text-white/75">{f.text}</span>
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
-                <p className="text-sm text-slate-500 mb-6 font-medium shrink-0">Bienvenido/a, ingresa tus credenciales para acceder al sistema</p>
 
-                <form onSubmit={handleLogin} className="flex flex-col gap-4 text-left">
-                    <TextField
-                        fullWidth
-                        type="email"
-                        label="Correo electrónico"
-                        required
-                        autoComplete="email"
-                        placeholder="usuario@email.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <TextField
-                        fullWidth
-                        type="password"
-                        label="Contraseña"
-                        required
-                        autoComplete="current-password"
-                        placeholder="••••••••"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                <p className="relative text-xs text-white/60">Desarrollado por <span className="font-bold text-white/90">OPERIUM</span> · 2026 · Piura, Perú</p>
+            </aside>
 
-                    <Box mt={1}>
+            {/* Formulario */}
+            <main className="flex-1 flex items-center justify-center p-6 sm:p-10">
+                <div className="w-full max-w-sm">
+                    <div className="flex flex-col items-center text-center mb-8">
+                        <div className="w-20 h-20 rounded-3xl overflow-hidden shadow-lg mb-5 lg:hidden">
+                            <ClinicLogo className="w-full h-full" />
+                        </div>
+                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--c-primary-text)] mb-2">Panel administrativo</p>
+                        <h2 className="text-3xl font-extrabold text-slate-900">Bienvenido/a</h2>
+                        <p className="text-sm text-slate-500 mt-2">Ingresa tus credenciales para acceder al sistema.</p>
+                    </div>
+
+                    <Box component="form" onSubmit={handleLogin} sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, p: { xs: 3, sm: 4 }, bgcolor: 'background.paper', borderRadius: 4, boxShadow: '0px 12px 40px rgba(32, 28, 20, 0.08)' }}>
+                        {errorMsg && (
+                            <Alert severity="error" onClose={() => setErrorMsg('')} sx={{ borderRadius: 2 }}>
+                                {errorMsg}
+                            </Alert>
+                        )}
+                        <TextField
+                            fullWidth
+                            type="email"
+                            label="Correo electrónico"
+                            required
+                            autoFocus
+                            autoComplete="email"
+                            placeholder="usuario@email.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <TextField
+                            fullWidth
+                            type={showPassword ? 'text' : 'password'}
+                            label="Contraseña"
+                            required
+                            autoComplete="current-password"
+                            placeholder="••••••••"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            slotProps={{
+                                input: {
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                                                onClick={() => setShowPassword((v) => !v)}
+                                                edge="end"
+                                            >
+                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    ),
+                                },
+                            }}
+                        />
                         <Button
                             fullWidth
                             variant="contained"
@@ -141,21 +166,18 @@ const Login = () => {
                             type="submit"
                             disabled={loading}
                             size="large"
+                            startIcon={loading ? <CircularProgress size={18} color="inherit" /> : null}
+                            sx={{ py: 1.4, fontSize: '1rem' }}
                         >
-                            {loading ? 'Autenticando...' : 'Acceder'}
+                            {loading ? 'Ingresando...' : 'Ingresar'}
                         </Button>
                     </Box>
-                </form>
 
-                <div className="mt-8 pt-4 border-t border-slate-100/60">
-                    <p className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">
-                        Creado y administrado por <span className="font-bold text-slate-500">PUREPOWER©.</span>
-                    </p>
-                    <p className="text-[9px] text-slate-400 mt-1 font-bold tracking-tight">
-                        2026 - Piura, Perú.
+                    <p className="lg:hidden text-center text-xs text-slate-400 mt-8">
+                        Desarrollado por <span className="font-bold text-slate-500">OPERIUM</span> · 2026 · Piura, Perú
                     </p>
                 </div>
-            </div>
+            </main>
         </div>
     );
 };

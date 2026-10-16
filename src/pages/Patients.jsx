@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { esES } from '@mui/x-data-grid/locales';
 import { supabase } from '../supabaseClient';
 import { Dialog, Box, Typography, TextField, InputAdornment, Button, DialogTitle, DialogContent, DialogActions, IconButton, Snackbar, Alert, CircularProgress } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
@@ -10,6 +9,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useTheme, useMediaQuery, List, ListItem, ListItemButton, ListItemText, Divider, Paper } from '@mui/material';
 import PatientDetailsPanel from '../components/PatientDetailsPanel';
 
+import { gridLocaleText, gridSlotProps } from '../components/dataGridDefaults';
+import ListSkeleton from '../components/ListSkeleton';
 const capitalizeWords = (str) => {
     if (!str) return '';
     return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
@@ -446,11 +447,7 @@ const Patients = () => {
                                 <Typography color="text.secondary">No se encontraron pacientes</Typography>
                             </Box>
                         )}
-                        {loading && (
-                            <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
-                                <CircularProgress />
-                            </Box>
-                        )}
+                        {loading && <ListSkeleton />}
                     </Box>
                 ) : (
                     <DataGrid
@@ -463,7 +460,8 @@ const Patients = () => {
                         pageSizeOptions={[15, 30, 50]}
                         disableSelectionOnClick
                         onRowClick={handleRowClick}
-                        localeText={esES.components.MuiDataGrid.defaultProps.localeText}
+                        localeText={gridLocaleText}
+                        slotProps={gridSlotProps}
                         sx={{
                             border: 'none',
                             '& .MuiDataGrid-cell': {

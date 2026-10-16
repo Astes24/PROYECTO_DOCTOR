@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { esES } from '@mui/x-data-grid/locales';
 import { 
     Box, Typography, TextField, InputAdornment, Button, 
     IconButton, Snackbar, Alert, CircularProgress, Tooltip,
@@ -17,6 +16,7 @@ import { fetchInventoryItems } from '../services/inventoryService';
 import InventoryItemModal from '../components/inventory/InventoryItemModal';
 import InventoryKardexModal from '../components/inventory/InventoryKardexModal';
 
+import { gridLocaleText, gridSlotProps } from '../components/dataGridDefaults';
 // Badge Component for Stock Status
 const StockStatusBadge = ({ stock, minStock }) => {
     let color = 'success';
@@ -286,7 +286,8 @@ const Inventory = () => {
                     }}
                     pageSizeOptions={[15, 30, 50]}
                     disableSelectionOnClick
-                    localeText={esES.components.MuiDataGrid.defaultProps.localeText}
+                    localeText={gridLocaleText}
+                    slotProps={gridSlotProps}
                     sx={{
                         border: 'none',
                         '& .MuiDataGrid-cell': {

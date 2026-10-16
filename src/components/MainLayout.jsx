@@ -59,6 +59,22 @@ import { supabase } from '../supabaseClient';
 import { NotificationDetail } from './notifications/NotificationSplitView';
 
 import ClinicLogo from './ClinicLogo';
+// Titulo de la pestana del navegador por seccion
+const PAGE_TITLES = {
+    '/': 'Inicio',
+    '/appointments': 'Citas',
+    '/patients': 'Pacientes',
+    '/clinical-history': 'Historial Clínico',
+    '/documents': 'Documentos',
+    '/inventory': 'Inventario',
+    '/sales-receipts': 'Boletas',
+    '/prescriptions': 'Recetas',
+    '/laboratory': 'Laboratorio',
+    '/live-chat': 'Live Chat',
+    '/notifications': 'Notificaciones',
+    '/settings': 'Configuración',
+};
+
 const drawerWidth = 280;
 
 const MainLayout = () => {
@@ -70,6 +86,11 @@ const MainLayout = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
+
+    useEffect(() => {
+        const section = PAGE_TITLES[location.pathname];
+        document.title = section ? `${section} · Clínica Salud` : 'Clínica Salud';
+    }, [location.pathname]);
 
     // Notifications State
     const [notifications, setNotifications] = useState([]);
@@ -936,7 +957,10 @@ const MainLayout = () => {
                     flexDirection: 'column'
                 }}
             >
-                <Outlet />
+                {/* Transicion suave al cambiar de pagina (solo opacidad: un transform romperia los position: fixed) */}
+                <Box key={location.pathname} className="page-fade-in" sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0, minWidth: 0 }}>
+                    <Outlet />
+                </Box>
             </Box>
 
             {/* Global Notification Toast */}

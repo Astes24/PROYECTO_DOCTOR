@@ -60,9 +60,16 @@ export const paletteCssVars = (key) => {
     };
 };
 
+const faviconSvg = (p) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">`
+    + `<rect width="32" height="32" rx="8" fill="${p.text}"/>`
+    + `<path d="M16 9V23M9 16H23" stroke="${p.border}" stroke-width="4.5" stroke-linecap="round"/></svg>`;
+
 export const applyPalette = (key) => {
     const root = document.documentElement;
     Object.entries(paletteCssVars(key)).forEach(([name, value]) => root.style.setProperty(name, value));
+
+    const icon = document.querySelector('link[rel="icon"]');
+    if (icon) icon.href = `data:image/svg+xml,${encodeURIComponent(faviconSvg(PALETTES[key] || PALETTES[DEFAULT_PALETTE]))}`;
 };
 
 // Bloque <style> con las variables, para documentos abiertos con window.open
