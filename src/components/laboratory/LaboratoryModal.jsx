@@ -239,7 +239,7 @@ const LaboratoryModal = ({ open, onClose, onSaved }) => {
         if (!doc) return;
         setSelectedDoctorId(doc.id);
         const name = doc.nombre_completo || '';
-        const prefixedName = name.startsWith('Dra.') ? name : `Dra. ${name}`;
+        const prefixedName = /^dra?\./i.test(name) ? name : `Dr./Dra. ${name}`;
         setMedicoNombre(prefixedName);
         setMedicoCmp(doc.cmp || '');
         setMedicoRne(doc.rne || '');
@@ -493,7 +493,7 @@ const LaboratoryModal = ({ open, onClose, onSaved }) => {
                                         >
                                             {doctors.map(d => (
                                                 <MenuItem key={d.id} value={d.id}>
-                                                    Dra. {d.nombre_completo}
+                                                    Dr./Dra. {d.nombre_completo}
                                                 </MenuItem>
                                             ))}
                                         </Select>

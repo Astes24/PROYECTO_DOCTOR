@@ -7,6 +7,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import { saveInventoryItem } from '../../services/inventoryService';
 
+import { useToast } from '../ToastProvider';
 const categoriasComunes = [
     'Medicamentos',
     'Material Médico Estéril',
@@ -46,6 +47,7 @@ const initialData = {
 };
 
 const InventoryItemModal = ({ open, onClose, itemData, onSaved }) => {
+    const toast = useToast();
     const [formData, setFormData] = useState(initialData);
     const [loading, setLoading] = useState(false);
     const isEdit = !!itemData;
@@ -91,7 +93,7 @@ const InventoryItemModal = ({ open, onClose, itemData, onSaved }) => {
             onSaved();
             onClose();
         } else {
-            alert('Error guardando el ítem: ' + error?.message);
+            toast('Error guardando el ítem: ' + error?.message, 'error');
         }
     };
 

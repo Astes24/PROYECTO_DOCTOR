@@ -16,6 +16,7 @@ import Inventory from './pages/Inventory';
 import SalesReceipts from './pages/SalesReceipts';
 import MedicalPrescriptions from './pages/MedicalPrescriptions';
 import LaboratoryOrders from './pages/LaboratoryOrders';
+import { ToastProvider } from './components/ToastProvider';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
@@ -75,25 +76,27 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <ErrorBoundary>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/" element={<MainLayout />}>
-                <Route index element={<DashboardHome />} />
-                <Route path="appointments" element={<Appointments />} />
-                <Route path="patients" element={<Patients />} />
-                <Route path="clinical-history" element={<ClinicalHistory />} />
-                <Route path="documents" element={<Documents />} />
-                <Route path="inventory" element={<Inventory />} />
-                <Route path="sales-receipts" element={<SalesReceipts />} />
-                <Route path="prescriptions" element={<MedicalPrescriptions />} />
-                <Route path="laboratory" element={<LaboratoryOrders />} />
-                <Route path="notifications" element={<Notifications />} />
-                <Route path="live-chat" element={<LiveChat />} />
-                <Route path="settings" element={<Settings />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
+          <ToastProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/" element={<MainLayout />}>
+                  <Route index element={<DashboardHome />} />
+                  <Route path="appointments" element={<Appointments />} />
+                  <Route path="patients" element={<Patients />} />
+                  <Route path="clinical-history" element={<ClinicalHistory />} />
+                  <Route path="documents" element={<Documents />} />
+                  <Route path="inventory" element={<Inventory />} />
+                  <Route path="sales-receipts" element={<SalesReceipts />} />
+                  <Route path="prescriptions" element={<MedicalPrescriptions />} />
+                  <Route path="laboratory" element={<LaboratoryOrders />} />
+                  <Route path="notifications" element={<Notifications />} />
+                  <Route path="live-chat" element={<LiveChat />} />
+                  <Route path="settings" element={<Settings />} />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </ToastProvider>
         </ErrorBoundary>
       </ThemeProvider>
     </ColorModeContext.Provider>

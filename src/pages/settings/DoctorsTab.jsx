@@ -79,7 +79,7 @@ const DoctorsTab = () => {
             console.error('Error updating status:', error);
             showSnackbar('Error al actualizar estado', 'error');
         } else {
-            showSnackbar(`Dr.(a) Dra. ${doctor.nombre_completo} ${!doctor.activo ? 'activado' : 'desactivado'}`);
+            showSnackbar(`Dr./Dra. ${doctor.nombre_completo} ${!doctor.activo ? 'activado' : 'desactivado'}`);
             fetchDoctors();
         }
     };
@@ -135,7 +135,7 @@ const DoctorsTab = () => {
                         ) : (
                             doctors.map((doctor) => (
                                 <TableRow key={doctor.id} hover sx={{ '&:last-child td, &:last-child th': { border: 0 }, transition: 'background-color 0.2s' }}>
-                                    <TableCell align="center" sx={{ fontWeight: 700, color: 'text.primary' }}>Dra. {doctor.nombre_completo}</TableCell>
+                                    <TableCell align="center" sx={{ fontWeight: 700, color: 'text.primary' }}>Dr./Dra. {doctor.nombre_completo}</TableCell>
                                     <TableCell align="center" sx={{ color: 'text.secondary' }}>{doctor.especialidad || '—'}</TableCell>
                                     <TableCell align="center">
                                         {doctor.cmp ? (

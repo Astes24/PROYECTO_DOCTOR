@@ -111,7 +111,7 @@ const ClinicInfoTab = () => {
                                 name="nombre_clinica"
                                 value={formData.nombre_clinica}
                                 onChange={handleChange}
-                                placeholder="Ej: Centro Ginecológico Especializado"
+                                placeholder="Ej: Centro Médico Especializado"
                                 variant="outlined"
                                 sx={{ mb: 2, '& .MuiOutlinedInput-root': { borderRadius: 3 } }}
                                 InputProps={{

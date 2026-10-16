@@ -30,7 +30,9 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { NotificationList, NotificationDetail } from '../components/notifications/NotificationSplitView';
 import ConfirmDialog from '../components/ConfirmDialog';
 
+import { useToast } from '../components/ToastProvider';
 const Notifications = () => {
+    const toast = useToast();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -131,7 +133,7 @@ const Notifications = () => {
         if (error) {
             console.error('Error al intentar eliminar:', error);
             setNotifications(previousNotifications);
-            alert('Hubo un error al eliminar la notificación de la base de datos.');
+            toast('Hubo un error al eliminar la notificación de la base de datos.', 'error');
         }
     };
 

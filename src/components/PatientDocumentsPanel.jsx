@@ -22,6 +22,7 @@ import { EntryEditor } from './HistoriaClinicaEditor';
 import { useNavigate } from 'react-router-dom';
 import { TextField, InputAdornment } from '@mui/material';
 
+import { useToast } from './ToastProvider';
 const formatDateText = (dateString) => {
     if (!dateString) return '';
     return format(new Date(dateString), "d 'de' MMMM, yyyy - h:mm a", { locale: es });
@@ -55,6 +56,7 @@ export const obtenerUrlPrivada = async (ruta) => {
 };
 
 const PatientDocumentsPanel = ({ patient, onClose, embedded = false }) => {
+    const toast = useToast();
     const theme = useTheme();
     const [documents, setDocuments] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -178,7 +180,7 @@ const PatientDocumentsPanel = ({ patient, onClose, embedded = false }) => {
 
                 if (uploadError) {
                     console.error('Error uploading file:', uploadError);
-                    alert(`No se pudo subir ${file.name}: ${uploadError.message}`);
+                    toast(`No se pudo subir ${file.name}: ${uploadError.message}`, 'error');
                     continue;
                 }
 
@@ -195,14 +197,14 @@ const PatientDocumentsPanel = ({ patient, onClose, embedded = false }) => {
 
                 if (dbError) {
                     console.error('Error inserting document record:', dbError);
-                    alert(`El archivo ${file.name} se subió pero no se pudo registrar en la base de datos.`);
+                    toast(`El archivo ${file.name} se subió pero no se pudo registrar en la base de datos.`, 'error');
                 }
             }
             // Refresh list
             await fetchDocuments();
         } catch (error) {
             console.error("Error general subiendo archivos:", error);
-            alert("Error al procesar la subida de archivos.");
+            toast("Error al procesar la subida de archivos.", 'error');
         } finally {
             setUploading(false);
             if (fileInputRef.current) fileInputRef.current.value = null; // reset input
@@ -272,7 +274,7 @@ const PatientDocumentsPanel = ({ patient, onClose, embedded = false }) => {
             await fetchDocuments();
         } catch (err) {
             console.error(err);
-            alert("Error al guardar la descripción o nombre");
+            toast("Error al guardar la descripción o nombre", 'error');
         } finally {
             setDescSaving(false);
         }
@@ -313,7 +315,7 @@ const PatientDocumentsPanel = ({ patient, onClose, embedded = false }) => {
             await fetchDocuments();
         } catch (err) {
             console.error(err);
-            alert("Ocurrió un error al eliminar.");
+            toast("Ocurrió un error al eliminar.", 'error');
         }
     };
 

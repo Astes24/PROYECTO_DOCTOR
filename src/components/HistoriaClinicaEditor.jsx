@@ -36,6 +36,7 @@ import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import DocumentViewerDialog from './DocumentViewerDialog';
 
+import { useToast } from './ToastProvider';
 // ─── Configure marked ──────────────────────────────────────
 marked.setOptions({ breaks: true, gfm: true });
 const turndownService = new TurndownService({ headingStyle: 'atx', bulletListMarker: '-', codeBlockStyle: 'fenced' });
@@ -277,6 +278,7 @@ export const EntryEditor = ({ initialText = '', initialAttachments = [], onSave,
 // MAIN COMPONENT (HISTORIAL CLINICO MANAGER)
 // ═══════════════════════════════════════════════════════════
 const HistoriaClinicaEditor = ({ dniPaciente, nombreCompleto, fechaNacimiento, embedded = false, onClose, highlightEntryId }) => {
+    const toast = useToast();
     const theme = useTheme();
     const [entries, setEntries] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -414,7 +416,7 @@ const HistoriaClinicaEditor = ({ dniPaciente, nombreCompleto, fechaNacimiento, e
                     const { error: uploadError } = await supabase.storage.from('historial_adjuntos').upload(ruta, att.file);
                     if (uploadError) {
                         console.error('Error uploading file:', uploadError);
-                        alert(`No se pudo subir ${att.nombre}: ${uploadError.message}`);
+                        toast(`No se pudo subir ${att.nombre}: ${uploadError.message}`, 'error');
                         continue;
                     }
                     newArchivos.push({ nombre: att.nombre, ruta: ruta, tipo: att.file.type });
@@ -443,7 +445,7 @@ const HistoriaClinicaEditor = ({ dniPaciente, nombreCompleto, fechaNacimiento, e
             setEditingEntryId(null);
         } catch (err) {
             console.error(err);
-            alert("Error al guardar la entrada: " + err.message);
+            toast("Error al guardar la entrada: " + err.message, 'error');
         } finally {
             setLoading(false);
         }

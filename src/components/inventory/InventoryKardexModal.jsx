@@ -14,6 +14,7 @@ import AutorenewIcon from '@mui/icons-material/Autorenew';
 import { supabase } from '../../supabaseClient';
 import { fetchInventoryMovements, registerInventoryMovement } from '../../services/inventoryService';
 
+import { useToast } from '../ToastProvider';
 const TIPO_MOVIMIENTO = [
     { value: 'INGRESO', label: 'Ingresar Stock', color: 'success', icon: <AddCircleOutlineIcon /> },
     { value: 'EGRESO', label: 'Retirar Stock', color: 'error', icon: <RemoveCircleOutlineIcon /> },
@@ -21,6 +22,7 @@ const TIPO_MOVIMIENTO = [
 ];
 
 const InventoryKardexModal = ({ open, onClose, item, onSaved }) => {
+    const toast = useToast();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -85,7 +87,7 @@ const InventoryKardexModal = ({ open, onClose, item, onSaved }) => {
     const handleSaveMovement = async (e) => {
         e.preventDefault();
         if (!newMovement.cantidad || parseFloat(newMovement.cantidad) <= 0) {
-            alert("La cantidad debe ser mayor a 0");
+            toast("La cantidad debe ser mayor a 0", 'warning');
             return;
         }
 
@@ -109,7 +111,7 @@ const InventoryKardexModal = ({ open, onClose, item, onSaved }) => {
             setNewMovement({ tipo: 'INGRESO', cantidad: '', motivo: '' });
             onSaved(); // trigger reload at parent list
         } else {
-            alert('Error guardando movimiento: ' + error.message);
+            toast('Error guardando movimiento: ' + error.message, 'error');
         }
     };
 

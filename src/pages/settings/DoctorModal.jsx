@@ -90,11 +90,11 @@ const DoctorModal = ({ open, onClose, doctor, onSuccess }) => {
             if (doctor && doctor.id) {
                 const { error } = await supabase.from('doctores').update(payload).eq('id', doctor.id);
                 if (error) throw error;
-                onSuccess('Dra. actualizada exitosamente.');
+                onSuccess('Médico actualizado exitosamente.');
             } else {
                 const { error } = await supabase.from('doctores').insert([payload]);
                 if (error) throw error;
-                onSuccess('Dra. registrada exitosamente.');
+                onSuccess('Médico registrado exitosamente.');
             }
         } catch (error) {
             console.error('Error in doctor modal:', error);
@@ -134,7 +134,7 @@ const DoctorModal = ({ open, onClose, doctor, onSuccess }) => {
             <DialogTitle sx={{ m: 0, p: 2, display: 'flex', alignItems: 'center', bgcolor: GOLD_LIGHT, borderBottom: '1px solid', borderColor: GOLD_BORDER }}>
                 <PersonIcon sx={{ color: GOLD, mr: 1 }} />
                 <Typography variant="h6" fontWeight={900} sx={{ color: 'text.primary', textTransform: 'uppercase', fontSize: '1rem' }}>
-                    {isEditMode ? 'Editar Doctora' : 'Agregar Doctora'}
+                    {isEditMode ? 'Editar Médico' : 'Agregar Médico'}
                 </Typography>
                 <IconButton
                     aria-label="close"
@@ -187,7 +187,7 @@ const DoctorModal = ({ open, onClose, doctor, onSuccess }) => {
                         value={formData.especialidad}
                         onChange={handleChange}
                         disabled={loading}
-                        placeholder="Ej. Ginecología y Obstetricia"
+                        placeholder="Ej. Medicina General"
                         InputLabelProps={{ shrink: true }}
                         sx={fieldSx}
                         fullWidth
@@ -252,7 +252,7 @@ const DoctorModal = ({ open, onClose, doctor, onSuccess }) => {
                                     sx={{ '& .MuiSwitch-switchBase.Mui-checked': { color: GOLD }, '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': { backgroundColor: GOLD } }}
                                 />
                             }
-                            label="Doctora Principal de la Clínica"
+                            label="Médico Principal de la Clínica"
                             disabled={loading}
                             sx={{ '& .MuiFormControlLabel-label': { fontWeight: 600, fontSize: '0.9rem' } }}
                         />

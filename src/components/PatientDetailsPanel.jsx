@@ -28,6 +28,7 @@ import HistoriaClinicaEditor, { EntryEditor, getContentStyles } from './Historia
 import PatientDocumentsPanel from './PatientDocumentsPanel';
 import ConfirmDialog from './ConfirmDialog';
 
+import { useToast } from './ToastProvider';
 const StatusBadge = ({ status }) => {
     const getStatusColor = (s) => {
         switch (s) {
@@ -180,6 +181,7 @@ const AppointmentCalendar = ({ appointments }) => {
 };
 
 export default function PatientDetailsPanel({ patientId, baseInfo, onClose, initialTab = 0 }) {
+    const toast = useToast();
     const [activeTab, setActiveTab] = useState(initialTab);
     
     useEffect(() => {
@@ -422,7 +424,7 @@ export default function PatientDetailsPanel({ patientId, baseInfo, onClose, init
         if (error) {
             console.error('Error al intentar eliminar:', error);
             setNotifications(previousNotifications);
-            alert('Hubo un error al eliminar la notificación de la base de datos.');
+            toast('Hubo un error al eliminar la notificación de la base de datos.', 'error');
         }
     };
 
@@ -467,7 +469,7 @@ export default function PatientDetailsPanel({ patientId, baseInfo, onClose, init
 
     const handleSavePatientInfo = async () => {
         if (!editFormData.dni || !editFormData.nombre_completo) {
-            alert("El DNI y Nombre Completo son obligatorios.");
+            toast("El DNI y Nombre Completo son obligatorios.", 'warning');
             return;
         }
         if (editFormData.dni !== displayInfo.dni) {
@@ -497,7 +499,7 @@ export default function PatientDetailsPanel({ patientId, baseInfo, onClose, init
             setIsEditing(false);
         } catch (error) {
             console.error("Error updating patient info:", error);
-            alert("Hubo un error al actualizar los datos del paciente.");
+            toast("Hubo un error al actualizar los datos del paciente.", 'error');
         }
     };
 
@@ -522,7 +524,7 @@ export default function PatientDetailsPanel({ patientId, baseInfo, onClose, init
             setIsEditingDescripcion(false);
         } catch (error) {
             console.error("Error updating descripcion:", error);
-            alert("Hubo un error al guardar la descripción.");
+            toast("Hubo un error al guardar la descripción.", 'error');
         }
     };
 
@@ -590,7 +592,7 @@ export default function PatientDetailsPanel({ patientId, baseInfo, onClose, init
                 .neq('estado', 'CANCELADA');
 
             if (count > 0) {
-                alert('¡La nueva fecha y hora ya están ocupadas!');
+                toast('¡La nueva fecha y hora ya están ocupadas!', 'warning');
                 return;
             }
 
@@ -605,13 +607,13 @@ export default function PatientDetailsPanel({ patientId, baseInfo, onClose, init
 
             if (error) {
                 console.error('Error reprogramming appointment:', error);
-                alert('Error al reprogramar cita');
+                toast('Error al reprogramar cita', 'error');
             } else {
                 setIsReprogramDialogOpen(false);
             }
         } catch (err) {
             console.error(err);
-            alert('Error al reprogramar: ' + err.message);
+            toast('Error al reprogramar: ' + err.message, 'error');
         }
     };
 
@@ -1008,7 +1010,7 @@ export default function PatientDetailsPanel({ patientId, baseInfo, onClose, init
                             <div className="animate-in fade-in duration-300 flex-1 min-h-0 flex flex-col items-center justify-center p-4">
                                 {telefono !== '-' ? (
                                     <a
-                                        href={`https://wa.me/${telefono.replace(/\D/g, '')}?text=${encodeURIComponent("Hola soy la asistente de la Doctora")}`}
+                                        href={`https://wa.me/${telefono.replace(/\D/g, '')}?text=${encodeURIComponent("Hola, le escribimos de la clínica")}`}
                                         target="_blank"
                                         rel="noreferrer"
                                         className="px-8 py-4 flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white rounded-2xl text-xl font-bold tracking-wide normal-case transition-transform hover:scale-105 shadow-lg w-full max-w-md"

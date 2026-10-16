@@ -12,7 +12,9 @@ import ConfirmDialog from '../components/ConfirmDialog';
 import { useTheme } from '@mui/material/styles';
 import { marked } from 'marked';
 
+import { useToast } from '../components/ToastProvider';
 const PlantillasManager = () => {
+    const toast = useToast();
     const theme = useTheme();
     const [plantillas, setPlantillas] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -83,7 +85,7 @@ const PlantillasManager = () => {
         const { error } = await supabase.from('plantillas').delete().eq('id', id);
         if (error) {
             console.error('Error deleting plantilla:', error);
-            alert('Error al eliminar la plantilla');
+            toast('Error al eliminar la plantilla', 'error');
         } else {
             fetchPlantillas();
         }
@@ -91,7 +93,7 @@ const PlantillasManager = () => {
 
     const handleSave = async (markdownText) => {
         if (!nombre.trim()) {
-            alert('Por favor, ingresa un nombre para la plantilla.');
+            toast('Por favor, ingresa un nombre para la plantilla.', 'warning');
             return;
         }
 
@@ -116,7 +118,7 @@ const PlantillasManager = () => {
             fetchPlantillas();
         } catch (error) {
             console.error('Error saving plantilla:', error);
-            alert('Hubo un error al guardar la plantilla.');
+            toast('Hubo un error al guardar la plantilla.', 'error');
         }
     };
 

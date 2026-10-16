@@ -50,7 +50,7 @@ const DayTooltipContent = ({ entries, onDelete }) => (
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: e.color, flexShrink: 0 }} />
                     <Typography variant="caption" sx={{ color: 'white', lineHeight: 1.2 }}>
-                        <strong>Dra. {e.nombre}</strong><br />
+                        <strong>Dr./Dra. {e.nombre}</strong><br />
                         {fmtTime(e.hora_inicio)} – {fmtTime(e.hora_fin)}
                     </Typography>
                 </Box>
@@ -297,7 +297,7 @@ const SchedulesTab = () => {
                             <Box key={doc.id} sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
                                 <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: doctorColorMap[doc.id]?.bg || '#94a3b8' }} />
                                 <Typography variant="caption" fontWeight={700} color="text.primary" sx={{ fontSize: '0.7rem' }}>
-                                    Dra. {doc.nombre_completo}
+                                    Dr./Dra. {doc.nombre_completo}
                                 </Typography>
                             </Box>
                         ))}

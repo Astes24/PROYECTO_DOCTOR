@@ -27,8 +27,8 @@ const formatDate = (dateStr) => {
 // ---- Formato de Nombre Con Prefijo ----
 const formatDoctorName = (name) => {
     if (!name) return '-';
-    if (name.includes('Dra.') || name.includes('DRA.') || name.toLowerCase().includes('consultorio')) return name;
-    return `Dra. ${name}`;
+    if (/^dra?\./i.test(name) || name.toLowerCase().includes('consultorio')) return name;
+    return `Dr./Dra. ${name}`;
 };
 
 // ---- Estado Badge ----

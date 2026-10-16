@@ -34,14 +34,14 @@ const PINK_PASTEL = '#fbcfe8';
 const PINK_MAIN = '#db2777'; 
 const PINK_CONTRAST = '#be185d';
 
-// Tooltip content - Added "Dra. " prefix
+// Tooltip content - Added "Dr./Dra. " prefix
 const DayTooltipContent = ({ entries }) => (
     <Box sx={{ p: 0.5 }}>
         {entries.map((e, i) => (
             <Box key={i} sx={{ display: 'flex', alignItems: 'center', gap: 0.75, mb: i < entries.length - 1 ? 0.5 : 0 }}>
                 <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: e.color, flexShrink: 0 }} />
                 <Typography variant="caption" sx={{ color: 'white', lineHeight: 1.3 }}>
-                    <strong>Dra. {e.nombre}</strong><br />{fmtTime(e.hora_inicio)} – {fmtTime(e.hora_fin)}
+                    <strong>Dr./Dra. {e.nombre}</strong><br />{fmtTime(e.hora_inicio)} – {fmtTime(e.hora_fin)}
                 </Typography>
             </Box>
         ))}
@@ -349,7 +349,7 @@ const ScheduleModal = ({ open, onClose, onSuccess }) => {
                                         onMonthChange={setCurrentMonth}
                                     />
 
-                                    {/* Legend strip - Centered and with "Dra. " prefix */}
+                                    {/* Legend strip - Centered and with "Dr./Dra. " prefix */}
                                     {legendDoctors.length > 0 && (
                                         <Box sx={{
                                             borderTop: '1px solid', borderColor: PINK_PASTEL,
@@ -365,7 +365,7 @@ const ScheduleModal = ({ open, onClose, onSuccess }) => {
                                                     <Box key={doc.id} sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
                                                         <Box sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: color?.bg || '#94a3b8', flexShrink: 0, border: '1px solid rgba(0,0,0,0.09)' }} />
                                                         <Typography variant="caption" fontWeight={600} color="text.primary" sx={{ fontSize: '0.72rem' }}>
-                                                            Dra. {doc.nombre_completo}
+                                                            Dr./Dra. {doc.nombre_completo}
                                                         </Typography>
                                                     </Box>
                                                 );
@@ -407,7 +407,7 @@ const ScheduleModal = ({ open, onClose, onSuccess }) => {
                                                         <Box sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: color?.bg || '#94a3b8', flexShrink: 0 }} />
                                                         <Box>
                                                             <Typography variant="body2" fontWeight={700}>
-                                                                Dra. {doc.nombre_completo}
+                                                                Dr./Dra. {doc.nombre_completo}
                                                                 {doc.es_principal && (
                                                                     <Typography component="span" variant="caption" sx={{ ml: 1, fontWeight: 600, color: PINK_MAIN }}>
                                                                         · Principal
@@ -452,7 +452,7 @@ const ScheduleModal = ({ open, onClose, onSuccess }) => {
                                             ✓ Resumen
                                         </Typography>
                                         <Typography variant="caption" color="#15803d">
-                                            Se crearán <strong>{selectedDates.length}</strong> turno{selectedDates.length > 1 ? 's' : ''} de {formData.hora_inicio}–{formData.hora_fin} para <strong>Dra. {doctors.find(d => d.id === formData.doctor_id)?.nombre_completo}</strong>.
+                                            Se crearán <strong>{selectedDates.length}</strong> turno{selectedDates.length > 1 ? 's' : ''} de {formData.hora_inicio}–{formData.hora_fin} para <strong>Dr./Dra. {doctors.find(d => d.id === formData.doctor_id)?.nombre_completo}</strong>.
                                         </Typography>
                                     </Box>
                                 )}
